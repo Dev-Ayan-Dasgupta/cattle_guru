@@ -107,11 +107,11 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             Column(
               children: [
-                CustomButton(width: 90.w, height: 12.5.w, color: primary, onTap: (){
+                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                   Navigator.pushNamed(context, otp);
                 }, text: "Get OTP", fontColor: white),
                 SizedBox(height: 1.h,),
-                Text("By signing up, you agree to our Terms and Services", style: globalTextStyle.copyWith(fontSize: 2.w,),),
+                Text("By signing up, you agree to our Terms and Services", style: globalTextStyle.copyWith(fontSize: 2.5.w,),),
                 SizedBox(height: 2.h,)
               ],
             ),

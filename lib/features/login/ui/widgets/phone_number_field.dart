@@ -16,7 +16,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
   Widget build(BuildContext context) {
     return Container(
       width: 90.w,
-      height: 12.5.w,
+      height: 15.w,
       decoration: BoxDecoration(
         color: lightGrey,
         borderRadius: BorderRadius.all(Radius.circular(2.w)),
