@@ -1,4 +1,5 @@
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
+import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           title: 'Cattle Guru',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.green,
           ),
           home: const SignInScreen(),
           initialRoute: "/",

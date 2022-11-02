@@ -1,5 +1,6 @@
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -56,7 +57,9 @@ class SelectLanguage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Continue", fontColor: white),
+                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
+                  Navigator.pushNamed(context, details);
+                }, text: "Continue", fontColor: white),
                 SizedBox(height: 2.h,),
               ],
             )
