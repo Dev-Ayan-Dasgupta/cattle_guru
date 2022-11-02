@@ -3,6 +3,7 @@ import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -79,12 +80,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index){
-
+          if(index == 0){
+            Navigator.pushNamed(context, home);
+          }
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
+        selectedItemColor: orangeLight,
+        unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
         items: items,

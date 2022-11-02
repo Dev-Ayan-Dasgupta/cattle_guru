@@ -1,4 +1,3 @@
-import 'package:cattle_guru/features/home/ui/widgets/product_tile.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
@@ -29,6 +28,7 @@ const lightGrey = Color.fromARGB(255, 233, 233, 233);
 const black = Colors.black;
 const red = Color(0xFFFF0101);
 const lightRed = Color.fromRGBO(255, 1, 1, 0.1);
+const orangeLight = Color.fromARGB(255, 251, 195, 111);
 
 //TEXTSTYLES
 TextStyle globalTextStyle = GoogleFonts.varela();
