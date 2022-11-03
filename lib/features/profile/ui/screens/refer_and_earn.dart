@@ -76,9 +76,9 @@ class _ReferandEarnScreenState extends State<ReferandEarnScreen> {
                   ],
                 ),
                 SizedBox(height: 2.h),
-                CustomTextField(controller: referController, hintText: "Enter customer ID", label: "Customer ID", keyboardType: TextInputType.text),
+                CustomTextField(width: 90.w, controller: referController, hintText: "Enter customer ID", label: "Customer ID", keyboardType: TextInputType.text),
                 SizedBox(height: 2.h),
-                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Whatsapp", fontColor: white)
+                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Whatsapp", fontColor: white, borderColor: primary,)
               ],
             ),
           ),
@@ -90,6 +90,9 @@ class _ReferandEarnScreenState extends State<ReferandEarnScreen> {
         onTap: (index){
           if(index == 0){
             Navigator.pushNamed(context, home);
+          }
+          if(index == 3){
+            Navigator.pushNamed(context, myCart);
           }
         },
         showSelectedLabels: true,

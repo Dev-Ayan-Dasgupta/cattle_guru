@@ -4,6 +4,7 @@ import 'package:cattle_guru/features/common/widgets/custom_textlabel.dart';
 import 'package:cattle_guru/features/home/ui/widgets/product_category_tile.dart';
 import 'package:cattle_guru/features/home/ui/widgets/product_tile.dart';
 import 'package:cattle_guru/features/home/ui/widgets/video_thumbnail.dart';
+import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productTiles.length,
                         itemBuilder: (context, index){
                           return ProductTile(
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: productTiles[index])));
+                            },
                             width: 40.w, 
                             height: 40.w, 
                             imgUrl: productTiles[index].imgUrl, 
@@ -203,6 +206,9 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index){
           if(index == 0){
             Navigator.pushNamed(context, home);
+          }
+          if(index == 3){
+            Navigator.pushNamed(context, myCart);
           }
         },
         showSelectedLabels: true,

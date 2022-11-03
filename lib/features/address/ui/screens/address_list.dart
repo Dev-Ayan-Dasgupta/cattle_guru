@@ -77,7 +77,9 @@ class _AddressListScreenState extends State<AddressListScreen> {
             ),
             Column(
               children: [
-                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Add Address", fontColor: white),
+                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
+                  Navigator.pushNamed(context, createAddress);
+                }, text: "Add Address", fontColor: white, borderColor: primary,),
                 SizedBox(height: 2.h,),
               ],
             ),
@@ -90,6 +92,9 @@ class _AddressListScreenState extends State<AddressListScreen> {
         onTap: (index){
           if(index == 0){
             Navigator.pushNamed(context, home);
+          }
+          if(index == 3){
+            Navigator.pushNamed(context, myCart);
           }
         },
         showSelectedLabels: true,

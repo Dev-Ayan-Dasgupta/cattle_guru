@@ -1,4 +1,5 @@
 import 'package:cattle_guru/models/address.dart';
+import 'package:cattle_guru/models/cart_model.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
@@ -31,6 +32,7 @@ const black = Colors.black;
 const red = Color(0xFFFF0101);
 const lightRed = Color.fromRGBO(255, 1, 1, 0.1);
 const orangeLight = Color.fromARGB(255, 251, 195, 111);
+const transparent = Colors.transparent;
 
 //TEXTSTYLES
 TextStyle globalTextStyle = GoogleFonts.varela();
@@ -52,10 +54,52 @@ List videoThumbnails = [
 
 //PRODUCT TILES
 List productTiles = [
-  ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Ahar", 399, "Mixed with all good nutrients, this is made specially"),
-  ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Silage", 499, "Mixed with all good nutrients, this is made specially"),
-  ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Fertilizer", 599, "Mixed with all good nutrients, this is made specially"),
+  ProductDetail(
+    "./assets/images/products/product_1.png", 
+    "GURU's Pashu Ahar", 
+    399, 
+    449,
+    45,
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    35,
+    45,
+    20,
+    13,
+  ),
+  ProductDetail(
+    "./assets/images/products/product_1.png", 
+    "GURU's Pashu Ahar", 
+    750, 
+    875,
+    35,
+    "Mixed with all good nutrients, this is made specially for cows",
+    35,
+    45,
+    20,
+    24,
+  ),
+  ProductDetail(
+    "./assets/images/products/product_1.png", 
+    "GURU's Pashu Ahar", 
+    650, 
+    900,
+    45,
+    "Mixed with all good nutrients, this is made specially for buffaloes",
+    50,
+    45,
+    20,
+    5,
+  ),
 ];
+
+//CART TILES
+List cartItems = [
+  CartModel(productTiles[0], 2),
+  CartModel(productTiles[2], 3),
+];
+
+//CART VALUE
+double cartValue = 0;
 
 //ADDRESS TILES
 List addressTiles = [

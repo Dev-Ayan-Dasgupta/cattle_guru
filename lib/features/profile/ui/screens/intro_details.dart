@@ -35,11 +35,11 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
               Column(
                 children: [
                   SizedBox(height: 5.h,),
-                  CustomTextField(controller: nameController, hintText: "Enter your name", label: "Name", keyboardType: TextInputType.name,),
+                  CustomTextField(width: 90.w, controller: nameController, hintText: "Enter your name", label: "Name", keyboardType: TextInputType.name,),
                   SizedBox(height: 2.h,),
-                  CustomTextField(controller: pinCodeController, hintText: "Enter your pin code", label: "Pin Code", keyboardType: TextInputType.number,),
+                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "Enter your pin code", label: "Pin Code", keyboardType: TextInputType.number,),
                   SizedBox(height: 2.h,),
-                  CustomTextField(controller: villageController, hintText: "Enter your village name", label: "Village", keyboardType: TextInputType.text,),
+                  CustomTextField(width: 90.w, controller: villageController, hintText: "Enter your village name", label: "Village", keyboardType: TextInputType.text,),
                 ],
               ),
               Column(
@@ -47,7 +47,7 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                 children: [
                   CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                     Navigator.pushNamed(context, home);
-                  }, text: "Continue", fontColor: white),
+                  }, text: "Continue", fontColor: white, borderColor: primary,),
                   SizedBox(height: 2.h,),
                 ],
               ),

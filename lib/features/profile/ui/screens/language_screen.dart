@@ -59,7 +59,7 @@ class SelectLanguage extends StatelessWidget {
               children: [
                 CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                   Navigator.pushNamed(context, details);
-                }, text: "Continue", fontColor: white),
+                }, text: "Continue", fontColor: white, borderColor: primary,),
                 SizedBox(height: 2.h,),
               ],
             )

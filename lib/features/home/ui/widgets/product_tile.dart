@@ -46,7 +46,7 @@ class _ProductTileState extends State<ProductTile> {
               SizedBox(height: 1.h,),
               Text(widget.description, style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), maxLines: 2, overflow: TextOverflow.ellipsis,),
               SizedBox(height: 1.h,),
-              CustomButton(width: widget.width, height: (widget.width/5.5), color: primary, onTap: widget.onAddToCart, text: "Add to Cart", fontColor: white),
+              CustomButton(width: widget.width, height: (widget.width/5.5), color: primary, onTap: widget.onAddToCart, text: "Add to Cart", fontColor: white, borderColor: primary,),
             ],
           ),
         ),

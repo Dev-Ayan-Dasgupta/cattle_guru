@@ -60,18 +60,18 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   const ProfileSnippet(imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: black),
                   SizedBox(height: 2.h,),
                   // CustomTextField(controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
-                  CustomTextField(controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
+                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
                   SizedBox(height: 2.h,),
-                  CustomTextField(controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
+                  CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
                   SizedBox(height: 2.h,),
-                  CustomTextField(controller: villageController, hintText: "45-A", label: "House Number", keyboardType: TextInputType.text),
+                  CustomTextField(width: 90.w, controller: villageController, hintText: "45-A", label: "House Number", keyboardType: TextInputType.text),
                   SizedBox(height: 2.h,),
-                  CustomButton(width: 50.w, height: 15.w, color: primary, onTap: (){}, text: "Save Changes", fontColor: white),
+                  CustomButton(width: 50.w, height: 15.w, color: primary, onTap: (){}, text: "Save Changes", fontColor: white, borderColor: primary,),
                 ],
               ),
               Column(
                 children: [
-                  CustomButton(width: 90.w, height: 15.w, color: lightRed, onTap: (){}, text: "LOGOUT", fontColor: red),
+                  CustomButton(width: 90.w, height: 15.w, color: lightRed, onTap: (){}, text: "LOGOUT", fontColor: red, borderColor: red,),
                   SizedBox(height: 2.h),
                 ],
               ),
@@ -85,6 +85,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         onTap: (index){
           if(index == 0){
             Navigator.pushNamed(context, home);
+          }
+          if(index == 3){
+            Navigator.pushNamed(context, myCart);
           }
         },
         showSelectedLabels: true,

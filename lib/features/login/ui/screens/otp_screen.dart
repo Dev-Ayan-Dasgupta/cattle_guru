@@ -55,7 +55,7 @@ class _OTPScreenState extends State<OTPScreen> {
               children: [
                 CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                   Navigator.pushNamed(context, languages);
-                }, text: "Submit OTP", fontColor: white),
+                }, text: "Submit OTP", fontColor: white, borderColor: primary,),
                 SizedBox(height: 2.h,),
               ],
             ),
