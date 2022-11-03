@@ -1,3 +1,4 @@
+import 'package:cattle_guru/models/address.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
@@ -22,6 +23,7 @@ List<String> carouselImageListHome = [
 //COLORS
 const primary = Color(0xFF27AE60);
 const primaryLight = Color.fromRGBO(49, 161, 96, 0.10);
+const primaryDark = Color.fromARGB(220, 32, 146, 80);
 const grey = Colors.grey;
 const white = Colors.white;
 const lightGrey = Color.fromARGB(255, 233, 233, 233);
@@ -53,6 +55,13 @@ List productTiles = [
   ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Ahar", 399, "Mixed with all good nutrients, this is made specially"),
   ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Silage", 499, "Mixed with all good nutrients, this is made specially"),
   ProductDetail("./assets/images/products/product_1.png", "GURU's Pashu Fertilizer", 599, "Mixed with all good nutrients, this is made specially"),
+];
+
+//ADDRESS TILES
+List addressTiles = [
+  Address("Vaibhav Aggarwal", "45-A", "Karol Bagh", "Delhi", "New Delhi", "123123", true),
+  Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", false),
+  Address("Reshmita Datta", "B/146", "Survey Park", "Kolkata", "West Bengal", "700075", false),
 ];
 
 //BOTTOM NAVIGATION BAR

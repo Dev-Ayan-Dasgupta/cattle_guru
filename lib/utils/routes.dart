@@ -6,3 +6,4 @@ const String home = "/home";
 const String myProfile = "/my-profile";
 const String referAndEarn = "/refer-and-earn";
 const String myWallet = "/my-wallet";
+const String myAddresses = "/my-addresses";

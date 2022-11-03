@@ -60,6 +60,9 @@ class CustomDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.location_on_rounded, size: 5.w, color: white,),
             title: Text("My Addresses", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: (){
+              Navigator.pushNamed(context, myAddresses);
+            },
           ),
           ListTile(
             dense: true,

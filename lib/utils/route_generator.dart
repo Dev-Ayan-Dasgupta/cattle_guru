@@ -1,3 +1,4 @@
+import 'package:cattle_guru/features/address/ui/screens/address_list.dart';
 import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
@@ -22,6 +23,7 @@ class RouteGenerator{
       case myProfile: return CustomPageTransition(child: const MyProfileScreen(), settings: settings,);
       case referAndEarn: return CustomPageTransition(child: const ReferandEarnScreen(), settings: settings,);
       case myWallet: return CustomPageTransition(child: const MyWalletScreen(), settings: settings,);
+      case myAddresses: return CustomPageTransition(child: const AddressListScreen(), settings: settings,);
       default: return _errorRoute();
     }
   }
