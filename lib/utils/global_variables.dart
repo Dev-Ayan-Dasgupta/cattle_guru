@@ -1,5 +1,6 @@
 import 'package:cattle_guru/models/address.dart';
 import 'package:cattle_guru/models/cart_model.dart';
+import 'package:cattle_guru/models/order_model.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
@@ -65,6 +66,7 @@ List productTiles = [
     45,
     20,
     13,
+    2,
   ),
   ProductDetail(
     "./assets/images/products/product_1.png", 
@@ -77,6 +79,7 @@ List productTiles = [
     45,
     20,
     24,
+    3,
   ),
   ProductDetail(
     "./assets/images/products/product_1.png", 
@@ -89,17 +92,28 @@ List productTiles = [
     45,
     20,
     5,
+    3,
   ),
 ];
 
 //CART TILES
-List cartItems = [
+List<CartModel> cartItems = [
   CartModel(productTiles[0], 2),
   CartModel(productTiles[2], 3),
 ];
 
 //CART VALUE
 double cartValue = 0;
+
+//CURRENT ORDER
+OrderModel currentOrder = OrderModel(cartItems, DateTime.now(), 2448);
+
+//PREVIOUS ORDERS
+List previousOrders = [
+  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 2)), 3550),
+  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 5)), 1440),
+  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 7)), 950),
+];
 
 //ADDRESS TILES
 List addressTiles = [

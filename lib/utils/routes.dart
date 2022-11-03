@@ -9,3 +9,4 @@ const String myWallet = "/my-wallet";
 const String myAddresses = "/my-addresses";
 const String createAddress = "/create-address";
 const String myCart = "/my-cart";
+const String myOrders = "/my-orders";

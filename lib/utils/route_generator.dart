@@ -4,6 +4,7 @@ import 'package:cattle_guru/features/cart/ui/screens/cart_screen.dart';
 import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
+import 'package:cattle_guru/features/orders/ui/screen/order_screen.dart';
 import 'package:cattle_guru/features/profile/ui/screens/intro_details.dart';
 import 'package:cattle_guru/features/profile/ui/screens/language_screen.dart';
 import 'package:cattle_guru/features/profile/ui/screens/my_profile.dart';
@@ -28,6 +29,7 @@ class RouteGenerator{
       case myAddresses: return CustomPageTransition(child: const AddressListScreen(), settings: settings,);
       case createAddress: return CustomPageTransition(child: const CreateAddressScreen(), settings: settings,);
       case myCart: return CustomPageTransition(child: const CartScreen(), settings: settings,);
+      case myOrders: return CustomPageTransition(child: const OrdersScreen(), settings: settings,);
       default: return _errorRoute();
     }
   }

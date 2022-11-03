@@ -63,8 +63,6 @@ class _CartScreenState extends State<CartScreen> {
               Column(
                 children: [
                   SizedBox(height: 2.h,),
-                  // CartTile(onTap: (){}, imgUrl: "./assets/images/products/product_1.png", productName: "Guru's Pashu Ahar", productWeight: 45, productPrice: 399, onSubtract: (){}, onAdd: (){}),
-                  // CartTile(onTap: (){}, imgUrl: "./assets/images/products/product_1.png", productName: "Guru's Pashu Ahar", productWeight: 45, productPrice: 399, onSubtract: (){}, onAdd: (){}),
                   SizedBox(
                     width: 100.w,
                     height: 45.h,

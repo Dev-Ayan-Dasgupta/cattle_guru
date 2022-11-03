@@ -9,6 +9,7 @@ class ProductDetail{
   final double fibre;
   final double fat;
   final double units;
+  final int deliveryDays;
 
-  ProductDetail(this.imgUrl, this.name, this.price, this.mrp, this.weight, this.description, this.protein, this.fibre, this.fat, this.units, );
+  ProductDetail(this.imgUrl, this.name, this.price, this.mrp, this.weight, this.description, this.protein, this.fibre, this.fat, this.units, this.deliveryDays,);
 }

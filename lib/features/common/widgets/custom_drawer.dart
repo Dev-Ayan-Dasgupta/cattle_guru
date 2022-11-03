@@ -68,6 +68,9 @@ class CustomDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.shopping_bag_rounded, size: 5.w, color: white,),
             title: Text("My Orders", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: (){
+              Navigator.pushNamed(context, myOrders);
+            }
           ),
           ListTile(
             dense: true,
