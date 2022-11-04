@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             width: 40.w, 
                             height: 40.w, 
-                            imgUrl: productTiles[index].imgUrl, 
+                            imgUrl: productTiles[index].imgUrls[0], 
                             title: productTiles[index].name, 
                             price: productTiles[index].price, 
                             description: productTiles[index].description, 

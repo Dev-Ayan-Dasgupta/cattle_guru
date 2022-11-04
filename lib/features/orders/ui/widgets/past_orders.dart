@@ -47,7 +47,7 @@ class PastOrders extends StatelessWidget {
                                             itemBuilder: (context, index2){
                                               return PastOrderTile(
                                                 onTap: (){}, 
-                                                imgUrl: previousOrders[index].order[index2].product.imgUrl, 
+                                                imgUrl: previousOrders[index].order[index2].product.imgUrls[0], 
                                                 productName: previousOrders[index].order[index2].product.name, 
                                                 qty: previousOrders[index].order[index2].qty, 
                                                 productPrice: previousOrders[index].order[index2].product.price, 

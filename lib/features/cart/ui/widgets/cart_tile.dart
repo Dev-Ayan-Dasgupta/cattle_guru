@@ -49,6 +49,7 @@ class _CartTileState extends State<CartTile> {
               ),
               SizedBox(width: 15.w,),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 2.w,),

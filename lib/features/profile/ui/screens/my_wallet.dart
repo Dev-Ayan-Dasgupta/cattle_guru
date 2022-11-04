@@ -86,7 +86,7 @@ class MyWalletScreen extends StatelessWidget {
                               leading: const Image(image: AssetImage("./assets/images/wallet_leading.png"), fit: BoxFit.fill,),
                               title: Text("Sign up", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
                               subtitle: Text("22 October, 2022", style: globalTextStyle.copyWith(color: black, fontSize: 2.5.w,),),
-                              trailing: Text("22 October, 2022", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                              trailing: Text("₹ 100", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                             );
                           })
                       )

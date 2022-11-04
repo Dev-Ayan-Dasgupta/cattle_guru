@@ -65,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                   SizedBox(height: 2.h,),
                   SizedBox(
                     width: 100.w,
-                    height: 45.h,
+                    height: 40.h,
                     child: Column(
                       children: [
                         Expanded(
@@ -74,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
                             itemBuilder: (context, index){
                               return CartTile(
                                 onTap: (){}, 
-                                imgUrl: cartItems[index].product.imgUrl, 
+                                imgUrl: cartItems[index].product.imgUrls[0], 
                                 productName: cartItems[index].product.name, 
                                 productWeight: cartItems[index].product.weight, 
                                 productPrice: cartItems[index].product.price, 
@@ -112,8 +112,23 @@ class _CartScreenState extends State<CartScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      Text("- ₹ 200.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                    ],
+                  ),
+                  SizedBox(height: 1.h,),Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      Text("₹ 300", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      Text("- ₹ 300.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                    ],
+                  ),
+                  SizedBox(height: 1.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      Text("₹ 0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                     ],
                   ),
                   SizedBox(height: 1.h,),
@@ -127,7 +142,7 @@ class _CartScreenState extends State<CartScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
-                      Text("₹ ${computeCartVaue()-300}", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                      Text("₹ ${computeCartVaue()-300-200}", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
                     ],
                   ),
                   SizedBox(height: 2.h,),

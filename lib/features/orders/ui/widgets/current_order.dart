@@ -1,4 +1,5 @@
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
+import 'package:cattle_guru/features/orders/ui/screen/track_order.dart';
 import 'package:cattle_guru/features/orders/ui/widgets/order_tile.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class CurrentOrder extends StatelessWidget {
                             itemBuilder: (context, index){
                               return OrderTile(
                                 onTap: (){},
-                                imgUrl: cartItems[index].product.imgUrl, 
+                                imgUrl: cartItems[index].product.imgUrls[0], 
                                 productName: cartItems[index].product.name, 
                                 qty: cartItems[index].qty, 
                                 productPrice: cartItems[index].product.price, 
@@ -60,7 +61,10 @@ class CurrentOrder extends StatelessWidget {
                 children: [
                   CustomButton(width: 90.w, height: 15.w, color: lightRed, onTap: (){}, text: "Cancel Order", fontColor: red, borderColor: red),
                   SizedBox(height: 2.h,),
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Track Order", fontColor: white, borderColor: primary),
+                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => TrackOrderScreen(order: currentOrder)));
+                  }, text: "Track Order", fontColor: white, borderColor: primary),
                   SizedBox(height: 2.h,),
                 ],
               ),

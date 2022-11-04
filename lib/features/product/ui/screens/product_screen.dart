@@ -1,6 +1,5 @@
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
-import 'package:cattle_guru/features/common/widgets/custom_textlabel.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/routes.dart';
@@ -59,7 +58,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   Center(child: SizedBox(
                     width: 40.w,
                     height: 40.w,
-                    child: Image(image: AssetImage(widget.product.imgUrl), fit: BoxFit.fill,))),
+                    child: Image(image: AssetImage(widget.product.imgUrls[0]), fit: BoxFit.fill,))),
                   SizedBox(height: 2.h),
                   Text(widget.product.name, style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.h),

@@ -56,7 +56,7 @@ List videoThumbnails = [
 //PRODUCT TILES
 List productTiles = [
   ProductDetail(
-    "./assets/images/products/product_1.png", 
+    ["./assets/images/products/product_1.png"], 
     "GURU's Pashu Ahar", 
     399, 
     449,
@@ -66,10 +66,11 @@ List productTiles = [
     45,
     20,
     13,
+    1,
     2,
   ),
   ProductDetail(
-    "./assets/images/products/product_1.png", 
+    ["./assets/images/products/product_1.png"], 
     "GURU's Pashu Ahar", 
     750, 
     875,
@@ -79,10 +80,11 @@ List productTiles = [
     45,
     20,
     24,
+    2,
     3,
   ),
   ProductDetail(
-    "./assets/images/products/product_1.png", 
+    ["./assets/images/products/product_1.png"], 
     "GURU's Pashu Ahar", 
     650, 
     900,
@@ -92,6 +94,7 @@ List productTiles = [
     45,
     20,
     5,
+    2,
     3,
   ),
 ];
