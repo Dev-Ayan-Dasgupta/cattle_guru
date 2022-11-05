@@ -47,11 +47,41 @@ class _AddressListScreenState extends State<AddressListScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 5.w,),
+                SizedBox(height: 2.h,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w,),
+                  child: Text("Current Address", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                ),
+                SizedBox(height: 1.h,),
+                AddressCard(
+                  onTap: (){}, 
+                  isDefault: true, 
+                  name: addressTiles[1].name, 
+                  address: "${addressTiles[1].houseNum}, ${addressTiles[1].village}, ${addressTiles[1].district}, ${addressTiles[1].state}, ${addressTiles[1].pinCode}", 
+                  onEditTap: (){}, 
+                  onDefaultTap: (){}, 
+                  onRemoveTap: (){},
+                ),
+                SizedBox(height: 0.5.h,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Container(
+                    width: 90.w,
+                    height: 0.5,
+                    color: grey,
+                  ),
+                ),
+                SizedBox(height: 1.5.h,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w,),
+                  child: Text("My Addresses", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                ),
+                SizedBox(height: 1.h,),
                 SizedBox(
                   width: 100.w,
-                  height: 67.2.h,
+                  height: 40.h,
                   child: Column(
                     children: [
                       Expanded(

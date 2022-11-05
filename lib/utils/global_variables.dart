@@ -120,8 +120,8 @@ List previousOrders = [
 
 //ADDRESS TILES
 List addressTiles = [
-  Address("Vaibhav Aggarwal", "45-A", "Karol Bagh", "Delhi", "New Delhi", "123123", true),
-  Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", false),
+  Address("Vaibhav Aggarwal", "45-A", "Karol Bagh", "Delhi", "New Delhi", "123123", false),
+  Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", true),
   Address("Reshmita Datta", "B/146", "Survey Park", "Kolkata", "West Bengal", "700075", false),
 ];
 
