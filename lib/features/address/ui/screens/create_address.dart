@@ -2,11 +2,14 @@ import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/fetch_location.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 class CreateAddressScreen extends StatefulWidget {
   const CreateAddressScreen({super.key});
@@ -22,6 +25,19 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
   TextEditingController districtController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController pinCodeController = TextEditingController();
+
+  Position position = Position(
+    longitude: 0,
+    latitude: 0,
+    timestamp: DateTime.now(),
+    accuracy: 0,
+    altitude: 0,
+    heading: 0,
+    speed: 0,
+    speedAccuracy: 0,
+  );
+
+  List<Placemark>? placeMarks;
 
   @override
   void dispose() {
@@ -82,6 +98,33 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                     CustomTextField(width: 90.w, controller: districtController, hintText: "Delhi", label: "District", keyboardType: TextInputType.text),
                     SizedBox(height: 2.h,),
                     CustomTextField(width: 90.w, controller: stateController, hintText: "New Delhi", label: "State", keyboardType: TextInputType.text),
+                    SizedBox(height: 2.h,),
+                    InkWell(
+                      onTap: () async {
+                        position = await FetchLocation.getCurrentLocation();
+                        placeMarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+                        Placemark placemark = placeMarks![0];
+                        setState(() {
+                          houseNumController.text = placemark.street.toString();
+                          villageController.text = placemark.subLocality.toString();
+                          pinCodeController.text = placemark.postalCode.toString();
+                          districtController.text = placemark.subAdministrativeArea.toString();
+                          stateController.text = placemark.administrativeArea.toString();
+                        });
+                        print("Latitude: ${position.latitude}");
+                        print("\nLongitude: ${position.longitude}");
+                        print("\nPlacemarks = $placeMarks");
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.my_location_rounded, color: primary, size: 3.w,),
+                          SizedBox(width: 1.w,),
+                          Text("Detect my location", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 Column(
