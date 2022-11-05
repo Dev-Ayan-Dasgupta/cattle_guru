@@ -6,6 +6,8 @@ import 'package:cattle_guru/features/home/ui/widgets/product_tile.dart';
 import 'package:cattle_guru/features/home/ui/widgets/video_thumbnail.dart';
 import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -40,13 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: _scaffoldKey,
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
@@ -59,11 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           InkWell(
-            onTap: (){},
+            onTap: PhoneCall.makingPhoneCall,
             child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
           SizedBox(width: 5.w,),
           InkWell(
-            onTap: (){},
+            onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
               width: 5.w,
               height: 5.w,

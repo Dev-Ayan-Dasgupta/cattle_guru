@@ -3,6 +3,8 @@ import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -43,11 +45,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ),
         actions: [
           InkWell(
-            onTap: (){},
+            onTap: PhoneCall.makingPhoneCall,
             child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
           SizedBox(width: 5.w,),
           InkWell(
-            onTap: (){},
+            onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
               width: 5.w,
               height: 5.w,
@@ -70,7 +72,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     SizedBox(height: 2.h,),
                     const ProfileSnippet(imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: black),
                     SizedBox(height: 2.h,),
-                    // CustomTextField(controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
                     CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
                     SizedBox(height: 2.h,),
                     CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),

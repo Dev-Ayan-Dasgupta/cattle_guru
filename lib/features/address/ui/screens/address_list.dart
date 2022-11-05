@@ -3,6 +3,8 @@ import 'package:cattle_guru/features/address/ui/widgets/address_card.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -30,11 +32,11 @@ class _AddressListScreenState extends State<AddressListScreen> {
         ),
         actions: [
           InkWell(
-            onTap: (){},
+            onTap: PhoneCall.makingPhoneCall,
             child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
           SizedBox(width: 5.w,),
           InkWell(
-            onTap: (){},
+            onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
               width: 5.w,
               height: 5.w,
