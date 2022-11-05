@@ -135,10 +135,74 @@
 -keep class com.google.android.gms.auth.api.signin.RevocationBoundService { <init>(); }
 -keep class com.google.android.gms.auth.api.signin.internal.SignInHubActivity { <init>(); }
 -keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+-keep class com.yalantis.ucrop.UCropActivity { <init>(); }
 -keep class dev.fluttercommunity.plus.share.ShareFileProvider { <init>(); }
+-keep class io.flutter.plugins.imagepicker.ImagePickerFileProvider { <init>(); }
 -keep class io.flutter.plugins.urllauncher.WebViewActivity { <init>(); }
+-keep class android.widget.Space { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.app.AlertController$RecycleListView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ActionMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ExpandedMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ListMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContainer { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarOverlayLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActivityChooserView$InnerLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.AlertDialogLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ButtonBarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ContentFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.DialogTitle { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsLinearLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.SearchView$SearchAutoComplete { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.Toolbar { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ViewStubCompat { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.core.widget.NestedScrollView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.ucrop.view.GestureCropImageView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.ucrop.view.OverlayView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.ucrop.view.UCropView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.ucrop.view.widget.AspectRatioTextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.ucrop.view.widget.HorizontalProgressWheelView { <init>(android.content.Context, android.util.AttributeSet); }
+
 
 # End of content from /Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/aapt_proguard_file/release/aapt_rules.txt
+# The proguard configuration file for the following section is /Users/mac/Flutter_Projects/cattle_guru/build/flutter_plugin_android_lifecycle/intermediates/consumer_proguard_dir/release/lib0/proguard.txt
+# The point of this package is to specify that a dependent plugin intends to
+# use the AndroidX lifecycle classes. Make sure no R8 heuristics shrink classes
+# brought in by the embedding's pom.
+#
+# This isn't strictly needed since by definition, plugins using Android
+# lifecycles should implement DefaultLifecycleObserver and therefore keep it
+# from being shrunk. But there seems to be an R8 bug so this needs to stay
+# https://issuetracker.google.com/issues/142778206.
+-keep class androidx.lifecycle.DefaultLifecycleObserver
+
+# End of content from /Users/mac/Flutter_Projects/cattle_guru/build/flutter_plugin_android_lifecycle/intermediates/consumer_proguard_dir/release/lib0/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
@@ -316,6 +380,96 @@
 
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/5bb5c542051ad7d41a6ce30144df9ca0/transformed/appcompat-1.3.0/proguard.txt
+# Copyright (C) 2018 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# aapt is not able to read app::actionViewClass and app:actionProviderClass to produce proguard
+# keep rules. Add a commonly used SearchView to the keep list until b/109831488 is resolved.
+-keep class androidx.appcompat.widget.SearchView { <init>(...); }
+
+# Never inline methods, but allow shrinking and obfuscation.
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.appcompat.widget.AppCompatTextViewAutoSizeHelper$Impl* {
+  <methods>;
+}
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/5bb5c542051ad7d41a6ce30144df9ca0/transformed/appcompat-1.3.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/b22ca91cb7e5836c5d78d9336476da77/transformed/fragment-1.3.4/proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# The default FragmentFactory creates Fragment instances using reflection
+-if public class ** extends androidx.fragment.app.Fragment
+-keepclasseswithmembers,allowobfuscation public class <1> {
+    public <init>();
+}
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/b22ca91cb7e5836c5d78d9336476da77/transformed/fragment-1.3.4/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/2bad31eddc1af32377c3d4b86d03d5eb/transformed/transition-1.4.1/proguard.txt
+# Copyright (C) 2017 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Keep a field in transition that is used to keep a reference to weakly-referenced object
+-keepclassmembers class androidx.transition.ChangeBounds$* extends android.animation.AnimatorListenerAdapter {
+  androidx.transition.ChangeBounds$ViewBounds mViewBounds;
+}
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/2bad31eddc1af32377c3d4b86d03d5eb/transformed/transition-1.4.1/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/eba3ac105ce1a200b5302334a4f79c0c/transformed/vectordrawable-animated-1.1.0/proguard.txt
+# Copyright (C) 2016 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# keep setters in VectorDrawables so that animations can still work.
+-keepclassmembers class androidx.vectordrawable.graphics.drawable.VectorDrawableCompat$* {
+   void set*(***);
+   *** get*();
+}
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/eba3ac105ce1a200b5302334a4f79c0c/transformed/vectordrawable-animated-1.1.0/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0/proguard.txt
 # Never inline methods, but allow shrinking and obfuscation.
 -keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
@@ -364,7 +518,17 @@
 -keep public class androidx.versionedparcelable.ParcelImpl
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/c6290d38a27dcf8d064fa9cefcb89071/transformed/versionedparcelable-1.1.1/proguard.txt
-# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/61be2594815516b1d798e8de806d8dcb/transformed/jetified-savedstate-1.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/c86a02278d475af793e2cbf0fd78a45d/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+    <init>(androidx.lifecycle.SavedStateHandle);
+}
+
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+    <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
+}
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/c86a02278d475af793e2cbf0fd78a45d/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/28c6c5691bb0a1235ccf3d69b2a7721a/transformed/jetified-savedstate-1.1.0/proguard.txt
 # Copyright (C) 2019 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -383,8 +547,8 @@
     <init>();
 }
 
-# End of content from /Users/mac/.gradle/caches/transforms-3/61be2594815516b1d798e8de806d8dcb/transformed/jetified-savedstate-1.0.0/proguard.txt
-# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/ed9734c73cdec898947618088fbe87b0/transformed/lifecycle-viewmodel-2.1.0/proguard.txt
+# End of content from /Users/mac/.gradle/caches/transforms-3/28c6c5691bb0a1235ccf3d69b2a7721a/transformed/jetified-savedstate-1.1.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/7f5341402df1317e3084f464aedd2232/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
 -keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
     <init>();
 }
@@ -393,7 +557,7 @@
     <init>(android.app.Application);
 }
 
-# End of content from /Users/mac/.gradle/caches/transforms-3/ed9734c73cdec898947618088fbe87b0/transformed/lifecycle-viewmodel-2.1.0/proguard.txt
+# End of content from /Users/mac/.gradle/caches/transforms-3/7f5341402df1317e3084f464aedd2232/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/5ecd554e1ba613181ce693feeeabd6c9/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
 -keep,allowobfuscation @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}
@@ -441,6 +605,20 @@
 -dontwarn kotlin.annotation.Target
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/58e3540d7f5a5bac6af9a8f8fab44363/transformed/jetified-annotation-experimental-1.1.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/367beb40b1784e851db7fae211bd51f9/transformed/rules/lib/META-INF/proguard/okhttp3.pro
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/367beb40b1784e851db7fae211bd51f9/transformed/rules/lib/META-INF/proguard/okhttp3.pro
 # The proguard configuration file for the following section is <unknown>
 -ignorewarnings
 # End of content from <unknown>

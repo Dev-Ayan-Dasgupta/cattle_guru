@@ -111,9 +111,6 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                           districtController.text = placemark.subAdministrativeArea.toString();
                           stateController.text = placemark.administrativeArea.toString();
                         });
-                        // print("Latitude: ${position.latitude}");
-                        // print("\nLongitude: ${position.longitude}");
-                        // print("\nPlacemarks = $placeMarks");
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,

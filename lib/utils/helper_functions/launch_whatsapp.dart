@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class LaunchWhatsapp{
   static whatsappLaunch() async {
 
-    String whatsapp = '+917668899220';
+    String whatsapp = '+917988896676';
     String whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=Hello Cattle GURU, I have some queries.";
     String whatsappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("Hello Cattle GURU, I have some queries.")}";
 

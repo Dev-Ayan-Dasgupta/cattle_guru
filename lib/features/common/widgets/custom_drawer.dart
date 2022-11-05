@@ -1,16 +1,49 @@
+import 'dart:io';
+
+import 'package:cattle_guru/features/profile/ui/screens/my_profile.dart';
 import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/image_upload.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+
+  Future<File?> selectImageFromCamera() async {
+    image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
+    //image = await cropSquareImage(image!);
+    setState(() {
+      });
+  }
+
+  Future<File?> selectImageFromGallery() async {
+    image = await ImageUpload.pickImage(context, ImageSource.gallery, cropSquareImage);
+    //image = await cropSquareImage(image!);
+    setState(() {
+      });
+  }
+
+  Future<File?> cropSquareImage(File imageFile) async =>
+    await ImageCropper().cropImage(
+      sourcePath: imageFile.path,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatioPresets: [CropAspectRatioPreset.square],
+    );
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +51,61 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: primary,
       child: ListView(
         children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
+          DrawerHeader(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(220, 32, 146, 80),
             ),
-            child: ProfileSnippet(imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: white)
+            child: ProfileSnippet(
+              onEditPhoto: (){
+                showModalBottomSheet(
+                  context: context, 
+                  builder: (context){
+                    return Container(
+                      height: 11.h,
+                      width: 100.w,
+                      color: white,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 2.h,),
+                            InkWell(
+                              onTap: () async {
+                                await selectImageFromCamera();
+                                Navigator.pop(context);
+                                // print(image);
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(Icons.camera_rounded, size: 4.w, color: black,),
+                                  SizedBox(width: 5.w,),
+                                  Text("Camera", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2.h,),
+                            InkWell(
+                              onTap: () async {
+                                await selectImageFromGallery();
+                                Navigator.pop(context);
+                                // print(image);
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(Icons.collections_rounded, size: 4.w, color: black,),
+                                  SizedBox(width: 5.w,),
+                                  Text("Gallery", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                );
+                      },
+              imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: white)
           ),
           ListTile(
             dense: true,

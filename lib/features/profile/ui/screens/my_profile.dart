@@ -141,24 +141,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                         ],
                                       ),
                                     ),
-                                    // ListTile(
-                                    //   leading: Icon(Icons.camera_rounded, size: 4.w, color: black,),
-                                    //   title: Text("Camera", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
-                                    //   onTap: () async {
-                                    //     await selectImageFromCamera();
-                                    //     Navigator.pop(context);
-                                    //     print(image);
-                                    //   }
-                                    // ),
-                                    // ListTile(
-                                    //   leading: Icon(Icons.collections_rounded, size: 4.w, color: black,),
-                                    //   title: Text("Gallery", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
-                                    //   onTap: () async {
-                                    //     await selectImageFromGallery();
-                                    //     Navigator.pop(context);
-                                    //     print(image);
-                                    //   }
-                                    // ),
                                   ],
                                 ),
                               ),
