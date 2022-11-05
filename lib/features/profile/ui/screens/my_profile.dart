@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/image_upload.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});
@@ -15,6 +20,8 @@ class MyProfileScreen extends StatefulWidget {
   @override
   State<MyProfileScreen> createState() => _MyProfileScreenState();
 }
+
+File? image;
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
 
@@ -29,6 +36,27 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
     houseNoController.dispose();
     super.dispose();
   }
+
+  Future<File?> selectImageFromCamera() async {
+    image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
+    //image = await cropSquareImage(image!);
+    setState(() {
+      });
+  }
+
+  Future<File?> selectImageFromGallery() async {
+    image = await ImageUpload.pickImage(context, ImageSource.gallery, cropSquareImage);
+    //image = await cropSquareImage(image!);
+    setState(() {
+      });
+  }
+
+  Future<File?> cropSquareImage(File imageFile) async =>
+    await ImageCropper().cropImage(
+      sourcePath: imageFile.path,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatioPresets: [CropAspectRatioPreset.square],
+    );
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +98,75 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 Column(
                   children: [
                     SizedBox(height: 2.h,),
-                    const ProfileSnippet(imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: black),
+                    ProfileSnippet(
+                      onEditPhoto: (){
+                        showModalBottomSheet(
+                          context: context, 
+                          builder: (context){
+                            return Container(
+                              height: 11.h,
+                              width: 100.w,
+                              color: white,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 2.h,),
+                                    InkWell(
+                                      onTap: () async {
+                                        await selectImageFromCamera();
+                                        Navigator.pop(context);
+                                        // print(image);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.camera_rounded, size: 4.w, color: black,),
+                                          SizedBox(width: 5.w,),
+                                          Text("Camera", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 2.h,),
+                                    InkWell(
+                                      onTap: () async {
+                                        await selectImageFromGallery();
+                                        Navigator.pop(context);
+                                        // print(image);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.collections_rounded, size: 4.w, color: black,),
+                                          SizedBox(width: 5.w,),
+                                          Text("Gallery", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                        ],
+                                      ),
+                                    ),
+                                    // ListTile(
+                                    //   leading: Icon(Icons.camera_rounded, size: 4.w, color: black,),
+                                    //   title: Text("Camera", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                    //   onTap: () async {
+                                    //     await selectImageFromCamera();
+                                    //     Navigator.pop(context);
+                                    //     print(image);
+                                    //   }
+                                    // ),
+                                    // ListTile(
+                                    //   leading: Icon(Icons.collections_rounded, size: 4.w, color: black,),
+                                    //   title: Text("Gallery", style: globalTextStyle.copyWith(color: black, fontSize: 4.w),),
+                                    //   onTap: () async {
+                                    //     await selectImageFromGallery();
+                                    //     Navigator.pop(context);
+                                    //     print(image);
+                                    //   }
+                                    // ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                        );
+                      }, 
+                      imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: black),
                     SizedBox(height: 2.h,),
                     CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
                     SizedBox(height: 2.h,),

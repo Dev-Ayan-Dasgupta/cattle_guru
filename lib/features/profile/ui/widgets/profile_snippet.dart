@@ -1,11 +1,13 @@
 import 'package:cattle_guru/features/common/widgets/custom_textlabel.dart';
+import 'package:cattle_guru/features/profile/ui/screens/my_profile.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 class ProfileSnippet extends StatelessWidget {
-  const ProfileSnippet({super.key, required this.imgUrl, required this.name, required this.phoneNumber, required this.fontColor});
+  const ProfileSnippet({super.key, required this.imgUrl, required this.name, required this.phoneNumber, required this.fontColor, this.onEditPhoto});
 
+  final onEditPhoto;
   final String imgUrl;
   final String name;
   final String phoneNumber;
@@ -21,7 +23,10 @@ class ProfileSnippet extends StatelessWidget {
           Container(
             width: 20.w,
             height: 20.w,
-            decoration: BoxDecoration(
+            decoration: (image != null) ? BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: FileImage(image!), fit: BoxFit.fill),
+            ) : BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.fill),
             ),
@@ -37,7 +42,7 @@ class ProfileSnippet extends StatelessWidget {
               Text(phoneNumber, style: globalTextStyle.copyWith(color: fontColor, fontSize: 3.w,),),
               SizedBox(height: 1.h,),
               InkWell(
-                onTap: (){},
+                onTap: onEditPhoto,
                 child: Container(
                   width: 20.w,
                   height: 5.w,

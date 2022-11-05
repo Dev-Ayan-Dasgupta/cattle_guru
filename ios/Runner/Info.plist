@@ -30,15 +30,21 @@
 	<string>Main</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-	<string>This app will launch SMS app</string>
-	<string>This app will launch phone caller</string>
+	<string>This app wants to launch SMS app</string>
+	<string>This app wants to launch phone caller</string>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-	<string>This app will launch Whatsapp</string>
+	<string>This app wants to launch Whatsapp</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs to access your location</string>
+	<string>This app wants to access your location</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to upload image from gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to upload image from camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app wants to record audio from microphone</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
