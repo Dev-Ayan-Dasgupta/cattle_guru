@@ -130,6 +130,7 @@
 # The proguard configuration file for the following section is /Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/aapt_proguard_file/release/aapt_rules.txt
 -keep class android.app.Application { <init>(); }
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
+-keep class com.baseflow.geolocator.GeolocatorLocationService { <init>(); }
 -keep class com.example.cattle_guru.MainActivity { <init>(); }
 -keep class com.google.android.gms.auth.api.signin.RevocationBoundService { <init>(); }
 -keep class com.google.android.gms.auth.api.signin.internal.SignInHubActivity { <init>(); }
@@ -315,7 +316,7 @@
 
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/proguard.txt
-# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/5e083c06c9925c2309f02468fc66e376/transformed/core-1.7.0/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0/proguard.txt
 # Never inline methods, but allow shrinking and obfuscation.
 -keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
   <methods>;
@@ -333,7 +334,7 @@
   <methods>;
 }
 
-# End of content from /Users/mac/.gradle/caches/transforms-3/5e083c06c9925c2309f02468fc66e376/transformed/core-1.7.0/proguard.txt
+# End of content from /Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/8a5514d4341f323606d890e29d4268b9/transformed/lifecycle-runtime-2.3.1/proguard.txt
 -keepattributes *Annotation*
 

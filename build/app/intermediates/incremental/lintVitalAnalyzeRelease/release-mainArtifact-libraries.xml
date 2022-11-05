@@ -4,6 +4,32 @@
       jars="/Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/flutter/release/libs.jar"
       resolved="__local_aars__:/Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
   <library
+      name="/Users/mac/Flutter_Projects/cattle_guru/android@@:geolocator_android::release"
+      jars="/Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/.transforms/9b56ca882333a8b93a38bb96a0233996/transformed/out/jars/classes.jar"
+      resolved="com.baseflow.geolocator:geolocator_android:unspecified"
+      folder="/Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/.transforms/9b56ca882333a8b93a38bb96a0233996/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/mac/Flutter_Projects/cattle_guru/android@@:geocoding::release"
+      jars="/Users/mac/Flutter_Projects/cattle_guru/build/geocoding/.transforms/61a41641652e68086eafd84ef95e5892/transformed/out/jars/classes.jar"
+      resolved="com.baseflow.geocoding:geocoding:unspecified"
+      folder="/Users/mac/Flutter_Projects/cattle_guru/build/geocoding/.transforms/61a41641652e68086eafd84ef95e5892/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/mac/Flutter_Projects/cattle_guru/android@@:share_plus::release"
       jars="/Users/mac/Flutter_Projects/cattle_guru/build/share_plus/.transforms/4bc240a75be81f520e91fff4b715292a/transformed/out/jars/classes.jar"
       resolved="dev.fluttercommunity.plus.share:share_plus:unspecified"
@@ -114,10 +140,6 @@
       jars="/Users/mac/.gradle/caches/modules-2/files-2.1/io.flutter/x86_64_release/1.0.0-c08d7d5efc9aa6eb3c30cfb3be6dc09bca5e7631/1d5eff7b1dfdebd976e813d5acc1a53cd515edc2/x86_64_release-1.0.0-c08d7d5efc9aa6eb3c30cfb3be6dc09bca5e7631.jar"
       resolved="io.flutter:x86_64_release:1.0.0-c08d7d5efc9aa6eb3c30cfb3be6dc09bca5e7631"/>
   <library
-      name="androidx.lifecycle:lifecycle-common-java8:2.2.0@jar"
-      jars="/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.2.0/cd3478503da69b1a7e0319bd2d1389943db9b364/lifecycle-common-java8-2.2.0.jar"
-      resolved="androidx.lifecycle:lifecycle-common-java8:2.2.0"/>
-  <library
       name="androidx.fragment:fragment:1.1.0@aar"
       jars="/Users/mac/.gradle/caches/transforms-3/0e0e1a382b52c0572988a1c50e96d2f7/transformed/fragment-1.1.0/jars/classes.jar"
       resolved="androidx.fragment:fragment:1.1.0"
@@ -183,10 +205,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="androidx.core:core:1.7.0@aar"
-      jars="/Users/mac/.gradle/caches/transforms-3/5e083c06c9925c2309f02468fc66e376/transformed/core-1.7.0/jars/classes.jar"
-      resolved="androidx.core:core:1.7.0"
-      folder="/Users/mac/.gradle/caches/transforms-3/5e083c06c9925c2309f02468fc66e376/transformed/core-1.7.0"
+      name="androidx.core:core:1.8.0@aar"
+      jars="/Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0/jars/classes.jar"
+      resolved="androidx.core:core:1.8.0"
+      folder="/Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -195,6 +217,27 @@
       symbolFile="R.txt"
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
+  <library
+      name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
+      jars="/Users/mac/.gradle/caches/transforms-3/c6290d38a27dcf8d064fa9cefcb89071/transformed/versionedparcelable-1.1.1/jars/classes.jar"
+      resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
+      folder="/Users/mac/.gradle/caches/transforms-3/c6290d38a27dcf8d064fa9cefcb89071/transformed/versionedparcelable-1.1.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.collection:collection:1.1.0@jar"
+      jars="/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar"
+      resolved="androidx.collection:collection:1.1.0"/>
+  <library
+      name="androidx.lifecycle:lifecycle-common-java8:2.2.0@jar"
+      jars="/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.2.0/cd3478503da69b1a7e0319bd2d1389943db9b364/lifecycle-common-java8-2.2.0.jar"
+      resolved="androidx.lifecycle:lifecycle-common-java8:2.2.0"/>
   <library
       name="androidx.lifecycle:lifecycle-runtime:2.3.1@aar"
       jars="/Users/mac/.gradle/caches/transforms-3/8a5514d4341f323606d890e29d4268b9/transformed/lifecycle-runtime-2.3.1/jars/classes.jar"
@@ -269,23 +312,6 @@
       jars="/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar"
       resolved="androidx.arch.core:core-common:2.1.0"/>
   <library
-      name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
-      jars="/Users/mac/.gradle/caches/transforms-3/c6290d38a27dcf8d064fa9cefcb89071/transformed/versionedparcelable-1.1.1/jars/classes.jar"
-      resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
-      folder="/Users/mac/.gradle/caches/transforms-3/c6290d38a27dcf8d064fa9cefcb89071/transformed/versionedparcelable-1.1.1"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.collection:collection:1.1.0@jar"
-      jars="/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar"
-      resolved="androidx.collection:collection:1.1.0"/>
-  <library
       name="androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar"
       jars="/Users/mac/.gradle/caches/transforms-3/ed9734c73cdec898947618088fbe87b0/transformed/lifecycle-viewmodel-2.1.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel:2.1.0"
@@ -332,6 +358,19 @@
       jars="/Users/mac/.gradle/caches/transforms-3/9a15d0431946b4658756ca271d093b65/transformed/jetified-tracing-1.0.0/jars/classes.jar"
       resolved="androidx.tracing:tracing:1.0.0"
       folder="/Users/mac/.gradle/caches/transforms-3/9a15d0431946b4658756ca271d093b65/transformed/jetified-tracing-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.android.gms:play-services-location:20.0.0@aar"
+      jars="/Users/mac/.gradle/caches/transforms-3/2d36fe3092f409c15b974a0b68b21147/transformed/jetified-play-services-location-20.0.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-location:20.0.0"
+      folder="/Users/mac/.gradle/caches/transforms-3/2d36fe3092f409c15b974a0b68b21147/transformed/jetified-play-services-location-20.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

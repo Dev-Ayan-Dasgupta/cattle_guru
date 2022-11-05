@@ -13,172 +13,198 @@
 11    <uses-permission android:name="android.permission.INTERNET" />
 11-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:3:5-66
 11-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:3:22-64
-12
-13    <queries>
-13-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:4:5-13:15
-14        <intent>
-14-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:5:9-8:18
-15            <action android:name="android.intent.action.VIEW" />
-15-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:13-65
-15-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:21-62
-16
-17            <data android:scheme="sms" />
-17-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:13-42
-17-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:19-39
-18        </intent>
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:4:5-79
+12-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:4:22-76
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:5:5-77
+13-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:5:22-74
+14    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+14-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:5-84
+14-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:22-82
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:5-78
+15-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:22-76
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:8:5-80
+16-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:8:22-78
+17
+18    <queries>
+18-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:9:5-18:15
 19        <intent>
-19-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:9:9-12:18
+19-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:10:9-13:18
 20            <action android:name="android.intent.action.VIEW" />
-20-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:13-65
-20-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:6:21-62
+20-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:11:13-65
+20-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:11:21-62
 21
-22            <data android:scheme="tel" />
-22-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:13-42
-22-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:7:19-39
+22            <data android:scheme="sms" />
+22-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:12:13-42
+22-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:12:19-39
 23        </intent>
-24    </queries>
-25
-26    <application
-27        android:name="android.app.Application"
-27-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:16:9-42
-28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-28-->[androidx.core:core:1.7.0] /Users/mac/.gradle/caches/transforms-3/5e083c06c9925c2309f02468fc66e376/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
-29        android:icon="@mipmap/ic_launcher"
-29-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:17:9-43
-30        android:label="Cattle GURU" >
-30-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:15:9-36
-31        <activity
-31-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:18:9-38:20
-32            android:name="com.example.cattle_guru.MainActivity"
-32-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:19:13-41
-33            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-33-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:23:13-163
-34            android:exported="true"
-34-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:20:13-36
-35            android:hardwareAccelerated="true"
-35-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:24:13-47
-36            android:launchMode="singleTop"
-36-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:21:13-43
-37            android:theme="@style/LaunchTheme"
-37-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:22:13-47
-38            android:windowSoftInputMode="adjustResize" >
-38-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:25:13-55
-39
-40            <!--
-41                 Specifies an Android theme to apply to this Activity as soon as
-42                 the Android process has started. This theme is visible to the user
-43                 while the Flutter UI initializes. After that, this theme continues
-44                 to determine the Window background behind the Flutter UI.
-45            -->
-46            <meta-data
-46-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:30:13-33:17
-47                android:name="io.flutter.embedding.android.NormalTheme"
-47-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:31:15-70
-48                android:resource="@style/NormalTheme" />
-48-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:32:15-52
-49
-50            <intent-filter>
-50-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:34:13-37:29
-51                <action android:name="android.intent.action.MAIN" />
-51-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:35:17-68
-51-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:35:25-66
-52
-53                <category android:name="android.intent.category.LAUNCHER" />
-53-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:36:17-76
-53-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:36:27-74
-54            </intent-filter>
-55        </activity>
-56        <!--
-57             Don't delete the meta-data below.
-58             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-59        -->
-60        <meta-data
-60-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:41:9-43:33
-61            android:name="flutterEmbedding"
-61-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:42:13-44
-62            android:value="2" />
-62-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:43:13-30
-63
-64        <provider
-64-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-18:20
-65            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
-65-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-77
-66            android:authorities="com.example.cattle_guru.flutter.share_provider"
-66-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-74
-67            android:exported="false"
-67-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-37
-68            android:grantUriPermissions="true" >
-68-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-47
-69            <meta-data
-69-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-17:68
-70                android:name="android.support.FILE_PROVIDER_PATHS"
-70-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:16:17-67
-71                android:resource="@xml/flutter_share_file_paths" />
-71-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:17:17-65
-72        </provider>
-73
-74        <activity
-74-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-13:74
-75            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-75-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-74
-76            android:exported="false"
-76-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-37
-77            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-77-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-71
-78
-79        <uses-library
-79-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-80            android:name="androidx.window.extensions"
-80-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-81            android:required="false" />
-81-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-82        <uses-library
-82-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-83            android:name="androidx.window.sidecar"
-83-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-84            android:required="false" />
-84-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-85
-86        <activity
-86-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:23:9-27:75
-87            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-87-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:24:13-93
-88            android:excludeFromRecents="true"
-88-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:25:13-46
-89            android:exported="false"
-89-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:26:13-37
-90            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-90-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:27:13-72
-91        <!--
-92            Service handling Google Sign-In user revocation. For apps that do not integrate with
-93            Google Sign-In, this service will never be started.
-94        -->
-95        <service
-95-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:33:9-37:51
-96            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-96-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:34:13-89
-97            android:exported="true"
-97-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:35:13-36
-98            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-98-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:36:13-107
-99            android:visibleToInstantApps="true" />
-99-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:37:13-48
-100
-101        <activity
-101-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-102            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-102-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-103            android:exported="false"
-103-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-104            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-104-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-105
-106        <meta-data
-106-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-107            android:name="com.google.android.gms.version"
-107-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-108            android:value="@integer/google_play_services_version" />
-108-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-109    </application>
-110
-111</manifest>
+24        <intent>
+24-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:14:9-17:18
+25            <action android:name="android.intent.action.VIEW" />
+25-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:11:13-65
+25-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:11:21-62
+26
+27            <data android:scheme="tel" />
+27-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:12:13-42
+27-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:12:19-39
+28        </intent>
+29    </queries>
+30
+31    <application
+32        android:name="android.app.Application"
+32-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:21:9-42
+33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+33-->[androidx.core:core:1.8.0] /Users/mac/.gradle/caches/transforms-3/d363e3b5616f580c766e3e2b3c05f27d/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+34        android:icon="@mipmap/ic_launcher"
+34-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:22:9-43
+35        android:label="Cattle GURU" >
+35-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:20:9-36
+36        <activity
+36-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:23:9-43:20
+37            android:name="com.example.cattle_guru.MainActivity"
+37-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:24:13-41
+38            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+38-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:28:13-163
+39            android:exported="true"
+39-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:25:13-36
+40            android:hardwareAccelerated="true"
+40-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:29:13-47
+41            android:launchMode="singleTop"
+41-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:26:13-43
+42            android:theme="@style/LaunchTheme"
+42-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:27:13-47
+43            android:windowSoftInputMode="adjustResize" >
+43-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:30:13-55
+44
+45            <!--
+46                 Specifies an Android theme to apply to this Activity as soon as
+47                 the Android process has started. This theme is visible to the user
+48                 while the Flutter UI initializes. After that, this theme continues
+49                 to determine the Window background behind the Flutter UI.
+50            -->
+51            <meta-data
+51-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:35:13-38:17
+52                android:name="io.flutter.embedding.android.NormalTheme"
+52-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:36:15-70
+53                android:resource="@style/NormalTheme" />
+53-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:37:15-52
+54
+55            <intent-filter>
+55-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:39:13-42:29
+56                <action android:name="android.intent.action.MAIN" />
+56-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:40:17-68
+56-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:40:25-66
+57
+58                <category android:name="android.intent.category.LAUNCHER" />
+58-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:41:17-76
+58-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:41:27-74
+59            </intent-filter>
+60        </activity>
+61        <!--
+62             Don't delete the meta-data below.
+63             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+64        -->
+65        <meta-data
+65-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:46:9-48:33
+66            android:name="flutterEmbedding"
+66-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:47:13-44
+67            android:value="2" />
+67-->/Users/mac/Flutter_Projects/cattle_guru/android/app/src/main/AndroidManifest.xml:48:13-30
+68
+69        <service
+69-->[:geolocator_android] /Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:9-16:56
+70            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+70-->[:geolocator_android] /Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-77
+71            android:enabled="true"
+71-->[:geolocator_android] /Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-35
+72            android:exported="false"
+72-->[:geolocator_android] /Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-37
+73            android:foregroundServiceType="location" />
+73-->[:geolocator_android] /Users/mac/Flutter_Projects/cattle_guru/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:16:13-53
+74
+75        <provider
+75-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-18:20
+76            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
+76-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-77
+77            android:authorities="com.example.cattle_guru.flutter.share_provider"
+77-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-74
+78            android:exported="false"
+78-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-37
+79            android:grantUriPermissions="true" >
+79-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-47
+80            <meta-data
+80-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-17:68
+81                android:name="android.support.FILE_PROVIDER_PATHS"
+81-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:16:17-67
+82                android:resource="@xml/flutter_share_file_paths" />
+82-->[:share_plus] /Users/mac/Flutter_Projects/cattle_guru/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:17:17-65
+83        </provider>
+84
+85        <activity
+85-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-13:74
+86            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+86-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-74
+87            android:exported="false"
+87-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-37
+88            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+88-->[:url_launcher_android] /Users/mac/Flutter_Projects/cattle_guru/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-71
+89
+90        <uses-library
+90-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+91            android:name="androidx.window.extensions"
+91-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+92            android:required="false" />
+92-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+93        <uses-library
+93-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+94            android:name="androidx.window.sidecar"
+94-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+95            android:required="false" />
+95-->[androidx.window:window:1.0.0-beta04] /Users/mac/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+96
+97        <activity
+97-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:23:9-27:75
+98            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+98-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:24:13-93
+99            android:excludeFromRecents="true"
+99-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:25:13-46
+100            android:exported="false"
+100-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:26:13-37
+101            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+101-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:27:13-72
+102        <!--
+103            Service handling Google Sign-In user revocation. For apps that do not integrate with
+104            Google Sign-In, this service will never be started.
+105        -->
+106        <service
+106-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:33:9-37:51
+107            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+107-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:34:13-89
+108            android:exported="true"
+108-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:35:13-36
+109            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+109-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:36:13-107
+110            android:visibleToInstantApps="true" />
+110-->[com.google.android.gms:play-services-auth:20.1.0] /Users/mac/.gradle/caches/transforms-3/87b66fbc4102b6b73e9917292c412064/transformed/jetified-play-services-auth-20.1.0/AndroidManifest.xml:37:13-48
+111
+112        <activity
+112-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+113            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+113-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+114            android:exported="false"
+114-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+115            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+115-->[com.google.android.gms:play-services-base:18.0.1] /Users/mac/.gradle/caches/transforms-3/3ff720be07735976176520d1c05fb799/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+116
+117        <meta-data
+117-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+118            android:name="com.google.android.gms.version"
+118-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+119            android:value="@integer/google_play_services_version" />
+119-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mac/.gradle/caches/transforms-3/601d4158b382ad9f634d3bbb23a34c83/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+120    </application>
+121
+122</manifest>
