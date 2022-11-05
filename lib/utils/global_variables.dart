@@ -125,6 +125,9 @@ List addressTiles = [
   Address("Reshmita Datta", "B/146", "Survey Park", "Kolkata", "West Bengal", "700075", false),
 ];
 
+//CURRENT ADDRESS
+Address currentAddress = Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", true);
+
 //BOTTOM NAVIGATION BAR
 List<BottomNavigationBarItem> items = 
   const [

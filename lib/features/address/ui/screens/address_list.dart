@@ -1,3 +1,4 @@
+import 'package:cattle_guru/features/address/ui/screens/edit_address.dart';
 import 'package:cattle_guru/features/address/ui/widgets/address_card.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
@@ -59,8 +60,10 @@ class _AddressListScreenState extends State<AddressListScreen> {
                   onTap: (){}, 
                   isDefault: true, 
                   name: addressTiles[1].name, 
-                  address: "${addressTiles[1].houseNum}, ${addressTiles[1].village}, ${addressTiles[1].district}, ${addressTiles[1].state}, ${addressTiles[1].pinCode}", 
-                  onEditTap: (){}, 
+                  address: "${currentAddress.houseNum}, ${currentAddress.village}, ${currentAddress.district}, ${currentAddress.state}, ${currentAddress.pinCode}", 
+                  onEditTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: addressTiles[1])));
+                  }, 
                   onDefaultTap: (){}, 
                   onRemoveTap: (){},
                 ),
@@ -81,7 +84,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
                 SizedBox(height: 1.h,),
                 SizedBox(
                   width: 100.w,
-                  height: 40.h,
+                  height: 40.5.h,
                   child: Column(
                     children: [
                       Expanded(
@@ -93,7 +96,9 @@ class _AddressListScreenState extends State<AddressListScreen> {
                               isDefault: addressTiles[index].isDefault, 
                               name: addressTiles[index].name, 
                               address: "${addressTiles[index].houseNum}, ${addressTiles[index].village}, ${addressTiles[index].district}, ${addressTiles[index].state}, ${addressTiles[index].pinCode}", 
-                              onEditTap: (){}, 
+                              onEditTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: addressTiles[index])));
+                              }, 
                               onDefaultTap: (){}, 
                               onRemoveTap: (){}
                             );

@@ -70,7 +70,7 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
               children: [
                 Column(
                   children: [
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 3.h),
                     CustomTextField(width: 90.w, controller: houseNumController, hintText: "Mint 1202", label: "House Number", keyboardType: TextInputType.text),
                     SizedBox(height: 2.h,),
                     CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
