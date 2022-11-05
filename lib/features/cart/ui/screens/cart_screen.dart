@@ -1,3 +1,4 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cattle_guru/features/cart/ui/widgets/cart_tile.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
@@ -5,6 +6,7 @@ import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 class CartScreen extends StatefulWidget {
@@ -118,8 +120,20 @@ class _CartScreenState extends State<CartScreen> {
                                   productName: cartItems[index].product.name, 
                                   productWeight: cartItems[index].product.weight, 
                                   productPrice: cartItems[index].product.price, 
-                                  onSubtract: (){}, 
-                                  onAdd: (){},
+                                  onSubtract: (){
+                                    if(cartItems[index].qty > 0){
+                                      setState(() {
+                                      cartItems[index].qty--;
+                                      });
+                                    } 
+                                  }, 
+                                  onAdd: (){
+                                    if(cartItems[index].qty < cartItems[index].product.units){
+                                      setState(() {
+                                      cartItems[index].qty++;
+                                      });
+                                    } 
+                                  },
                                   qty: cartItems[index].qty,
                                 );
                               }
@@ -145,7 +159,16 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("₹ ${computeCartVaue()}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        // Row(
+                        //   children: [
+                        //     Text("₹ ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                        //     AnimatedFlipCounter(
+                        //       value: computeCartVaue(),
+                        //       textStyle: globalTextStyle.copyWith(color: black, fontSize: 3.w,),
+                        //     ),
+                        //   ],
+                        // ),
+                        Text(computeCartVaue().toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                       ],
                     ),
                     SizedBox(height: 1.h,),
@@ -153,14 +176,14 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("- ₹ 200.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("- ${200.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                       ],
                     ),
                     SizedBox(height: 1.h,),Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("- ₹ 300.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("- ${300.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                       ],
                     ),
                     SizedBox(height: 1.h,),
@@ -168,7 +191,7 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("₹ 0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text(0.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                       ],
                     ),
                     SizedBox(height: 1.h,),
@@ -182,7 +205,16 @@ class _CartScreenState extends State<CartScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
-                        Text("₹ ${computeCartVaue()-300-200}", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                        // Row(
+                        //   children: [
+                        //     Text("₹ ", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                        //     AnimatedFlipCounter(
+                        //       value: computeCartVaue()-300-200,
+                        //       textStyle: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),
+                        //     ),
+                        //   ],
+                        // ),
+                        Text((computeCartVaue()-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
                       ],
                     ),
                     SizedBox(height: 2.h,),

@@ -47,7 +47,7 @@ class _CartTileState extends State<CartTile> {
                   Text("₹ ${widget.productPrice}", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                 ],
               ),
-              SizedBox(width: 15.w,),
+              SizedBox(width: 14.w,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

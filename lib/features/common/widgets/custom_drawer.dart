@@ -1,5 +1,7 @@
 import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -34,11 +36,13 @@ class CustomDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.whatsapp_rounded, size: 5.w, color: white,),
             title: Text("Chat", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: LaunchWhatsapp.whatsappLaunch,
           ),
           ListTile(
             dense: true,
             leading: Icon(Icons.phone_rounded, size: 5.w, color: white,),
             title: Text("Call", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: PhoneCall.makingPhoneCall,
           ),
           ListTile(
             dense: true,

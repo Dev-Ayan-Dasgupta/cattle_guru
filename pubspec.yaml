@@ -45,6 +45,8 @@ dependencies:
   percent_indicator: ^4.2.2
   animated_flip_counter: ^0.2.0
   intl: ^0.17.0
+  flutter_multi_formatter: ^2.9.0
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:
