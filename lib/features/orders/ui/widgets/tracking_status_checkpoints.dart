@@ -92,7 +92,7 @@ class CheckPoint extends StatelessWidget {
                   ),
                   child: const Image(image: AssetImage("./assets/images/order_dispatched.png"), fit: BoxFit.fill,),
                 ),
-                SizedBox(height: 1.w,),
+                SizedBox(height: 2.w,),
                 Text(isDispatched ? "Dispatched" : "Dispatch", style: globalTextStyle.copyWith(color: black, fontSize: currentStatus == 1 ? 3.5.w : 2.5.w, fontWeight: FontWeight.bold),),
                 SizedBox(height: 1.w,),
                 Text(isDispatched ? "On ${DateFormat.yMMMMEEEEd().format(orderDispatchedDate)}" : "By ${DateFormat.yMMMMEEEEd().format(orderDispatchedDate)}", style: globalTextStyle.copyWith(color: black, fontSize: currentStatus == 1 ? 2.5.w : 2.w,),),
@@ -103,14 +103,14 @@ class CheckPoint extends StatelessWidget {
               children: [
                 Container(
                   width: currentStatus == 2 ? 25.w : 20.w,
-                  height: currentStatus == 2 ? 22.5.w : 17.5.w,
+                  height: currentStatus == 2 ? 20.w : 15.w,
                   foregroundDecoration: BoxDecoration(
                     color: isDelivered ? transparent : grey,
                     backgroundBlendMode: BlendMode.saturation,
                   ),
                   child: const Image(image: AssetImage("./assets/images/order_delivered.png"), fit: BoxFit.fill,),
                 ),
-                SizedBox(height: 1.w,),
+                SizedBox(height: 2.w,),
                 Text(isDelivered ? "Delivered" : "Delivery", style: globalTextStyle.copyWith(color: black, fontSize: currentStatus == 2 ? 3.5.w : 2.5.w, fontWeight: FontWeight.bold),),
                 SizedBox(height: 1.w,),
                 Text(isDelivered ? "On ${DateFormat.yMMMMEEEEd().format(orderDeliveryDate)}" : "By ${DateFormat.yMMMMEEEEd().format(orderDeliveryDate)}", style: globalTextStyle.copyWith(color: black, fontSize: currentStatus == 2 ? 2.5.w : 2.w,),),

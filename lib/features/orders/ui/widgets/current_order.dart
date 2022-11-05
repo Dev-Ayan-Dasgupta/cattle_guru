@@ -15,7 +15,38 @@ class CurrentOrder extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: Column(
+          child: 
+            currentOrder.order.isEmpty ? 
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 22.5.h,),
+                      SizedBox(
+                        width: 45.w, 
+                        height: 27.w,
+                        child: const Image(image: AssetImage("./assets/images/empty_current_order.png"), fit: BoxFit.fill,),
+                      ),
+                      SizedBox(height: 2.h,),
+                      Center(
+                          child: SizedBox(
+                            width: 75.w,
+                            child: Text("You do not have any active orders, please browse our products and order them.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
+                      SizedBox(height: 2.h,),
+                    ],
+                  )
+                ],
+              )
+          :
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
@@ -60,7 +91,7 @@ class CurrentOrder extends StatelessWidget {
               Column(
                 children: [
                   CustomButton(width: 90.w, height: 15.w, color: lightRed, onTap: (){}, text: "Cancel Order", fontColor: red, borderColor: red),
-                  SizedBox(height: 2.h,),
+                  SizedBox(height: 1.h,),
                   CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) => TrackOrderScreen(order: currentOrder)));
