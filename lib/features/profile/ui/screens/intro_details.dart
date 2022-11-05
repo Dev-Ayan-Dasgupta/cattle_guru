@@ -19,6 +19,14 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
   TextEditingController villageController = TextEditingController();
 
   @override
+  void dispose() {
+    nameController.dispose();
+    pinCodeController.dispose();
+    villageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,31 +35,35 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  SizedBox(height: 5.h,),
-                  CustomTextField(width: 90.w, controller: nameController, hintText: "Enter your name", label: "Name", keyboardType: TextInputType.name,),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "Enter your pin code", label: "Pin Code", keyboardType: TextInputType.number,),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: villageController, hintText: "Enter your village name", label: "Village", keyboardType: TextInputType.text,),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
-                    Navigator.pushNamed(context, home);
-                  }, text: "Continue", fontColor: white, borderColor: primary,),
-                  SizedBox(height: 2.h,),
-                ],
-              ),
-            ],
+        child: GestureDetector(
+          onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
+          behavior: HitTestBehavior.opaque,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: 5.h,),
+                    CustomTextField(width: 90.w, controller: nameController, hintText: "Enter your name", label: "Name", keyboardType: TextInputType.name,),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: pinCodeController, hintText: "Enter your pin code", label: "Pin Code", keyboardType: TextInputType.number,),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: villageController, hintText: "Enter your village name", label: "Village", keyboardType: TextInputType.text,),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
+                      Navigator.pushNamed(context, home);
+                    }, text: "Continue", fontColor: white, borderColor: primary,),
+                    SizedBox(height: 2.h,),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

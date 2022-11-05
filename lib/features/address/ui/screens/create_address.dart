@@ -22,6 +22,16 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
   TextEditingController pinCodeController = TextEditingController();
 
   @override
+  void dispose() {
+    houseNumController.dispose();
+    villageController.dispose();
+    districtController.dispose();
+    stateController.dispose();
+    pinCodeController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
@@ -50,35 +60,39 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  SizedBox(height: 2.h),
-                  CustomTextField(width: 90.w, controller: houseNumController, hintText: "Mint 1202", label: "House Number", keyboardType: TextInputType.text),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123123", label: "Pin Code", keyboardType: TextInputType.number),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: districtController, hintText: "Delhi", label: "District", keyboardType: TextInputType.text),
-                  SizedBox(height: 2.h,),
-                  CustomTextField(width: 90.w, controller: stateController, hintText: "New Delhi", label: "State", keyboardType: TextInputType.text),
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(height: 2.h,),
-                  CustomButton(width: 90.w, height: 15.w, color: transparent, onTap: (){}, text: "Set as Default", fontColor: primary, borderColor: primary,),
-                  SizedBox(height: 2.h,),
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Add Address", fontColor: white, borderColor: primary,),
-                  SizedBox(height: 2.h,),
-                ],
-              ),
-            ],
+        child: GestureDetector(
+          onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
+          behavior: HitTestBehavior.opaque,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: 2.h),
+                    CustomTextField(width: 90.w, controller: houseNumController, hintText: "Mint 1202", label: "House Number", keyboardType: TextInputType.text),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123123", label: "Pin Code", keyboardType: TextInputType.number),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: districtController, hintText: "Delhi", label: "District", keyboardType: TextInputType.text),
+                    SizedBox(height: 2.h,),
+                    CustomTextField(width: 90.w, controller: stateController, hintText: "New Delhi", label: "State", keyboardType: TextInputType.text),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(height: 2.h,),
+                    CustomButton(width: 90.w, height: 15.w, color: transparent, onTap: (){}, text: "Set as Default", fontColor: primary, borderColor: primary,),
+                    SizedBox(height: 2.h,),
+                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Add Address", fontColor: white, borderColor: primary,),
+                    SizedBox(height: 2.h,),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -18,6 +18,12 @@ class _CartScreenState extends State<CartScreen> {
 
   TextEditingController couponController = TextEditingController();
 
+  @override
+  void dispose() { 
+    couponController.dispose();
+    super.dispose();
+  }
+
   double computeCartVaue(){
     cartValue = 0;
     for(int i = 0; i < cartItems.length; i++){
@@ -55,133 +61,137 @@ class _CartScreenState extends State<CartScreen> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: 
-          cartItems.isEmpty ? 
+        child: GestureDetector(
+          onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
+          behavior: HitTestBehavior.opaque,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: 
+            cartItems.isEmpty ? 
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 22.5.h,),
+                      SizedBox(
+                        width: 33.w, 
+                        height: 30.w,
+                        child: const Image(image: AssetImage("./assets/images/empty_cart.png"), fit: BoxFit.fill,),
+                      ),
+                      SizedBox(height: 2.h,),
+                      Center(
+                          child: SizedBox(
+                            width: 75.w,
+                            child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
+                      SizedBox(height: 2.h,),
+                    ],
+                  )
+                ],
+              )
+            : 
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 22.5.h,),
-                    SizedBox(
-                      width: 33.w, 
-                      height: 30.w,
-                      child: const Image(image: AssetImage("./assets/images/empty_cart.png"), fit: BoxFit.fill,),
-                    ),
                     SizedBox(height: 2.h,),
-                    Center(
-                        child: SizedBox(
-                          width: 75.w,
-                          child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
-                    ),
+                    SizedBox(
+                      width: 100.w,
+                      height: 40.h,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: cartItems.length,
+                              itemBuilder: (context, index){
+                                return CartTile(
+                                  onTap: (){}, 
+                                  imgUrl: cartItems[index].product.imgUrls[0], 
+                                  productName: cartItems[index].product.name, 
+                                  productWeight: cartItems[index].product.weight, 
+                                  productPrice: cartItems[index].product.price, 
+                                  onSubtract: (){}, 
+                                  onAdd: (){},
+                                  qty: cartItems[index].qty,
+                                );
+                              }
+                            ),
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 Column(
                   children: [
-                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
-                    SizedBox(height: 2.h,),
-                  ],
-                )
-              ],
-            )
-          : 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  SizedBox(height: 2.h,),
-                  SizedBox(
-                    width: 100.w,
-                    height: 40.h,
-                    child: Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: cartItems.length,
-                            itemBuilder: (context, index){
-                              return CartTile(
-                                onTap: (){}, 
-                                imgUrl: cartItems[index].product.imgUrls[0], 
-                                productName: cartItems[index].product.name, 
-                                productWeight: cartItems[index].product.weight, 
-                                productPrice: cartItems[index].product.price, 
-                                onSubtract: (){}, 
-                                onAdd: (){},
-                                qty: cartItems[index].qty,
-                              );
-                            }
-                          ),
-                        )
+                        CustomTextField(width: 57.w, controller: couponController, hintText: "Enter Coupon Code", label: "Coupon Code", keyboardType: TextInputType.text),
+                        SizedBox(width: 3.w,),
+                        CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: "Apply", fontColor: white, borderColor: primary),
                       ],
                     ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomTextField(width: 57.w, controller: couponController, hintText: "Enter Coupon Code", label: "Coupon Code", keyboardType: TextInputType.text),
-                      SizedBox(width: 3.w,),
-                      CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: "Apply", fontColor: white, borderColor: primary),
-                    ],
-                  ),
-                  SizedBox(height: 2.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      Text("₹ ${computeCartVaue()}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                    ],
-                  ),
-                  SizedBox(height: 1.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      Text("- ₹ 200.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                    ],
-                  ),
-                  SizedBox(height: 1.h,),Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      Text("- ₹ 300.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                    ],
-                  ),
-                  SizedBox(height: 1.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      Text("₹ 0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                    ],
-                  ),
-                  SizedBox(height: 1.h,),
-                  Container(
-                    width: 100.w,
-                    height: 0.5,
-                    color: grey,
-                  ),
-                  SizedBox(height: 1.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
-                      Text("₹ ${computeCartVaue()-300-200}", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  SizedBox(height: 2.h,),
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Checkout", fontColor: white, borderColor: primary),
-                  SizedBox(height: 2.h,),
-                ],
-              ),
-            ],
+                    SizedBox(height: 2.h,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("₹ ${computeCartVaue()}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      ],
+                    ),
+                    SizedBox(height: 1.h,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("- ₹ 200.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      ],
+                    ),
+                    SizedBox(height: 1.h,),Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("- ₹ 300.0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      ],
+                    ),
+                    SizedBox(height: 1.h,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                        Text("₹ 0", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                      ],
+                    ),
+                    SizedBox(height: 1.h,),
+                    Container(
+                      width: 100.w,
+                      height: 0.5,
+                      color: grey,
+                    ),
+                    SizedBox(height: 1.h,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                        Text("₹ ${computeCartVaue()-300-200}", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    SizedBox(height: 2.h,),
+                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Checkout", fontColor: white, borderColor: primary),
+                    SizedBox(height: 2.h,),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

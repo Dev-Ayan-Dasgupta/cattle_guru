@@ -18,6 +18,12 @@ class _ReferandEarnScreenState extends State<ReferandEarnScreen> {
   TextEditingController referController = TextEditingController();
 
   @override
+  void dispose() {
+    referController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
@@ -47,39 +53,40 @@ class _ReferandEarnScreenState extends State<ReferandEarnScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: Column(
-              children: [
-                // SizedBox(
-                //   width: ,
-                // ),
-                SizedBox(height: 5.h),
-                const Center(child: Image(image: AssetImage("./assets/images/refer_and_earn.png"))),
-                SizedBox(height: 5.h),
-                Text("Cattle GURU", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
-                SizedBox(height: 2.h),
-                Text("Help your dairy friend to get best quality Cattle Feed at their home.", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
-                SizedBox(height: 2.h),
-                Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: "You will get ",
-                        style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),
-                        children: <TextSpan>[
-                          TextSpan(text: "Rs 100 ", style: globalTextStyle.copyWith(color: primary, fontSize: 5.w, fontWeight: FontWeight.bold),),
-                          TextSpan(text: "for every referral.", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
-                        ]
-                      ), 
-                    ),
-                  ],
-                ),
-                SizedBox(height: 2.h),
-                CustomTextField(width: 90.w, controller: referController, hintText: "Enter customer ID", label: "Customer ID", keyboardType: TextInputType.text),
-                SizedBox(height: 2.h),
-                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Whatsapp", fontColor: white, borderColor: primary,)
-              ],
+          child: GestureDetector(
+            onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
+            behavior: HitTestBehavior.opaque,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Column(
+                children: [
+                  SizedBox(height: 5.h),
+                  const Center(child: Image(image: AssetImage("./assets/images/refer_and_earn.png"))),
+                  SizedBox(height: 5.h),
+                  Text("Cattle GURU", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                  SizedBox(height: 2.h),
+                  Text("Help your dairy friend to get best quality Cattle Feed at their home.", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
+                  SizedBox(height: 2.h),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "You will get ",
+                          style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),
+                          children: <TextSpan>[
+                            TextSpan(text: "Rs 100 ", style: globalTextStyle.copyWith(color: primary, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                            TextSpan(text: "for every referral.", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
+                          ]
+                        ), 
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  CustomTextField(width: 90.w, controller: referController, hintText: "Enter customer ID", label: "Customer ID", keyboardType: TextInputType.text),
+                  SizedBox(height: 2.h),
+                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Whatsapp", fontColor: white, borderColor: primary,)
+                ],
+              ),
             ),
           ),
         ),
