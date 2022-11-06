@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>460542692785-4lo5nnbq6jesc0tdf0qsd9eebv90detd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.460542692785-4lo5nnbq6jesc0tdf0qsd9eebv90detd</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>460542692785-1agrf30kgvn4dttonlot3jj6q222mvb4.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD32NKR-WuzsgbeagZGaQ8f_FJSj3dU0a8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>460542692785</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.cattleGuru</string>
+	<key>PROJECT_ID</key>
+	<string>cattle-guru-60a54</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cattle-guru-60a54.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:460542692785:ios:c8a44e009205be4c7c8190</string>
+</dict>
+</plist>
