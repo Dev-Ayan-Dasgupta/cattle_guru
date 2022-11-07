@@ -9,6 +9,8 @@ import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -22,6 +24,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   int _currentCarouselIndex = 0;
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
   List<Widget> indicators(imagesLength, currentIndex) {
     return List<Widget>.generate(imagesLength, (index) {
@@ -172,21 +176,52 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: productTiles.length,
-                        itemBuilder: (context, index){
-                          return ProductTile(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: productTiles[index])));
-                            },
-                            width: 40.w, 
-                            height: 40.w, 
-                            imgUrl: productTiles[index].imgUrls[0], 
-                            title: productTiles[index].name, 
-                            price: productTiles[index].price, 
-                            description: productTiles[index].description, 
-                            onAddToCart: (){});
+                      child: StreamBuilder(
+                        stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
+                        builder: (context, snapshot) {
+                          if(snapshot.hasData){
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index){
+                                return ProductTile(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: snapshot.data!.docs[index], isCarted: snapshot.data!.docs[index].get('isCarted'),)));
+                                  },
+                                  width: 40.w, 
+                                  height: 40.w, 
+                                  imgUrl: snapshot.data!.docs[index].get('imgUrls')[0],
+                                  // productTiles[index].imgUrls[0], 
+                                  title: snapshot.data!.docs[index].get('name'), 
+                                  price: snapshot.data!.docs[index].get('price').toDouble(), 
+                                  description: snapshot.data!.docs[index].get('description'), 
+                                  onAddToCart: (){
+                                    if(currUserId != null){
+                                      FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                      update({'cart': FieldValue.arrayUnion([
+                                          {
+                                            'product': snapshot.data!.docs[index].id,
+                                            'qty': 1,
+                                          }
+                                        ]),
+                                      });
+                                      FirebaseFirestore.instance.collection('cattle-feed').doc(snapshot.data!.docs[index].id).update({'isCarted': true});
+                                      FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                      update({
+                                        'cartValue': FieldValue.increment(snapshot.data!.docs[index].get('price').toDouble())
+                                      });
+                                    }
+                                    
+                                  }
+                                );
+                              }
+                            );
+                          }
+                          if (snapshot.hasError) {
+                            return const Text('Error');
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
                         }
                       ),
                     ),

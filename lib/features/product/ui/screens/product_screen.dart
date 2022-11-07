@@ -5,22 +5,39 @@ import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key, required this.product});
+  ProductScreen({super.key, required this.product, required this.isCarted});
 
-  final ProductDetail product;
+  // final ProductDetail product; 
+  final QueryDocumentSnapshot<Map<String, dynamic>> product;
+  bool isCarted;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
+
   @override
   Widget build(BuildContext context) {
+
+    double price = widget.product.get('price').toDouble();
+    double mrp = widget.product.get('mrp').toDouble();
+    double weight = widget.product.get('weight').toDouble();
+    double protein = widget.product.get('protein').toDouble();
+    double fibre = widget.product.get('fibre').toDouble();
+    double fat = widget.product.get('fat').toDouble();
+    double units = widget.product.get('units').toDouble();
+    // bool isCarted = widget.product.get('isCarted');
+
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: AppBar(
@@ -60,9 +77,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   Center(child: SizedBox(
                     width: 40.w,
                     height: 40.w,
-                    child: Image(image: AssetImage(widget.product.imgUrls[0]), fit: BoxFit.fill,))),
+                    child: Image(image: AssetImage(widget.product.get('imgUrls')[0]), fit: BoxFit.fill,))),
                   SizedBox(height: 2.h),
-                  Text(widget.product.name, style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                  Text(widget.product.get('name'), style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,13 +89,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         children: [
                           Row(
                             children: [
-                              Text("₹ ${widget.product.price}", style: globalTextStyle.copyWith(color: primary, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                              Text("₹ $price", style: globalTextStyle.copyWith(color: primary, fontSize: 5.w, fontWeight: FontWeight.bold),),
                               SizedBox(width: 2.w,),
-                              Text("${((1-((widget.product.price)/(widget.product.mrp)))*100).toInt()}% off", style: globalTextStyle.copyWith(color: grey, fontSize: 2.5.w,),),
+                              Text("${((1-(price/mrp))*100).toInt()}% off", style: globalTextStyle.copyWith(color: grey, fontSize: 2.5.w,),),
                             ],
                           ),
                           SizedBox(height: 0.5.h,),
-                          Text("You saved ₹ ${widget.product.mrp - widget.product.price}", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
+                          Text("You saved ₹ ${mrp - price}", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
                         ],
                       ),
                       Column(
@@ -88,11 +105,11 @@ class _ProductScreenState extends State<ProductScreen> {
                             children: [
                               Text("Weight: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                               SizedBox(width: 1.w,),
-                              Text("${widget.product.weight} kg", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                              Text("$weight kg", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                             ]
                           ),
                           SizedBox(height: 1.h,),
-                          Text("₹ ${(widget.product.price~/widget.product.weight)} per kg", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
+                          Text("₹ ${(price~/weight)} per kg", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
                         ],
                       ),
                     ],
@@ -101,7 +118,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   Text("Description", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   // CustomTextLabel(width: 20.w, height: 7.w, text: "Description", color: primary, fontColor: white),
                   SizedBox(height: 1.h,),
-                  Text(widget.product.description, style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                  Text(widget.product.get('description'), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                   SizedBox(height: 2.h,),
                   Text("Nutrient Information", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 2.h,),
@@ -111,13 +128,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       CircularPercentIndicator(
                         radius: 8.w,
                         lineWidth: 1.w,
-                        percent: widget.product.protein/100,
+                        percent: protein/100,
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
                             Text("Protein", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
-                            Text("${widget.product.protein.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text("${protein.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
                         ),
                         backgroundColor: lightGrey,
@@ -127,13 +144,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       CircularPercentIndicator(
                         radius: 8.w,
                         lineWidth: 1.w,
-                        percent: widget.product.fibre/100,
+                        percent: fibre/100,
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
                             Text("Fibre", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
-                            Text("${widget.product.fibre.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text("${fibre.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
                         ),
                         backgroundColor: lightGrey,
@@ -143,13 +160,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       CircularPercentIndicator(
                         radius: 8.w,
                         lineWidth: 1.w,
-                        percent: widget.product.fat/100,
+                        percent: fat/100,
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
                             Text("Fat", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
-                            Text("${widget.product.fat.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text("${fat.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
                         ),
                         backgroundColor: lightGrey,
@@ -161,17 +178,58 @@ class _ProductScreenState extends State<ProductScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      widget.product.units.toInt() > 0 ?
-                        Text("${widget.product.units.toInt()} units in stock", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),) :
+                      units.toInt() > 0 ?
+                        Text("${units.toInt()} units in stock", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),) :
                         Text("Out of stock", style: globalTextStyle.copyWith(color: red, fontSize: 3.w, fontWeight: FontWeight.bold),)
                     ],
                   ),
-                  
                 ],
               ),
               Column(
                 children: [
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Add to Cart", fontColor: white, borderColor: primary),
+                  CustomButton(width: 90.w, height: 15.w, color: (widget.isCarted == true) ? lightRed : primary, 
+                  onTap: () {
+                    if((widget.isCarted == true)){
+                      setState(() {
+                        if(currUserId != null){
+                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                            update({'cart': FieldValue.arrayRemove([
+                              {
+                                'product': widget.product.id,
+                                'qty': 1,
+                              }
+                            ]),
+                          });
+                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.product.id).update({'isCarted': false});
+                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                            update({
+                              'cartValue': FieldValue.increment(-(widget.product.get('price').toDouble()))
+                            });
+                          widget.isCarted = false;
+                        }
+                      });
+                    } else {
+                      setState(() {
+                        if(currUserId != null){
+                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                            update({'cart': FieldValue.arrayUnion([
+                              {
+                                'product': widget.product.id,
+                                'qty': 1,
+                              }
+                            ]),
+                          });
+                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.product.id).update({'isCarted': true});
+                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                            update({
+                              'cartValue': FieldValue.increment(widget.product.get('price').toDouble())
+                            });
+                          widget.isCarted = true;
+                        }
+                      });
+                    }
+                  }, 
+                  text: (widget.isCarted == true) ? "Remove from Cart" : "Add to Cart", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary),
                   SizedBox(height: 2.h,),
                 ],
               ),

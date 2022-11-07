@@ -8,12 +8,13 @@ class ProductDetail{
   final double protein;
   final double fibre;
   final double fat;
-  final double units;
+  final int units;
+  final bool isCarted;
   final int dispatchDays;
   final int deliveryDays;
 
   ProductDetail({
-    required this.imgUrls, required this.name, required this.price, required this.mrp, required this.weight, required this.description, required this.protein, required this.fibre, required this.fat, required this.units, required this.dispatchDays, required this.deliveryDays,
+    required this.imgUrls, required this.name, required this.price, required this.mrp, required this.weight, required this.description, required this.protein, required this.fibre, required this.fat, required this.units, required this.isCarted, required this.dispatchDays, required this.deliveryDays,
     }
   );
 
@@ -29,6 +30,7 @@ class ProductDetail{
       "fibre": fibre,
       "fat": fat,
       "units": units,
+      "isCarted": isCarted,
       "dispatchDays": dispatchDays,
       "deliveryDays": deliveryDays,
     };
