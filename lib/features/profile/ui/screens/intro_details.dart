@@ -3,6 +3,8 @@ import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/fetch_location.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:geocoding/geocoding.dart';
@@ -41,6 +43,8 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
     villageController.dispose();
     super.dispose();
   }
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +95,28 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
-                      Navigator.pushNamed(context, home);
+                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: () async {
+                      if(currUserId != null){
+                        FirebaseFirestore.instance.collection('customers').doc(currUserId).update({'name': nameController.text});
+                        FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                        update({'currentAddress': 
+                          {
+                            "name": nameController.text,
+                            "pinCode": pinCodeController.text,
+                            "village": villageController.text,
+                          },
+                        });
+                        FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                        update({'addresses': FieldValue.arrayUnion([
+                            {
+                              "name": nameController.text,
+                              "pinCode": pinCodeController.text,
+                              "village": villageController.text,
+                            },
+                          ]), 
+                        });
+                        Navigator.pushNamed(context, home);
+                      }
                     }, text: "Continue", fontColor: white, borderColor: primary,),
                     SizedBox(height: 2.h,),
                   ],

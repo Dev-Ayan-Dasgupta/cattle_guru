@@ -19,7 +19,7 @@ class RouteGenerator{
     final args = settings.arguments;
     switch (settings.name){
       case signIn: return CustomPageTransition(child: const SignInScreen(), settings: settings,);
-      case otp: return CustomPageTransition(child: const OTPScreen(), settings: settings,);
+      // case otp: return CustomPageTransition(child: const OTPScreen(), settings: settings,);
       case languages: return CustomPageTransition(child: const SelectLanguage(), settings: settings,);
       case details: return CustomPageTransition(child: const IntroDetailsScreen(), settings: settings,);
       case home: return CustomPageTransition(child: const HomeScreen(), settings: settings,);

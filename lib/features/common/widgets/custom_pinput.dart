@@ -4,9 +4,9 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:pinput/pinput.dart';
 
 class CustomPinput extends StatefulWidget {
-  const CustomPinput({super.key, required this.onCompleted, required this.pinController,});
+  const CustomPinput({super.key, required this.onSubmitted, required this.pinController,});
 
-  final Function(String?) onCompleted;
+  final Function(String?) onSubmitted;
   final TextEditingController pinController;
 
   @override
@@ -18,7 +18,7 @@ class _CustomPinputState extends State<CustomPinput> {
   Widget build(BuildContext context) {
     return Pinput(
       length: 6,
-      onCompleted: widget.onCompleted,
+      onSubmitted: widget.onSubmitted,
       controller: widget.pinController,
       defaultPinTheme: PinTheme(
         width: 13.33.w,

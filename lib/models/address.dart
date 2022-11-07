@@ -7,5 +7,20 @@ class Address{
   final String pinCode;
   final bool isDefault;
 
-  Address(this.name, this.houseNum, this.village, this.district, this.state, this.pinCode, this.isDefault);
+  Address({
+    required this.name, required this.houseNum, required this.village, required this.district, required this.state, required this.pinCode, required this.isDefault
+    }
+  );
+
+  Map<String,dynamic> toMap() {
+    return {
+      "name": name,
+      "houseNum": houseNum,
+      "village": village,
+      "district": district,
+      "state": state,
+      "pinCode": pinCode,
+      "isDefault": isDefault,
+    };
+  }
 }

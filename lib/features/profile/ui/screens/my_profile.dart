@@ -39,16 +39,16 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   Future<File?> selectImageFromCamera() async {
     image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
-    //image = await cropSquareImage(image!);
     setState(() {
       });
+    return image;
   }
 
   Future<File?> selectImageFromGallery() async {
     image = await ImageUpload.pickImage(context, ImageSource.gallery, cropSquareImage);
-    //image = await cropSquareImage(image!);
     setState(() {
       });
+    return image;
   }
 
   Future<File?> cropSquareImage(File imageFile) async =>

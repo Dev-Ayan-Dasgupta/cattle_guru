@@ -1,11 +1,15 @@
-import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
 import 'package:cattle_guru/features/splash/splash_screen.dart';
-import 'package:cattle_guru/utils/global_variables.dart';
+import 'package:cattle_guru/firebase_options.dart';
 import 'package:cattle_guru/utils/route_generator.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

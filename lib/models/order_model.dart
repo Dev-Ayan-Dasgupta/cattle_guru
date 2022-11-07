@@ -5,5 +5,16 @@ class OrderModel{
   final DateTime date;
   final double amount;
 
-  OrderModel(this.order, this.date, this.amount);
+  OrderModel({
+    required this.order, required this.date, required this.amount
+    }
+  );
+
+  Map<String, dynamic> toMap() {
+    return {
+      "order": order,
+      "date": date,
+      "amount": amount,
+    };
+  }
 }

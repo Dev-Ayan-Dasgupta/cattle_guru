@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     super.initState();
     
     _progressAnimationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
     _progressLengthAnimation = Tween<double>(begin: 0, end: 33.w).animate(
         CurvedAnimation(
             parent: _progressAnimationController, curve: Curves.easeInExpo));
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     _progressAnimationController.forward();
 
-    Timer(const Duration(milliseconds: 3500),
+    Timer(const Duration(milliseconds: 3000),
         () => Navigator.pushNamed(context, signIn));
   }
 

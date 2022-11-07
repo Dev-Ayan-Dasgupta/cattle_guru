@@ -40,93 +40,93 @@ TextStyle globalTextStyle = GoogleFonts.varela();
 
 //PRODUCT CATEGORIES
 List productCategories = [
-  ProductCategories("./assets/images/product_categories/khal.png", "Khal"),
-  ProductCategories("./assets/images/product_categories/binola.png", "Binola"),
-  ProductCategories("./assets/images/product_categories/feed.png", "Feed"),
-  ProductCategories("./assets/images/product_categories/silage.png", "Silage"),
+  ProductCategories(imageUrl: "./assets/images/product_categories/khal.png", name: "Khal"),
+  ProductCategories(imageUrl: "./assets/images/product_categories/binola.png", name: "Binola"),
+  ProductCategories(imageUrl: "./assets/images/product_categories/feed.png", name: "Feed"),
+  ProductCategories(imageUrl: "./assets/images/product_categories/silage.png", name: "Silage"),
 ];
 
 //VIDEO THUMBNAILS
 List videoThumbnails = [
-  VideoThumbnail("./assets/images/video_thumbnails/video_thumb_1.png", "Video 1"),
-  VideoThumbnail("./assets/images/video_thumbnails/video_thumb_2.png", "Video 2"),
-  VideoThumbnail("./assets/images/video_thumbnails/video_thumb_3.png", "Video 3"),
+  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_1.png", name: "Video 1"),
+  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_2.png", name: "Video 2"),
+  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_3.png", name: "Video 3"),
 ];
 
 //PRODUCT TILES
 List productTiles = [
   ProductDetail(
-    ["./assets/images/products/product_1.png"], 
-    "GURU's Pashu Ahar", 
-    399, 
-    449,
-    45,
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    35,
-    45,
-    20,
-    13,
-    1,
-    2,
+    imgUrls: ["./assets/images/products/product_1.png"], 
+    name: "GURU's Pashu Ahar", 
+    price: 399, 
+    mrp: 449,
+    weight: 45,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+    protein: 35,
+    fibre: 45,
+    fat: 20,
+    units: 13,
+    dispatchDays: 1,
+    deliveryDays: 2,
   ),
   ProductDetail(
-    ["./assets/images/products/product_1.png"], 
-    "GURU's Pashu Ahar", 
-    750, 
-    875,
-    35,
-    "Mixed with all good nutrients, this is made specially for cows",
-    35,
-    45,
-    20,
-    24,
-    2,
-    3,
+    imgUrls: ["./assets/images/products/product_1.png"], 
+    name: "GURU's Pashu Ahar", 
+    price: 750, 
+    mrp: 875,
+    weight: 35,
+    description: "Mixed with all good nutrients, this is made specially for cows",
+    protein: 35,
+    fibre: 45,
+    fat: 20,
+    units: 24,
+    dispatchDays: 2,
+    deliveryDays: 3,
   ),
   ProductDetail(
-    ["./assets/images/products/product_1.png"], 
-    "GURU's Pashu Ahar", 
-    650, 
-    900,
-    45,
-    "Mixed with all good nutrients, this is made specially for buffaloes",
-    50,
-    45,
-    20,
-    5,
-    2,
-    3,
+    imgUrls: ["./assets/images/products/product_1.png"], 
+    name: "GURU's Pashu Ahar", 
+    price: 650, 
+    mrp: 900,
+    weight: 45,
+    description: "Mixed with all good nutrients, this is made specially for buffaloes",
+    protein: 50,
+    fibre: 45,
+    fat: 20,
+    units: 5,
+    dispatchDays: 2,
+    deliveryDays: 3,
   ),
 ];
 
 //CART TILES
 List<CartModel> cartItems = [
-  CartModel(productTiles[0], 2),
-  CartModel(productTiles[2], 3),
+  CartModel(product: productTiles[0], qty: 2),
+  CartModel(product: productTiles[2], qty: 3),
 ];
 
 //CART VALUE
 double cartValue = 0;
 
 //CURRENT ORDER
-OrderModel currentOrder = OrderModel(cartItems, DateTime.now(), 2448);
+OrderModel currentOrder = OrderModel(order: cartItems, date: DateTime.now(), amount: 2448);
 
 //PREVIOUS ORDERS
 List previousOrders = [
-  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 2)), 3550),
-  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 5)), 1440),
-  OrderModel(cartItems, DateTime.now().subtract(const Duration(days: 7)), 950),
+  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 2)), amount: 3550),
+  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 5)), amount:1440),
+  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 7)), amount: 950),
 ];
 
 //ADDRESS TILES
 List addressTiles = [
-  Address("Vaibhav Aggarwal", "45-A", "Karol Bagh", "Delhi", "New Delhi", "123123", false),
-  Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", true),
-  Address("Reshmita Datta", "B/146", "Survey Park", "Kolkata", "West Bengal", "700075", false),
+  Address(name: "Vaibhav Aggarwal", houseNum: "45-A", village: "Karol Bagh", district: "Delhi", state: "New Delhi", pinCode: "123123", isDefault: false),
+  Address(name: "Ayan Dasgupta", houseNum: "Mint 1202, Siddha Happyville", village: "New Town", district: "North 24 Parganas", state: "West Bengal", pinCode: "700135", isDefault: true),
+  Address(name: "Reshmita Datta", houseNum: "B/146", village: "Survey Park", district: "Kolkata", state: "West Bengal", pinCode: "700075", isDefault: false),
 ];
 
 //CURRENT ADDRESS
-Address currentAddress = Address("Ayan Dasgupta", "Mint 1202, Siddha Happyville", "New Town", "North 24 Parganas", "West Bengal", "700135", true);
+Address currentAddress = Address(name: "Ayan Dasgupta", houseNum: "Mint 1202, Siddha Happyville", village: "New Town", district: "North 24 Parganas", state: "West Bengal", pinCode: "700135", isDefault: true);
 
 //BOTTOM NAVIGATION BAR
 List<BottomNavigationBarItem> items = 

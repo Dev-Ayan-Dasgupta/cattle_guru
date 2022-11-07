@@ -4,5 +4,15 @@ class CartModel{
   final ProductDetail product;
   int qty;
 
-  CartModel(this.product, this.qty);
+  CartModel({
+    required this.product, required this.qty
+    }
+  );
+
+  Map<String, dynamic> toMap() {
+    return {
+      "product": product,
+      "qty": qty,
+    };
+  }
 }

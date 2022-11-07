@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: (){}, 
                             width: 40.w, 
                             height: 24.w,
-                            imgUrl: videoThumbnails[index].imgUrl, 
+                            imgUrl: videoThumbnails[index].thumbUrl, 
                             videoName: videoThumbnails[index].name,
                           );
                         }
