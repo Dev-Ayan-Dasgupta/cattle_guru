@@ -117,6 +117,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                         collection('customers').
                                         doc(cred.user!.uid).
                                         get();
+                          
                           bool doesDocExist = doc.exists;
 
                           if(doesDocExist == false){

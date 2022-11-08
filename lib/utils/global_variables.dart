@@ -163,3 +163,8 @@ List<BottomNavigationBarItem> items =
         label: "Cart",
       ),     
 ];
+
+//FIRESTORE AUX
+List cart = [];
+List products = [];
+int qty = 0;

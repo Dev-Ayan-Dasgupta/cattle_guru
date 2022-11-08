@@ -6,6 +6,8 @@ import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -20,6 +22,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
 
   TextEditingController couponController = TextEditingController();
+  
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
   @override
   void dispose() { 
@@ -27,13 +31,13 @@ class _CartScreenState extends State<CartScreen> {
     super.dispose();
   }
 
-  double computeCartVaue(){
-    cartValue = 0;
-    for(int i = 0; i < cartItems.length; i++){
-      cartValue += cartItems[i].product.price * cartItems[i].qty;
-    }
-    return cartValue;
-  }
+  // double computeCartVaue(){
+  //   cartValue = 0;
+  //   for(int i = 0; i < cartItems.length; i++){
+  //     cartValue += cartItems[i].product.price * cartItems[i].qty;
+  //   }
+  //   return cartValue;
+  // }
   
   @override
   Widget build(BuildContext context) {
@@ -67,164 +71,201 @@ class _CartScreenState extends State<CartScreen> {
         child: GestureDetector(
           onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
           behavior: HitTestBehavior.opaque,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: 
-            cartItems.isEmpty ? 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 22.5.h,),
-                      SizedBox(
-                        width: 33.w, 
-                        height: 30.w,
-                        child: const Image(image: AssetImage("./assets/images/empty_cart.png"), fit: BoxFit.fill,),
-                      ),
-                      SizedBox(height: 2.h,),
-                      Center(
-                          child: SizedBox(
-                            width: 75.w,
-                            child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
-                      SizedBox(height: 2.h,),
-                    ],
-                  )
-                ],
-              )
-            : 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    SizedBox(height: 2.h,),
-                    SizedBox(
-                      width: 100.w,
-                      height: 40.h,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: cartItems.length,
-                              itemBuilder: (context, index){
-                                return CartTile(
-                                  onTap: (){}, 
-                                  imgUrl: cartItems[index].product.imgUrls[0], 
-                                  productName: cartItems[index].product.name, 
-                                  productWeight: cartItems[index].product.weight, 
-                                  productPrice: cartItems[index].product.price, 
-                                  onSubtract: (){
-                                    if(cartItems[index].qty > 0){
-                                      setState(() {
-                                      cartItems[index].qty--;
-                                      });
-                                    } 
-                                  }, 
-                                  onAdd: (){
-                                    if(cartItems[index].qty < cartItems[index].product.units){
-                                      setState(() {
-                                      cartItems[index].qty++;
-                                      });
-                                    } 
-                                  },
-                                  qty: cartItems[index].qty,
-                                );
-                              }
+          child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('customers').snapshots(),
+            builder: (context, snapshot) {
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  if(snapshot.hasData){
+                    if(snapshot.data!.docs[index].get('uid') == currUserId){
+                      cart = snapshot.data!.docs[index].get('cart').toList();
+                      cartValue = snapshot.data!.docs[index].get('cartValue').toDouble();
+                      qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
+                      return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      child: 
+                      cart.isEmpty ? 
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 22.5.h,),
+                                SizedBox(
+                                  width: 33.w, 
+                                  height: 30.w,
+                                  child: const Image(image: AssetImage("./assets/images/empty_cart.png"), fit: BoxFit.fill,),
+                                ),
+                                SizedBox(height: 2.h,),
+                                Center(
+                                    child: SizedBox(
+                                      width: 75.w,
+                                      child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                                ),
+                              ],
                             ),
-                          )
+                            SizedBox(height: 27.5.h,),
+                            Column(
+                              children: [
+                                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
+                                SizedBox(height: 2.h,),
+                              ],
+                            )
+                          ],
+                        )
+                      : 
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(height: 2.h,),
+                              SizedBox(
+                                width: 100.w,
+                                height: 40.h,
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: ListView.builder(
+                                        itemCount: (cart.length),
+                                        itemBuilder: (context, index2){
+                                          return CartTile(
+                                            onTap: (){}, 
+                                            imgUrl: cart[index2]['product']['imgUrls'][0],
+                                            // cartItems[index].product.imgUrls[0], 
+                                            productName: cart[index2]['product']['name'], 
+                                            productWeight: cart[index2]['product']['weight'].toDouble(), 
+                                            productPrice: cart[index2]['product']['price'].toDouble(), 
+                                            onSubtract: (){
+                                              if(cart[index2]['qty'] > 1){
+                                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                  'cartValue' : FieldValue.increment(-(cart[index2]['product']['price'].toDouble()))
+                                                });
+                                                cart[index2]['qty']--;
+                                                print(cart);
+                                                print(cart.length);
+                                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                  'cart': cart,
+                                                });
+                                                setState(() {
+                                                
+                                                });
+                                              } 
+                                              print("On Subtract:");
+                                              print(cart[index2]['qty']);
+                                              print(snapshot.data!.docs[index].get('cart')[index2]['qty']);
+                                            }, 
+                                            onAdd: (){
+                                              if(cart[index2]['qty'] < cart[index2]['product']['units']){
+                                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                  'cartValue' : FieldValue.increment(snapshot.data!.docs[index].get('cart')[index2]['product']['price'].toDouble())
+                                                });
+                                                cart[index2]['qty']++;
+                                                print(cart);
+                                                print(snapshot.data!.docs[index].get('cart'));
+                                                print(snapshot.data!.docs[index].get('cart') == cart);
+                                                print(cart.length);
+                                                print(snapshot.data!.docs[index].get('cart').length);
+                                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                  'cart': cart,
+                                                });
+                                                setState(() {
+                                                
+                                                });
+                                              } 
+                                              print("On Add:");
+                                              print(cart[index2]['qty']);
+                                              print(snapshot.data!.docs[index].get('cart')[index2]['qty']);
+                                            },
+                                            qty: cart[index2]['qty'],
+                                          );
+                                        }
+                                      ),    
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomTextField(width: 57.w, controller: couponController, hintText: "Enter Coupon Code", label: "Coupon Code", keyboardType: TextInputType.text),
+                                  SizedBox(width: 3.w,),
+                                  CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: "Apply", fontColor: white, borderColor: primary),
+                                ],
+                              ),
+                              SizedBox(height: 2.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  
+                                  Text(cartValue.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                                ],
+                              ),
+                              SizedBox(height: 1.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text("- ${200.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                ],
+                              ),
+                              SizedBox(height: 1.h,),Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text("- ${300.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                ],
+                              ),
+                              SizedBox(height: 1.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text(0.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                ],
+                              ),
+                              SizedBox(height: 1.h,),
+                              Container(
+                                width: 100.w,
+                                height: 0.5,
+                                color: grey,
+                              ),
+                              SizedBox(height: 1.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                                  
+                                  Text((cartValue-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                              SizedBox(height: 2.h,),
+                              CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Checkout", fontColor: white, borderColor: primary),
+                              SizedBox(height: 2.h,),
+                            ],
+                          ),
                         ],
                       ),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomTextField(width: 57.w, controller: couponController, hintText: "Enter Coupon Code", label: "Coupon Code", keyboardType: TextInputType.text),
-                        SizedBox(width: 3.w,),
-                        CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: "Apply", fontColor: white, borderColor: primary),
-                      ],
-                    ),
-                    SizedBox(height: 2.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        // Row(
-                        //   children: [
-                        //     Text("₹ ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
-                        //     AnimatedFlipCounter(
-                        //       value: computeCartVaue(),
-                        //       textStyle: globalTextStyle.copyWith(color: black, fontSize: 3.w,),
-                        //     ),
-                        //   ],
-                        // ),
-                        Text(computeCartVaue().toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
-                      ],
-                    ),
-                    SizedBox(height: 1.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("- ${200.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      ],
-                    ),
-                    SizedBox(height: 1.h,),Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text("- ${300.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      ],
-                    ),
-                    SizedBox(height: 1.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                        Text(0.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
-                      ],
-                    ),
-                    SizedBox(height: 1.h,),
-                    Container(
-                      width: 100.w,
-                      height: 0.5,
-                      color: grey,
-                    ),
-                    SizedBox(height: 1.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
-                        // Row(
-                        //   children: [
-                        //     Text("₹ ", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
-                        //     AnimatedFlipCounter(
-                        //       value: computeCartVaue()-300-200,
-                        //       textStyle: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),
-                        //     ),
-                        //   ],
-                        // ),
-                        Text((computeCartVaue()-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                    SizedBox(height: 2.h,),
-                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Checkout", fontColor: white, borderColor: primary),
-                    SizedBox(height: 2.h,),
-                  ],
-                ),
-              ],
-            ),
+                    );
+                    }
+                    
+                  }
+                  if (snapshot.hasError) {
+                    return const Text('Error');
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+                
+              );
+            }
           ),
         ),
       ),

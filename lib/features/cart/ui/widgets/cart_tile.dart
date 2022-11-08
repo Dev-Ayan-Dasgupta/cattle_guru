@@ -30,24 +30,31 @@ class _CartTileState extends State<CartTile> {
           width: 100.w,
           height: 17.w,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: 17.w,
-                height: 17.w,
-                child: Image(image: AssetImage(widget.imgUrl), fit: BoxFit.fill,),
-              ),
-              SizedBox(width: 5.w,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(widget.productName, style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
-                  SizedBox(height: 1.w,),
-                  Text("Weight: ${widget.productWeight.toInt()} kg", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
-                  SizedBox(height: 2.w,),
-                  Text("₹ ${widget.productPrice}", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
+                  SizedBox(
+                    width: 17.w,
+                    height: 17.w,
+                    child: Image(image: AssetImage(widget.imgUrl), fit: BoxFit.fill,),
+                  ),
+                  SizedBox(width: 5.w,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.productName, style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
+                      SizedBox(height: 1.w,),
+                      Text("Weight: ${widget.productWeight.toInt()} kg", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                      SizedBox(height: 2.w,),
+                      Text("₹ ${widget.productPrice}", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
+                    ],
+                  ),
                 ],
               ),
-              SizedBox(width: 14.w,),
+
+              
+              // SizedBox(width: 14.w,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

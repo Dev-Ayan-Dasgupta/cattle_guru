@@ -19,18 +19,6 @@ class _SelectLanguageState extends State<SelectLanguage> {
 
   bool? isEnglish;
 
-  getCustomerLanguage() async {
-    if(currUserId != null){
-      isEnglish = await FirebaseFirestore.instance.collection('customers').doc(currUserId).get().then((value) => value.get('isEnglish'));
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getCustomerLanguage();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

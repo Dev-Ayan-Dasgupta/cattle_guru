@@ -27,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
+  List<Map<String, dynamic>> products = [];
+
   List<Widget> indicators(imagesLength, currentIndex) {
     return List<Widget>.generate(imagesLength, (index) {
       return Container(
@@ -184,9 +186,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               scrollDirection: Axis.horizontal,
                               itemCount: snapshot.data!.docs.length,
                               itemBuilder: (context, index){
+                                products.add(Map.from(snapshot.data!.docs[index].data()));
+                                // products[index] = Map.from(snapshot.data!.docs[index].data());
+                                products[index]['isCarted'] = true;
                                 return ProductTile(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: snapshot.data!.docs[index], isCarted: snapshot.data!.docs[index].get('isCarted'),)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: snapshot.data!.docs[index].data(), isCarted: snapshot.data!.docs[index].get('isCarted'), id: snapshot.data!.docs[index].id,)));
                                   },
                                   width: 40.w, 
                                   height: 40.w, 
@@ -195,18 +200,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                   title: snapshot.data!.docs[index].get('name'), 
                                   price: snapshot.data!.docs[index].get('price').toDouble(), 
                                   description: snapshot.data!.docs[index].get('description'), 
-                                  onAddToCart: (){
-                                    if(currUserId != null){
-                                      FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                  onAddToCart: () async {
+                                    if(currUserId != null) {
+                                      // print(products[index]['isCarted']);
+                                      // print(products[index]);
+                                      // print(snapshot.data!.docs[index].data());
+                                      // print(products[index] == snapshot.data!.docs[index].data());
+                                      await FirebaseFirestore.instance.collection('cattle-feed').doc(snapshot.data!.docs[index].id).update({'isCarted': true});
+                                      await FirebaseFirestore.instance.collection('customers').doc(currUserId).
                                       update({'cart': FieldValue.arrayUnion([
                                           {
-                                            'product': snapshot.data!.docs[index].id,
+                                            'product': products[index],
                                             'qty': 1,
                                           }
                                         ]),
                                       });
-                                      FirebaseFirestore.instance.collection('cattle-feed').doc(snapshot.data!.docs[index].id).update({'isCarted': true});
-                                      FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                      await FirebaseFirestore.instance.collection('customers').doc(currUserId).
                                       update({
                                         'cartValue': FieldValue.increment(snapshot.data!.docs[index].get('price').toDouble())
                                       });

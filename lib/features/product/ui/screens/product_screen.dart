@@ -12,11 +12,12 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ProductScreen extends StatefulWidget {
-  ProductScreen({super.key, required this.product, required this.isCarted});
+  ProductScreen({super.key, required this.product, required this.isCarted, required this.id});
 
   // final ProductDetail product; 
-  final QueryDocumentSnapshot<Map<String, dynamic>> product;
+  final Map<String, dynamic> product;
   bool isCarted;
+  final String id;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -29,13 +30,22 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
 
-    double price = widget.product.get('price').toDouble();
-    double mrp = widget.product.get('mrp').toDouble();
-    double weight = widget.product.get('weight').toDouble();
-    double protein = widget.product.get('protein').toDouble();
-    double fibre = widget.product.get('fibre').toDouble();
-    double fat = widget.product.get('fat').toDouble();
-    double units = widget.product.get('units').toDouble();
+    widget.product['isCarted'] = true;
+
+    // double price = widget.product.get('price').toDouble();
+    double price = widget.product['price'].toDouble();
+    // double mrp = widget.product.get('mrp').toDouble();
+    double mrp = widget.product['mrp'].toDouble();
+    // double weight = widget.product.get('weight').toDouble();
+    double weight = widget.product['weight'].toDouble();
+    // double protein = widget.product.get('protein').toDouble();
+    double protein = widget.product['protein'].toDouble();
+    // double fibre = widget.product.get('fibre').toDouble();
+    double fibre = widget.product['fibre'].toDouble();
+    // double fat = widget.product.get('fat').toDouble();
+    double fat = widget.product['fat'].toDouble();
+    // double units = widget.product.get('units').toDouble();
+    double units = widget.product['units'].toDouble();
     // bool isCarted = widget.product.get('isCarted');
 
     return Scaffold(
@@ -77,9 +87,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   Center(child: SizedBox(
                     width: 40.w,
                     height: 40.w,
-                    child: Image(image: AssetImage(widget.product.get('imgUrls')[0]), fit: BoxFit.fill,))),
+                    child: Image(image: AssetImage(widget.product['imgUrls'][0]), fit: BoxFit.fill,))),
                   SizedBox(height: 2.h),
-                  Text(widget.product.get('name'), style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                  Text(widget.product['name'], style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +128,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   Text("Description", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   // CustomTextLabel(width: 20.w, height: 7.w, text: "Description", color: primary, fontColor: white),
                   SizedBox(height: 1.h,),
-                  Text(widget.product.get('description'), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                  Text(widget.product['description'], style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                   SizedBox(height: 2.h,),
                   Text("Nutrient Information", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 2.h,),
@@ -192,18 +202,19 @@ class _ProductScreenState extends State<ProductScreen> {
                     if((widget.isCarted == true)){
                       setState(() {
                         if(currUserId != null){
+                          // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': false});
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({'cart': FieldValue.arrayRemove([
                               {
-                                'product': widget.product.id,
+                                'product': widget.product,
                                 'qty': 1,
                               }
                             ]),
                           });
-                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.product.id).update({'isCarted': false});
+                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': false});
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({
-                              'cartValue': FieldValue.increment(-(widget.product.get('price').toDouble()))
+                              'cartValue': FieldValue.increment(-(widget.product['price'].toDouble()))
                             });
                           widget.isCarted = false;
                         }
@@ -211,18 +222,19 @@ class _ProductScreenState extends State<ProductScreen> {
                     } else {
                       setState(() {
                         if(currUserId != null){
+                          // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': true});
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({'cart': FieldValue.arrayUnion([
                               {
-                                'product': widget.product.id,
+                                'product': widget.product,
                                 'qty': 1,
                               }
                             ]),
                           });
-                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.product.id).update({'isCarted': true});
+                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': true});
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({
-                              'cartValue': FieldValue.increment(widget.product.get('price').toDouble())
+                              'cartValue': FieldValue.increment(widget.product['price'].toDouble())
                             });
                           widget.isCarted = true;
                         }
