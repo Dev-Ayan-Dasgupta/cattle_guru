@@ -168,3 +168,5 @@ List<BottomNavigationBarItem> items =
 List cart = [];
 List products = [];
 int qty = 0;
+List firestoreAddresses = [];
+Map<String, dynamic> firestoreCurrentAddress = {};

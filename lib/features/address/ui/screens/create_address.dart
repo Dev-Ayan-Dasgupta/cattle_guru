@@ -6,6 +6,8 @@ import 'package:cattle_guru/utils/helper_functions/fetch_location.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:geocoding/geocoding.dart';
@@ -20,6 +22,9 @@ class CreateAddressScreen extends StatefulWidget {
 
 class _CreateAddressScreenState extends State<CreateAddressScreen> {
 
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
+  
+  TextEditingController nameController = TextEditingController();
   TextEditingController houseNumController = TextEditingController();
   TextEditingController villageController = TextEditingController();
   TextEditingController districtController = TextEditingController();
@@ -41,6 +46,7 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
 
   @override
   void dispose() {
+    nameController.dispose();
     houseNumController.dispose();
     villageController.dispose();
     districtController.dispose();
@@ -88,7 +94,9 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
               children: [
                 Column(
                   children: [
-                    SizedBox(height: 3.h),
+                    SizedBox(height: 2.h),
+                    CustomTextField(width: 90.w, controller: nameController, hintText: "Ayan Dasgupta", label: "Name", keyboardType: TextInputType.text),
+                    SizedBox(height: 2.h),
                     CustomTextField(width: 90.w, controller: houseNumController, hintText: "Mint 1202", label: "House Number", keyboardType: TextInputType.text),
                     SizedBox(height: 2.h,),
                     CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
@@ -127,9 +135,42 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                 Column(
                   children: [
                     SizedBox(height: 2.h,),
-                    CustomButton(width: 90.w, height: 15.w, color: transparent, onTap: (){}, text: "Set as Default", fontColor: primary, borderColor: primary,),
-                    SizedBox(height: 2.h,),
-                    CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Add Address", fontColor: white, borderColor: primary,),
+                    // CustomButton(width: 90.w, height: 15.w, color: transparent, onTap: (){}, text: "Set as Default", fontColor: primary, borderColor: primary,),
+                    // SizedBox(height: 1.h,),
+                    CustomButton(width: 90.w, height: 15.w, color: primary, 
+                    onTap: (){
+                      if(firestoreAddresses.isEmpty){
+                        FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                          'currentAddress': 
+                          {
+                            'name': nameController.text,
+                            'houseNum': houseNumController.text,
+                            'village': villageController.text,
+                            'district': districtController.text,
+                            'state': stateController.text,
+                            'pinCode': pinCodeController.text,
+                            'isDefault': true,
+                            'index': firestoreAddresses.length,
+                          }
+                        });
+                      }
+                      FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                        'addresses': FieldValue.arrayUnion([
+                          {
+                            'name': nameController.text,
+                            'houseNum': houseNumController.text,
+                            'village': villageController.text,
+                            'district': districtController.text,
+                            'state': stateController.text,
+                            'pinCode': pinCodeController.text,
+                            'isDefault': (firestoreAddresses.isEmpty) ? true : false,
+                            'index': firestoreAddresses.length,
+                          }
+                        ])
+                      });
+                      Navigator.pushNamed(context, myAddresses);
+                    }, 
+                    text: "Add Address", fontColor: white, borderColor: primary,),
                     SizedBox(height: 2.h,),
                   ],
                 ),

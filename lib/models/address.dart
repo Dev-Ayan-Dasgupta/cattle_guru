@@ -5,7 +5,7 @@ class Address{
   final String district;
   final String state;
   final String pinCode;
-  final bool isDefault;
+  final bool? isDefault;
 
   Address({
     required this.name, required this.houseNum, required this.village, required this.district, required this.state, required this.pinCode, required this.isDefault

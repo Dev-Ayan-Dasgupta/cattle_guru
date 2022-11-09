@@ -75,7 +75,7 @@ class _CartScreenState extends State<CartScreen> {
             stream: FirebaseFirestore.instance.collection('customers').snapshots(),
             builder: (context, snapshot) {
               return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+                itemCount: (snapshot.data != null) ? snapshot.data!.docs.length : 0,
                 itemBuilder: (context, index) {
                   if(snapshot.hasData){
                     if(snapshot.data!.docs[index].get('uid') == currUserId){

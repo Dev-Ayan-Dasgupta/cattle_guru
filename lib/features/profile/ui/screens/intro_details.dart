@@ -101,17 +101,27 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                         FirebaseFirestore.instance.collection('customers').doc(currUserId).
                         update({'currentAddress': 
                           {
-                            "name": nameController.text,
-                            "pinCode": pinCodeController.text,
-                            "village": villageController.text,
+                            'name': nameController.text,
+                            'houseNum': "",
+                            'village': villageController.text,
+                            'district': "",
+                            'state': "",
+                            'pinCode': pinCodeController.text,
+                            'isDefault': true,
+                            'index': 0,
                           },
                         });
                         FirebaseFirestore.instance.collection('customers').doc(currUserId).
                         update({'addresses': FieldValue.arrayUnion([
                             {
-                              "name": nameController.text,
-                              "pinCode": pinCodeController.text,
-                              "village": villageController.text,
+                            'name': nameController.text,
+                            'houseNum': "",
+                            'village': villageController.text,
+                            'district': "",
+                            'state': "",
+                            'pinCode': pinCodeController.text,
+                            'isDefault': true,
+                            'index': 0,
                             },
                           ]), 
                         });
