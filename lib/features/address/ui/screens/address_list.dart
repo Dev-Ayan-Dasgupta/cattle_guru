@@ -59,12 +59,12 @@ class _AddressListScreenState extends State<AddressListScreen> {
               itemBuilder: (context, index) {
                 if(snapshot.hasData){
                   if(snapshot.data!.docs[index].get('uid') == currUserId){
-                    firestoreAddresses = snapshot.data!.docs[index].get('addresses').toList();
+                    addresses = snapshot.data!.docs[index].get('addresses').toList();
                     firestoreCurrentAddress = snapshot.data!.docs[index].get('currentAddress');
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        firestoreAddresses.isEmpty ? 
+                        addresses.isEmpty ? 
                           const Center(child: Text("No addresses added yet."),)
                         :
                         Column(
@@ -111,59 +111,57 @@ class _AddressListScreenState extends State<AddressListScreen> {
                                 children: [
                                   Expanded(
                                     child: ListView.builder(
-                                      itemCount: firestoreAddresses.length,
+                                      itemCount: addresses.length,
                                       itemBuilder: (context, index2){
                                         return AddressCard(
                                           onTap: (){
-                                            print("Length: ${firestoreAddresses.length}");
-                                            print(firestoreAddresses);
+                                            print("Length: ${addresses.length}");
+                                            print(addresses);
                                           }, 
-                                          isDefault: firestoreAddresses[index2]['isDefault'], 
-                                          name: firestoreAddresses[index2]['name'], 
-                                          address: "${firestoreAddresses[index2]['houseNum']}, ${firestoreAddresses[index2]['village']}, ${firestoreAddresses[index2]['district']}, ${firestoreAddresses[index2]['state']}, ${firestoreAddresses[index2]['pinCode']}", 
+                                          isDefault: addresses[index2]['isDefault'], 
+                                          name: addresses[index2]['name'], 
+                                          address: "${addresses[index2]['houseNum']}, ${addresses[index2]['village']}, ${addresses[index2]['district']}, ${addresses[index2]['state']}, ${addresses[index2]['pinCode']}", 
                                           onEditTap: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: firestoreAddresses[index2], addressIndex: index2, isDefault: firestoreAddresses[index2]['isDefault'],)));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: addresses[index2], addressIndex: index2, isDefault: addresses[index2]['isDefault'],)));
                                           }, 
                                           onDefaultTap: (){
-                                            for(int i = 0; i < firestoreAddresses.length; i++){
+                                            for(int i = 0; i < addresses.length; i++){
                                               if(i == index2){
-                                                firestoreAddresses[i]['isDefault'] = true;
+                                                addresses[i]['isDefault'] = true;
                                               } else {
-                                                firestoreAddresses[i]['isDefault'] = false;
+                                                addresses[i]['isDefault'] = false;
                                               }
                                             }
-                                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({'currentAddress': firestoreAddresses[index2]});
+                                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({'currentAddress': addresses[index2]});
                                             FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                              'addresses': firestoreAddresses,
+                                              'addresses': addresses,
                                             });
                                           }, 
                                           onRemoveTap: (){
-                                            for(int i = 0; i < firestoreAddresses.length; i++){
+                                            for(int i = 0; i < addresses.length; i++){
                                               if(i > index2){
-                                                firestoreAddresses[i]['index']--;
+                                                addresses[i]['index']--;
                                               }
                                             }
                                             
-                                            if(firestoreAddresses[index2]['isDefault'] == true){
+                                            if(addresses[index2]['isDefault'] == true){
                                               if(index2 == 0){
+                                                addresses[1]['isDefault'] = true;
                                                 FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                                  'currentAddress': firestoreAddresses[1],
+                                                  'currentAddress': addresses[1],
                                                 });
                                               } else {
+                                                addresses[0]['isDefault'] = true;
                                                 FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                                  'currentAddress': firestoreAddresses[0],
+                                                  'currentAddress': addresses[0],
                                                 });
                                               }
                                             }
 
-                                            firestoreAddresses.remove(firestoreAddresses[index2]);
+                                            addresses.remove(addresses[index2]);
                                             FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                              'addresses': firestoreAddresses,
+                                              'addresses': addresses,
                                             });
-                                            
-                                            // setState(() {
-                                              
-                                            // });
                                           }
                                         );
                                       },

@@ -62,9 +62,9 @@ class _AddressListScreenState extends State<AddressListScreen> {
                       itemBuilder: (context, index){
                         if(snapshot.hasData){
                           if(snapshot.data!.docs[index].get('uid') == currUserId){
-                            firestoreAddresses = snapshot.data!.docs[index].get('addresses').toList();
+                            addresses = snapshot.data!.docs[index].get('addresses').toList();
                             return 
-                            (firestoreAddresses.isEmpty) ?
+                            (addresses.isEmpty) ?
                               const Center(child: Text("No addresses yet"))
                             :
                             Column(
@@ -110,15 +110,15 @@ class _AddressListScreenState extends State<AddressListScreen> {
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
-                                          itemCount: firestoreAddresses.length,
+                                          itemCount: addresses.length,
                                           itemBuilder: (context, index2){
                                             return AddressCard(
                                               onTap: (){}, 
-                                              isDefault: firestoreAddresses[index2]['isDefault'], 
-                                              name: firestoreAddresses[index2]['name'], 
-                                              address: "${firestoreAddresses[index2]['houseNum']}, ${firestoreAddresses[index2]['village']}, ${firestoreAddresses[index2]['district']}, ${firestoreAddresses[index2]['state']}, ${firestoreAddresses[index2]['pinCode']}", 
+                                              isDefault: addresses[index2]['isDefault'], 
+                                              name: addresses[index2]['name'], 
+                                              address: "${addresses[index2]['houseNum']}, ${addresses[index2]['village']}, ${addresses[index2]['district']}, ${addresses[index2]['state']}, ${addresses[index2]['pinCode']}", 
                                               onEditTap: (){
-                                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: firestoreAddresses[index2], addressIndex: index2, isDefault: firestoreAddresses[index2]['isDefault'],)));
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressScreen(address: addresses[index2], addressIndex: index2, isDefault: addresses[index2]['isDefault'],)));
                                               }, 
                                               onDefaultTap: (){}, 
                                               onRemoveTap: (){}

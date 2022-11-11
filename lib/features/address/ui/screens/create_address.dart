@@ -139,7 +139,7 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                     // SizedBox(height: 1.h,),
                     CustomButton(width: 90.w, height: 15.w, color: primary, 
                     onTap: (){
-                      if(firestoreAddresses.isEmpty){
+                      if(addresses.isEmpty){
                         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
                           'currentAddress': 
                           {
@@ -150,7 +150,7 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                             'state': stateController.text,
                             'pinCode': pinCodeController.text,
                             'isDefault': true,
-                            'index': firestoreAddresses.length,
+                            'index': addresses.length,
                           }
                         });
                       }
@@ -163,8 +163,8 @@ class _CreateAddressScreenState extends State<CreateAddressScreen> {
                             'district': districtController.text,
                             'state': stateController.text,
                             'pinCode': pinCodeController.text,
-                            'isDefault': (firestoreAddresses.isEmpty) ? true : false,
-                            'index': firestoreAddresses.length,
+                            'isDefault': (addresses.isEmpty) ? true : false,
+                            'index': addresses.length,
                           }
                         ])
                       });

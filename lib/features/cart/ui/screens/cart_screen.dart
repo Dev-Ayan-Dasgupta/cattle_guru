@@ -81,7 +81,10 @@ class _CartScreenState extends State<CartScreen> {
                     if(snapshot.data!.docs[index].get('uid') == currUserId){
                       cart = snapshot.data!.docs[index].get('cart').toList();
                       cartValue = snapshot.data!.docs[index].get('cartValue').toDouble();
-                      qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
+                      currentOrders = snapshot.data!.docs[index].get('currentOrders').toList();
+                      if(cart.isNotEmpty){
+                        qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
+                      }
                       return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: 
@@ -109,7 +112,11 @@ class _CartScreenState extends State<CartScreen> {
                             SizedBox(height: 27.5.h,),
                             Column(
                               children: [
-                                CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
+                                CustomButton(width: 90.w, height: 15.w, color: primary, 
+                                onTap: (){
+                                  Navigator.pushNamed(context, home);
+                                }, 
+                                text: "Browse Products", fontColor: white, borderColor: primary),
                                 SizedBox(height: 2.h,),
                               ],
                             )
@@ -247,24 +254,49 @@ class _CartScreenState extends State<CartScreen> {
                                 ],
                               ),
                               SizedBox(height: 2.h,),
-                              CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Checkout", fontColor: white, borderColor: primary),
+                              CustomButton(width: 90.w, height: 15.w, color: primary,
+                              onTap: (){
+
+                                //Add current cart to Current Orders array
+                                currentOrders.add({
+                                  'order': cart,
+                                  'date': DateTime.now(),
+                                  'amount': cartValue - 200 - 300
+                                });
+                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                  'currentOrders': currentOrders,
+                                });
+                                
+                                //Set cartvalue to 0
+                                cartValue = 0;
+                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                  'cartValue': 0,
+                                });
+
+                                //Empty the cart
+                                cart = [];
+                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                  'cart': cart,
+                                });
+
+                                Navigator.pushNamed(context, orderSuccess);
+
+                              }, 
+                              text: "Checkout", fontColor: white, borderColor: primary),
                               SizedBox(height: 2.h,),
                             ],
                           ),
                         ],
                       ),
                     );
-                    }
-                    
                   }
-                  if (snapshot.hasError) {
-                    return const Text('Error');
-                  } else {
-                    return const SizedBox();
-                  }
-                },
-                
-              );
+                }
+                if (snapshot.hasError) {
+                  return const Text('Error');
+                } else {
+                  return const SizedBox();
+                }
+              },);
             }
           ),
         ),

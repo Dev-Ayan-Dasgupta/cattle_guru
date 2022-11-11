@@ -165,8 +165,13 @@ List<BottomNavigationBarItem> items =
 ];
 
 //FIRESTORE AUX
+List allUsersId = [];
+String currentUserName = "";
+List transactions = [];
+double walletBalance = 0;
 List cart = [];
 List products = [];
 int qty = 0;
-List firestoreAddresses = [];
+List addresses = [];
 Map<String, dynamic> firestoreCurrentAddress = {};
+List currentOrders = [];

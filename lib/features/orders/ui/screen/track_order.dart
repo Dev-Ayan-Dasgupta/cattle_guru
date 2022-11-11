@@ -7,21 +7,30 @@ import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 class TrackOrderScreen extends StatefulWidget {
-  const TrackOrderScreen({super.key, required this.order});
+  const TrackOrderScreen({super.key, required this.order, required this.orderIndex});
 
-  final OrderModel order;
+  final Map<String, dynamic> order;
+  final int orderIndex;
 
   @override
   State<TrackOrderScreen> createState() => _TrackOrderScreenState();
 }
 
 class _TrackOrderScreenState extends State<TrackOrderScreen> {
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
+  
+  
   @override
   Widget build(BuildContext context) {
+    num amt = widget.order['amount'];
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: AppBar(
@@ -65,16 +74,17 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: currentOrder.order.length,
+                            itemCount: widget.order['order'].length,
                             itemBuilder: (context, index){
                               return OrderTile(
                                 onTap: (){}, 
-                                imgUrl: currentOrder.order[index].product.imgUrls[0], 
-                                productName: currentOrder.order[index].product.name, 
-                                qty: currentOrder.order[index].qty, 
-                                productPrice: currentOrder.order[index].product.price, 
-                                productDeliveryDays: currentOrder.order[index].product.deliveryDays, 
-                                date: currentOrder.date,
+                                imgUrl: widget.order['order'][index]['product']['imgUrls'][0],
+                                // currentOrder.order[index].product.imgUrls[0], 
+                                productName: widget.order['order'][index]['product']['name'], 
+                                qty: widget.order['order'][index]['qty'], 
+                                productPrice: widget.order['order'][index]['product']['price'].toDouble(), 
+                                productDeliveryDays: widget.order['order'][index]['product']['deliveryDays'], 
+                                date: widget.order['date'].toDate(),
                               );
                             }
                           )
@@ -86,7 +96,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   Row(
                     children: [
                       Text("Amount: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
-                      Text(currentOrder.amount.toString(), style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                      Text(amt.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                     ],
                   ),
                   SizedBox(height: 1.h,),
@@ -104,7 +114,15 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               ),
               Column(
                 children: [
-                  CustomButton(width: 90.w, height: 15.w, color: lightRed, onTap: (){}, text: "Cancel Order", fontColor: red, borderColor: red),
+                  CustomButton(width: 90.w, height: 15.w, color: lightRed, 
+                  onTap: (){
+                    currentOrders.remove(currentOrders[widget.orderIndex]);
+                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                      'currentOrders': currentOrders,
+                    });
+                    Navigator.pushNamed(context, myOrders);
+                  }, 
+                  text: "Cancel Order", fontColor: red, borderColor: red),
                   SizedBox(height: 2.h,),
                 ],
               ),

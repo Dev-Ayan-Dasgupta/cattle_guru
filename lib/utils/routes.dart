@@ -1,6 +1,7 @@
 const String signIn = "/sign-in";
 const String otp = "/otp";
 const String languages = "/select-language";
+const String referral = "/referral-code";
 const String details = "/details";
 const String home = "/home";
 const String myProfile = "/my-profile";
@@ -11,3 +12,4 @@ const String createAddress = "/create-address";
 const String myCart = "/my-cart";
 const String myOrders = "/my-orders";
 const String trackOrder = "/track-order";
+const String orderSuccess = "/order-success";

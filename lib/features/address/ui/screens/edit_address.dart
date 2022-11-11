@@ -112,43 +112,43 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                     SizedBox(height: 2.h,),
                     CustomButton(width: 90.w, height: 15.w, color: transparent, 
                       onTap: (){
-                        firestoreAddresses[widget.addressIndex]['name'] = nameController.text;
-                        firestoreAddresses[widget.addressIndex]['houseNum'] = houseNumController.text;
-                        firestoreAddresses[widget.addressIndex]['village'] = villageController.text;
-                        firestoreAddresses[widget.addressIndex]['district'] = districtController.text;
-                        firestoreAddresses[widget.addressIndex]['state'] = stateController.text;
-                        firestoreAddresses[widget.addressIndex]['pinCode'] = pinCodeController.text;
-                        firestoreAddresses[widget.addressIndex]['isDefault'] = widget.isDefault;
-                        for(int i = 0; i < firestoreAddresses.length; i++){
+                        addresses[widget.addressIndex]['name'] = nameController.text;
+                        addresses[widget.addressIndex]['houseNum'] = houseNumController.text;
+                        addresses[widget.addressIndex]['village'] = villageController.text;
+                        addresses[widget.addressIndex]['district'] = districtController.text;
+                        addresses[widget.addressIndex]['state'] = stateController.text;
+                        addresses[widget.addressIndex]['pinCode'] = pinCodeController.text;
+                        addresses[widget.addressIndex]['isDefault'] = widget.isDefault;
+                        for(int i = 0; i < addresses.length; i++){
                           if(i == widget.addressIndex){
-                            firestoreAddresses[i]['isDefault'] = true;
+                            addresses[i]['isDefault'] = true;
                             widget.isDefault = true;
                           } else {
-                            firestoreAddresses[i]['isDefault'] = false;
+                            addresses[i]['isDefault'] = false;
                           }
                         }
-                        FirebaseFirestore.instance.collection('customers').doc(currUserId).update({'currentAddress': firestoreAddresses[widget.addressIndex]});
+                        FirebaseFirestore.instance.collection('customers').doc(currUserId).update({'currentAddress': addresses[widget.addressIndex]});
                         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                          'addresses': firestoreAddresses,
+                          'addresses': addresses,
                         });
                       }, 
                       text: "Set as Default", fontColor: primary, borderColor: primary,),
                     SizedBox(height: 2.h,),
                     CustomButton(width: 90.w, height: 15.w, color: primary,
                      onTap: (){
-                      firestoreAddresses[widget.addressIndex]['name'] = nameController.text;
-                      firestoreAddresses[widget.addressIndex]['houseNum'] = houseNumController.text;
-                      firestoreAddresses[widget.addressIndex]['village'] = villageController.text;
-                      firestoreAddresses[widget.addressIndex]['district'] = districtController.text;
-                      firestoreAddresses[widget.addressIndex]['state'] = stateController.text;
-                      firestoreAddresses[widget.addressIndex]['pinCode'] = pinCodeController.text;
-                      firestoreAddresses[widget.addressIndex]['isDefault'] = widget.isDefault;
+                      addresses[widget.addressIndex]['name'] = nameController.text;
+                      addresses[widget.addressIndex]['houseNum'] = houseNumController.text;
+                      addresses[widget.addressIndex]['village'] = villageController.text;
+                      addresses[widget.addressIndex]['district'] = districtController.text;
+                      addresses[widget.addressIndex]['state'] = stateController.text;
+                      addresses[widget.addressIndex]['pinCode'] = pinCodeController.text;
+                      addresses[widget.addressIndex]['isDefault'] = widget.isDefault;
                       FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                        'addresses': firestoreAddresses,
+                        'addresses': addresses,
                       });
                       if(widget.isDefault){
                         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                        'currentAddress': firestoreAddresses[widget.addressIndex],
+                        'currentAddress': addresses[widget.addressIndex],
                       });
                       }
                       Navigator.pushNamed(context, myAddresses);

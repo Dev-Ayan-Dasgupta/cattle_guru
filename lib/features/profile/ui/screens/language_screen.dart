@@ -90,7 +90,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
-                  Navigator.pushNamed(context, details);
+                  Navigator.pushNamed(context, referral);
                 }, text: "Continue", fontColor: white, borderColor: primary,),
                 SizedBox(height: 2.h,),
               ],

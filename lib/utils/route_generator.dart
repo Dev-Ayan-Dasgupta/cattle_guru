@@ -1,10 +1,12 @@
 import 'package:cattle_guru/features/address/ui/screens/address_list.dart';
 import 'package:cattle_guru/features/address/ui/screens/create_address.dart';
 import 'package:cattle_guru/features/cart/ui/screens/cart_screen.dart';
+import 'package:cattle_guru/features/cart/ui/screens/order_success.dart';
 import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
 import 'package:cattle_guru/features/orders/ui/screen/order_screen.dart';
+import 'package:cattle_guru/features/profile/ui/screens/enter_referral.dart';
 import 'package:cattle_guru/features/profile/ui/screens/intro_details.dart';
 import 'package:cattle_guru/features/profile/ui/screens/language_screen.dart';
 import 'package:cattle_guru/features/profile/ui/screens/my_profile.dart';
@@ -21,6 +23,7 @@ class RouteGenerator{
       case signIn: return CustomPageTransition(child: const SignInScreen(), settings: settings,);
       // case otp: return CustomPageTransition(child: const OTPScreen(), settings: settings,);
       case languages: return CustomPageTransition(child: const SelectLanguage(), settings: settings,);
+      case referral: return CustomPageTransition(child: const EnterReferralScreen(), settings: settings,);
       case details: return CustomPageTransition(child: const IntroDetailsScreen(), settings: settings,);
       case home: return CustomPageTransition(child: const HomeScreen(), settings: settings,);
       case myProfile: return CustomPageTransition(child: const MyProfileScreen(), settings: settings,);
@@ -30,6 +33,7 @@ class RouteGenerator{
       case createAddress: return CustomPageTransition(child: const CreateAddressScreen(), settings: settings,);
       case myCart: return CustomPageTransition(child: const CartScreen(), settings: settings,);
       case myOrders: return CustomPageTransition(child: const OrdersScreen(), settings: settings,);
+      case orderSuccess: return CustomPageTransition(child: const OrderSuccessScreen(), settings: settings,);
       default: return _errorRoute();
     }
   }

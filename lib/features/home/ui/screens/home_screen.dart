@@ -116,6 +116,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   carouselImageListHome.length, _currentCarouselIndex),
               ),
               SizedBox(height: 1.h,),
+              InkWell(
+                onTap: (){Navigator.pushNamed(context, referral);},
+                child: const Text("Referral text",)),
+              SizedBox(height: 1.h,),
               CustomTextLabel(width: 20.w, height: 6.w, text: "Categories", color: primary, fontColor: white),
               SizedBox(height: 2.h,),
               Container(
