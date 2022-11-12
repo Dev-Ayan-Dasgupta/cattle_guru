@@ -58,12 +58,14 @@ class _EnterReferralScreenState extends State<EnterReferralScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 30.h,),
-                                // InkWell(
-                                //   onTap: (){
-                                //     print(allUsersId);
-                                //   },
-                                //   child: Text("Print loaded users")),
+                                SizedBox(height: 15.h,),
+                                Center(
+                                  child: SizedBox(
+                                    width: 40.w,
+                                    height: 40.w,
+                                    child: const Image(image: AssetImage("./assets/images/referral.png"), fit: BoxFit.fill,),
+                                  ),
+                                ),
                                 SizedBox(height: 5.h,),
                                 Text("Enter Referral Code", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                                 SizedBox(height: 1.5.h,),
@@ -80,7 +82,7 @@ class _EnterReferralScreenState extends State<EnterReferralScreen> {
                             ),
                             Column(
                               children: [
-                                SizedBox(height: 28.h,),
+                                SizedBox(height: 23.h,),
                                 CustomButton(width: 90.w, height: 15.w, color: primary, 
                                 onTap: (){
                                   if(allUsersId.contains(referralCodeController.text) && (referralCodeController.text != currUserId)){

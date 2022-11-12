@@ -10,6 +10,7 @@ const String myWallet = "/my-wallet";
 const String myAddresses = "/my-addresses";
 const String createAddress = "/create-address";
 const String myCart = "/my-cart";
+const String paymentMode = "/payment-mode";
 const String myOrders = "/my-orders";
 const String trackOrder = "/track-order";
 const String orderSuccess = "/order-success";

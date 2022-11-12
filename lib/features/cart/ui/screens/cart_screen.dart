@@ -257,29 +257,29 @@ class _CartScreenState extends State<CartScreen> {
                               CustomButton(width: 90.w, height: 15.w, color: primary,
                               onTap: (){
 
-                                //Add current cart to Current Orders array
-                                currentOrders.add({
-                                  'order': cart,
-                                  'date': DateTime.now(),
-                                  'amount': cartValue - 200 - 300
-                                });
-                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                  'currentOrders': currentOrders,
-                                });
+                                // //Add current cart to Current Orders array
+                                // currentOrders.add({
+                                //   'order': cart,
+                                //   'date': DateTime.now(),
+                                //   'amount': cartValue - 200 - 300
+                                // });
+                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                //   'currentOrders': currentOrders,
+                                // });
                                 
-                                //Set cartvalue to 0
-                                cartValue = 0;
-                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                  'cartValue': 0,
-                                });
+                                // //Set cartvalue to 0
+                                // cartValue = 0;
+                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                //   'cartValue': 0,
+                                // });
 
-                                //Empty the cart
-                                cart = [];
-                                FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                  'cart': cart,
-                                });
+                                // //Empty the cart
+                                // cart = [];
+                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                //   'cart': cart,
+                                // });
 
-                                Navigator.pushNamed(context, orderSuccess);
+                                Navigator.pushNamed(context, paymentMode);
 
                               }, 
                               text: "Checkout", fontColor: white, borderColor: primary),

@@ -116,9 +116,9 @@ OrderModel currentOrder = OrderModel(order: cartItems, date: DateTime.now(), amo
 
 //PREVIOUS ORDERS
 List previousOrders = [
-  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 2)), amount: 3550),
-  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 5)), amount:1440),
-  OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 7)), amount: 950),
+  // OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 2)), amount: 3550),
+  // OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 5)), amount: 1440),
+  // OrderModel(order: cartItems, date: DateTime.now().subtract(const Duration(days: 7)), amount: 950),
 ];
 
 //ADDRESS TILES
@@ -166,6 +166,8 @@ List<BottomNavigationBarItem> items =
 
 //FIRESTORE AUX
 List allUsersId = [];
+String userName = "";
+String phoneNumber = "";
 String currentUserName = "";
 List transactions = [];
 double walletBalance = 0;

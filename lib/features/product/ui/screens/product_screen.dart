@@ -12,12 +12,13 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ProductScreen extends StatefulWidget {
-  ProductScreen({super.key, required this.product, required this.isCarted, required this.id});
+  ProductScreen({super.key, required this.product, required this.isCarted, required this.id, required this.prodQty});
 
   // final ProductDetail product; 
   final Map<String, dynamic> product;
   bool isCarted;
   final String id;
+  int prodQty;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -47,6 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
     // double units = widget.product.get('units').toDouble();
     double units = widget.product['units'].toDouble();
     // bool isCarted = widget.product.get('isCarted');
+    String prodId = widget.product['prodId'];
 
     return Scaffold(
       drawer: const CustomDrawer(),
@@ -203,18 +205,19 @@ class _ProductScreenState extends State<ProductScreen> {
                       setState(() {
                         if(currUserId != null){
                           // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': false});
+                          for(int i = 0; i < cart.length; i++){
+                            if(prodId == cart[i]['product']['prodId']){
+                              cart.remove(cart[i]);
+                            }
+                          }
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
-                            update({'cart': FieldValue.arrayRemove([
-                              {
-                                'product': widget.product,
-                                'qty': 1,
-                              }
-                            ]),
+                            update({'cart': cart,
                           });
-                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': false});
+                          // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': false});
+                          
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({
-                              'cartValue': FieldValue.increment(-(widget.product['price'].toDouble()))
+                              'cartValue': FieldValue.increment(-(widget.product['price'].toDouble()*widget.prodQty))
                             });
                           widget.isCarted = false;
                         }
@@ -223,15 +226,14 @@ class _ProductScreenState extends State<ProductScreen> {
                       setState(() {
                         if(currUserId != null){
                           // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': true});
-                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
-                            update({'cart': FieldValue.arrayUnion([
-                              {
-                                'product': widget.product,
-                                'qty': 1,
-                              }
-                            ]),
+                          cart.add({
+                            'product': widget.product,
+                            'qty': 1,
                           });
-                          FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': true});
+                          FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                            update({'cart': cart,
+                          });
+                          // FirebaseFirestore.instance.collection('cattle-feed').doc(widget.id).update({'isCarted': true});
                           FirebaseFirestore.instance.collection('customers').doc(currUserId).
                             update({
                               'cartValue': FieldValue.increment(widget.product['price'].toDouble())

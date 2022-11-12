@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -16,6 +17,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   late final AnimationController _progressAnimationController;
   late final Animation _progressLengthAnimation;
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
   @override
   void initState() { 
@@ -34,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     _progressAnimationController.forward();
 
     Timer(const Duration(milliseconds: 3000),
-        () => Navigator.pushNamed(context, signIn));
+        () => currUserId != null ? Navigator.pushNamed(context, home) : Navigator.pushNamed(context, signIn));
   }
 
   @override

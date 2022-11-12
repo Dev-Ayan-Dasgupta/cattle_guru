@@ -52,8 +52,6 @@ class _CartTileState extends State<CartTile> {
                   ),
                 ],
               ),
-
-              
               // SizedBox(width: 14.w,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,

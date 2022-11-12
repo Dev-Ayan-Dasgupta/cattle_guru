@@ -6,7 +6,9 @@ import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/image_upload.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
+import 'package:cattle_guru/utils/helper_functions/sign_out.dart';
 import 'package:cattle_guru/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -23,6 +25,8 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+
+  final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
   Future<File?> selectImageFromCamera() async {
     image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
@@ -104,8 +108,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     );
                   }
                 );
-                      },
-              imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", name: "Ayan Dasgupta", phoneNumber: "+91-6290986442", fontColor: white)
+              },
+              imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", 
+              name: userName, 
+              phoneNumber: phoneNumber, 
+              fontColor: white)
           ),
           ListTile(
             dense: true,
@@ -185,6 +192,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
             dense: true,
             leading: Icon(Icons.grade_rounded, size: 5.w, color: white,),
             title: Text("Rate and Feedback", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+          ),
+          ListTile(
+            dense: true,
+            leading: (currUserId != null) ? Icon(Icons.logout_rounded, size: 5.w, color: white,) : Icon(Icons.login_rounded, size: 5.w, color: white,),
+            title: Text( (currUserId != null) ? "Logout" : "Login", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: (){
+              SignOut.signOut(context);
+              Navigator.pushNamed(context, signIn);
+            },
           ),
         ],
       ),

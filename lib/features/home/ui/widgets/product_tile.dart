@@ -1,10 +1,11 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 class ProductTile extends StatefulWidget {
-  const ProductTile({super.key, required this.width, required this.height, required this.imgUrl, required this.title, required this.price, required this.description, required this.onAddToCart, required this.onTap});
+  ProductTile({super.key, required this.width, required this.height, required this.imgUrl, required this.title, required this.price, required this.description, required this.onAddToCart, required this.isCarted, required this.onTap, required this.onAdd, required this.onSubtract, required this.qty});
 
   final VoidCallback onTap;
   final double width;
@@ -13,7 +14,11 @@ class ProductTile extends StatefulWidget {
   final String title;
   final double price;
   final String description;
+  bool isCarted;
   final VoidCallback onAddToCart;
+  final VoidCallback onAdd;
+  final VoidCallback onSubtract;
+  int qty;
 
   @override
   State<ProductTile> createState() => _ProductTileState();
@@ -46,6 +51,26 @@ class _ProductTileState extends State<ProductTile> {
               SizedBox(height: 1.h,),
               Text(widget.description, style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), maxLines: 2, overflow: TextOverflow.ellipsis,),
               SizedBox(height: 1.h,),
+              widget.isCarted ? 
+              Row(
+                children: [
+                  InkWell(
+                    onTap: widget.onSubtract,
+                    child: Icon(Icons.remove_circle, color: grey, size: 5.w,),
+                  ),
+                  SizedBox(width: 3.w,),
+                  AnimatedFlipCounter(
+                    value: widget.qty,
+                    textStyle: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 3.w,),
+                  InkWell(
+                    onTap: widget.onAdd,
+                    child: Icon(Icons.add_circle, color: primary, size: 5.w,),
+                  ),
+                ],
+              )
+              :
               CustomButton(width: widget.width, height: (widget.width/5.5), color: primary, onTap: widget.onAddToCart, text: "Add to Cart", fontColor: white, borderColor: primary,),
             ],
           ),

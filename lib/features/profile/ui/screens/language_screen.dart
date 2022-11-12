@@ -17,7 +17,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
 
   final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
 
-  bool? isEnglish;
+  bool isEnglish = true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +54,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
                     decoration: BoxDecoration(
                       border: Border.all(color: primary),
                       borderRadius: BorderRadius.all(Radius.circular(2.w)),
-                      color: isEnglish! ? primary : primaryLight,
+                      color: isEnglish ? primary : primaryLight,
                     ),
                     child: Center(
-                      child: Text("English", style: globalTextStyle.copyWith(color: isEnglish! ? white : black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                      child: Text("English", style: globalTextStyle.copyWith(color: isEnglish ? white : black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                     ),
                   ),
                 ),
@@ -77,10 +77,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
                     decoration: BoxDecoration(
                       border: Border.all(color: primary),
                       borderRadius: BorderRadius.all(Radius.circular(2.w)),
-                      color: isEnglish! ? primaryLight : primary,
+                      color: isEnglish ? primaryLight : primary,
                     ),
                     child: Center(
-                      child: Text("हिन्दी", style: globalTextStyle.copyWith(color: isEnglish! ? black : white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                      child: Text("हिन्दी", style: globalTextStyle.copyWith(color: isEnglish ? black : white, fontSize: 5.w, fontWeight: FontWeight.bold),),
                     ),
                   ),
                 ),

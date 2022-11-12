@@ -65,7 +65,23 @@ class _AddressListScreenState extends State<AddressListScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         addresses.isEmpty ? 
-                          const Center(child: Text("No addresses added yet."),)
+                          Column(
+                            children: [
+                              SizedBox(height: 22.5.h,),
+                              SizedBox(
+                                width: 33.w, 
+                                height: 30.w,
+                                child: const Image(image: AssetImage("./assets/images/address_blank.png"), fit: BoxFit.fill,),
+                              ),
+                              SizedBox(height: 2.h,),
+                              Center(
+                                child: SizedBox(
+                                  width: 75.w,
+                                  child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                              ),
+                              SizedBox(height: 27.5.h,),
+                            ],
+                          )
                         :
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

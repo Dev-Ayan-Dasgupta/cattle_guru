@@ -2,6 +2,7 @@ import 'package:cattle_guru/features/address/ui/screens/address_list.dart';
 import 'package:cattle_guru/features/address/ui/screens/create_address.dart';
 import 'package:cattle_guru/features/cart/ui/screens/cart_screen.dart';
 import 'package:cattle_guru/features/cart/ui/screens/order_success.dart';
+import 'package:cattle_guru/features/cart/ui/screens/payment_options_screen.dart';
 import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
@@ -31,6 +32,7 @@ class RouteGenerator{
       case myWallet: return CustomPageTransition(child: const MyWalletScreen(), settings: settings,);
       case myAddresses: return CustomPageTransition(child: const AddressListScreen(), settings: settings,);
       case createAddress: return CustomPageTransition(child: const CreateAddressScreen(), settings: settings,);
+      case paymentMode: return CustomPageTransition(child: const PaymentOptionsScreen(), settings: settings,);
       case myCart: return CustomPageTransition(child: const CartScreen(), settings: settings,);
       case myOrders: return CustomPageTransition(child: const OrdersScreen(), settings: settings,);
       case orderSuccess: return CustomPageTransition(child: const OrderSuccessScreen(), settings: settings,);
