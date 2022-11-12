@@ -1,6 +1,7 @@
 import 'package:cattle_guru/features/splash/splash_screen.dart';
 import 'package:cattle_guru/firebase_options.dart';
 import 'package:cattle_guru/utils/route_generator.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -10,6 +11,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAppCheck.instance.activate();
   runApp(const MyApp());
 }
 
