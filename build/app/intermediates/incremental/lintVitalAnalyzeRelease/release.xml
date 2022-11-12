@@ -1,6 +1,6 @@
 <variant
     name="release"
-    package="com.example.cattle_guru"
+    package="com.cattleguru.cattle_guru_customer"
     minSdkVersion="21"
     targetSdkVersion="31"
     shrinking="true"
@@ -30,8 +30,8 @@
   </manifestPlaceholders>
   <mainArtifact
       classOutputs="/Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/javac/release/classes:/Users/mac/Flutter_Projects/cattle_guru/build/app/tmp/kotlin-classes/release:/Users/mac/Flutter_Projects/cattle_guru/build/app/kotlinToolingMetadata:/Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/R.jar"
-      applicationId="com.example.cattle_guru"
+      applicationId="com.cattleguru.cattle_guru_customer"
       generatedSourceFolders="/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/ap_generated_sources/release/out:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/aidl_source_output_dir/release/out:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/source/buildConfig/release:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/renderscript_source_output_dir/release/out"
-      generatedResourceFolders="/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/res/rs/release:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/res/resValues/release">
+      generatedResourceFolders="/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/res/google-services/release:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/res/rs/release:/Users/mac/Flutter_Projects/cattle_guru/build/app/generated/res/resValues/release">
   </mainArtifact>
 </variant>

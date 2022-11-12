@@ -27,7 +27,6 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
 
   final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
   
-  
   @override
   Widget build(BuildContext context) {
     num amt = widget.order['amount'];

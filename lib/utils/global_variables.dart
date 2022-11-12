@@ -168,6 +168,7 @@ List<BottomNavigationBarItem> items =
 List allUsersId = [];
 String userName = "";
 String phoneNumber = "";
+String profileImgUrl = "";
 String currentUserName = "";
 List transactions = [];
 double walletBalance = 0;

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:460542692785:android:e0d45cfa8bcb44d77c8190",
         "android_client_info": {
-          "package_name": "com.cattleguru.cattle__guru"
+          "package_name": "com.cattleguru.cattle_guru_customer"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "460542692785-9emom3scj8317ssdorvlb1nvkt59jhkk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle__guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "02b8b1cc0a2a3268d06aa1e2867a7b91583aca20"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "460542692785-agt23kh1jebj5v9cpe0quo5snmq4v77u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle__guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "cb89e0b771a3a07e9e0615258816df9d1e9e74ce"
           }
         },
@@ -50,7 +50,7 @@
               "client_id": "460542692785-4lo5nnbq6jesc0tdf0qsd9eebv90detd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cattleGuru"
+                "bundle_id": "com.cattleguru.cattle_guru_customer"
               }
             }
           ]
@@ -61,7 +61,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:460542692785:android:07597fb4584d9cf97c8190",
         "android_client_info": {
-          "package_name": "com.cattleguru.cattle_guru"
+          "package_name": "com.cattleguru.cattle_guru_customer"
         }
       },
       "oauth_client": [
@@ -69,7 +69,7 @@
           "client_id": "460542692785-1agrf30kgvn4dttonlot3jj6q222mvb4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "ff7805a11a67bfd993e5193ab0332f273891c0f9"
           }
         },
@@ -77,7 +77,7 @@
           "client_id": "460542692785-32gtjs8ngftaqdian6vfelo9pg66eisk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "b049873f8f419475fc9570e421e1bbb386594ca9"
           }
         },
@@ -85,7 +85,7 @@
           "client_id": "460542692785-e9pj3e1l8kl2bt9nd842tf3r9pm6r493.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "3548e1e7391db7e038ecd113fe0bc2231a94c01f"
           }
         },
@@ -93,7 +93,7 @@
           "client_id": "460542692785-lnrgj7kpuh3d25m9nairo55n0dle03gf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "603a1ad27f681094faf025886f62af6cc2f87482"
           }
         },
@@ -101,7 +101,7 @@
           "client_id": "460542692785-p6gnl68tmu3madp38aoa828buorke9h8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cattleguru.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "e5a98448e0afdff4294059b1072254215b0b0b7d"
           }
         },
@@ -126,7 +126,7 @@
               "client_id": "460542692785-4lo5nnbq6jesc0tdf0qsd9eebv90detd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cattleGuru"
+                "bundle_id": "com.cattleguru.cattle_guru_customer"
               }
             }
           ]
@@ -137,7 +137,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:460542692785:android:53255b7eab9052b87c8190",
         "android_client_info": {
-          "package_name": "com.example.cattle_guru"
+          "package_name": "com.cattleguru.cattle_guru_customer"
         }
       },
       "oauth_client": [
@@ -145,7 +145,7 @@
           "client_id": "460542692785-s7gcscc56tjjdnn0a0bioeohjdse43o7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.cattle_guru",
+            "package_name": "com.cattleguru.cattle_guru_customer",
             "certificate_hash": "02b8b1cc0a2a3268d06aa1e2867a7b91583aca20"
           }
         },
@@ -170,7 +170,7 @@
               "client_id": "460542692785-4lo5nnbq6jesc0tdf0qsd9eebv90detd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cattleGuru"
+                "bundle_id": "com.cattleguru.cattle_guru_customer"
               }
             }
           ]
