@@ -35,9 +35,9 @@ class _SelectLanguageState extends State<SelectLanguage> {
                     height: 33.w,
                     child: const Image(image: AssetImage("./assets/images/logo.png")))),
                 SizedBox(height: 2.h,),
-                Text("Cattle GURU", style: globalTextStyle.copyWith(color: black, fontSize: 7.w, fontWeight: FontWeight.bold),),
+                Text(isEnglish ? "Cattle GURU" : "Cattle गुरु", style: globalTextStyle.copyWith(color: black, fontSize: 7.w, fontWeight: FontWeight.bold),),
                 SizedBox(height: 5.h,),
-                Text("Please select a language", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                Text(isEnglish ? "Please select a language" : "कृपया एक भाषा चुनें", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                 SizedBox(height: 2.5.h,),
                 InkWell(
                   onTap: (){
@@ -90,8 +90,8 @@ class _SelectLanguageState extends State<SelectLanguage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
-                  Navigator.pushNamed(context, referral);
-                }, text: "Continue", fontColor: white, borderColor: primary,),
+                  Navigator.pushNamed(context, details);
+                }, text: isEnglish ? "Continue" : "आगे बढ़े", fontColor: white, borderColor: primary,),
                 SizedBox(height: 2.h,),
               ],
             )

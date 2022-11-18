@@ -51,7 +51,7 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("Details", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Details" : "मेरे विवरण", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -66,11 +66,11 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                 Column(
                   children: [
                     SizedBox(height: 5.h,),
-                    CustomTextField(width: 90.w, controller: nameController, hintText: "Enter your name", label: "Name", keyboardType: TextInputType.name,),
+                    CustomTextField(width: 90.w, controller: nameController, hintText: isEnglish ? "Enter your name" : "अपना नाम दर्ज करें", label: isEnglish ? "Name" : "नाम", keyboardType: TextInputType.name,),
                     SizedBox(height: 2.h,),
-                    CustomTextField(width: 90.w, controller: pinCodeController, hintText: "Enter your pin code", label: "Pin Code", keyboardType: TextInputType.number,),
+                    CustomTextField(width: 90.w, controller: pinCodeController, hintText: isEnglish ? "Enter your pin code" : "अपना पिन कोड दर्ज करें", label: isEnglish ? "Pin Code" : "पिन कोड", keyboardType: TextInputType.number,),
                     SizedBox(height: 2.h,),
-                    CustomTextField(width: 90.w, controller: villageController, hintText: "Enter your village name", label: "Village", keyboardType: TextInputType.text,),
+                    CustomTextField(width: 90.w, controller: villageController, hintText: isEnglish ? "Enter your village name" : "अपने गांव का नाम दर्ज करें", label: isEnglish ? "Village" : "गांव", keyboardType: TextInputType.text,),
                     SizedBox(height: 2.h,),
                     InkWell(
                       onTap: () async {
@@ -86,7 +86,7 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                           children: [
                             Icon(Icons.my_location_rounded, color: primary, size: 3.w,),
                             SizedBox(width: 1.w,),
-                            Text("Detect my location", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),)
+                            Text(isEnglish ? "Detect my location" : "मेरे स्थान का पता लगाएं", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),)
                           ],
                         ),
                     ),
@@ -125,9 +125,9 @@ class _IntroDetailsScreenState extends State<IntroDetailsScreen> {
                             },
                           ]), 
                         });
-                        Navigator.pushNamed(context, home);
+                        Navigator.pushNamed(context, referral);
                       }
-                    }, text: "Continue", fontColor: white, borderColor: primary,),
+                    }, text: isEnglish ? "Continue" : "आगे बढ़े", fontColor: white, borderColor: primary,),
                     SizedBox(height: 2.h,),
                   ],
                 ),

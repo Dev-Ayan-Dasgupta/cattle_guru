@@ -2,8 +2,10 @@ import 'package:cattle_guru/features/cart/ui/widgets/cart_tile.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textfield.dart';
+import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,14 +32,6 @@ class _CartScreenState extends State<CartScreen> {
     couponController.dispose();
     super.dispose();
   }
-
-  // double computeCartVaue(){
-  //   cartValue = 0;
-  //   for(int i = 0; i < cartItems.length; i++){
-  //     cartValue += cartItems[i].product.price * cartItems[i].qty;
-  //   }
-  //   return cartValue;
-  // }
   
   @override
   Widget build(BuildContext context) {
@@ -45,26 +39,26 @@ class _CartScreenState extends State<CartScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("My Cart", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Cart" : "मेरी कार्ट", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -82,9 +76,9 @@ class _CartScreenState extends State<CartScreen> {
                       cart = snapshot.data!.docs[index].get('cart').toList();
                       cartValue = snapshot.data!.docs[index].get('cartValue').toDouble();
                       currentOrders = snapshot.data!.docs[index].get('currentOrders').toList();
-                      if(cart.isNotEmpty){
-                        qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
-                      }
+                      // if(cart.isNotEmpty){
+                      //   qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
+                      // }
                       return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: 
@@ -105,7 +99,11 @@ class _CartScreenState extends State<CartScreen> {
                                 Center(
                                     child: SizedBox(
                                       width: 75.w,
-                                      child: Text("You have no items in your cart, please browse our products to add them here.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                                      child: Text(isEnglish ?
+                                        "You have no items in your cart, please browse our products to add them here."
+                                        :
+                                        "आपके कार्ट में कोई आइटम नहीं है, कृपया उन्हें यहां जोड़ने के लिए हमारे उत्पादों को ब्राउज़ करें।"
+                                        , style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
                                 ),
                               ],
                             ),
@@ -116,7 +114,7 @@ class _CartScreenState extends State<CartScreen> {
                                 onTap: (){
                                   Navigator.pushNamed(context, home);
                                 }, 
-                                text: "Browse Products", fontColor: white, borderColor: primary),
+                                text: isEnglish ? "Browse Products" : "उत्पादों को ब्राउज़ करें", fontColor: white, borderColor: primary),
                                 SizedBox(height: 2.h,),
                               ],
                             )
@@ -139,7 +137,9 @@ class _CartScreenState extends State<CartScreen> {
                                         itemCount: (cart.length),
                                         itemBuilder: (context, index2){
                                           return CartTile(
-                                            onTap: (){}, 
+                                            onTap: (){
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: cart[index2]['product'], isCarted: true, id: cart[index2]['product']['prodId'], prodQty: cart[index2]['qty'])));
+                                            }, 
                                             imgUrl: cart[index2]['product']['imgUrls'][0],
                                             // cartItems[index].product.imgUrls[0], 
                                             productName: cart[index2]['product']['name'], 
@@ -201,16 +201,16 @@ class _CartScreenState extends State<CartScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CustomTextField(width: 57.w, controller: couponController, hintText: "Enter Coupon Code", label: "Coupon Code", keyboardType: TextInputType.text),
+                                  CustomTextField(width: 57.w, controller: couponController, hintText: isEnglish ? "Enter Coupon Code" : "कूपन कोड डालें", label: isEnglish ? "Coupon Code" : "कूपन कोड", keyboardType: TextInputType.text),
                                   SizedBox(width: 3.w,),
-                                  CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: "Apply", fontColor: white, borderColor: primary),
+                                  CustomButton(width: 30.w, height: 15.w, color: primary, onTap: (){}, text: isEnglish ? "Apply" : "कोड लागू करें", fontColor: white, borderColor: primary),
                                 ],
                               ),
                               SizedBox(height: 2.h,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Sub Total", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text(isEnglish ? "Sub Total" : "कीमत", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                   
                                   Text(cartValue.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                                 ],
@@ -219,14 +219,14 @@ class _CartScreenState extends State<CartScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Wallet", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text(isEnglish ? "Wallet" : "वॉलेट मनी", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                   Text("- ${200.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                 ],
                               ),
                               SizedBox(height: 1.h,),Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Discount", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text(isEnglish? "Discount" : "छूट", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                   Text("- ${300.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                 ],
                               ),
@@ -234,7 +234,7 @@ class _CartScreenState extends State<CartScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Delivery Charge", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
+                                  Text(isEnglish ? "Delivery Charge" : "पहुंचाने का शुल्क", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                   Text(0.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: black, fontSize: 3.w,)),
                                 ],
                               ),
@@ -248,7 +248,7 @@ class _CartScreenState extends State<CartScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Total", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
+                                  Text(isEnglish ? "Total" : "कुल", style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold)),
                                   
                                   Text((cartValue-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 4.w, fontWeight: FontWeight.bold),),
                                 ],
@@ -256,33 +256,9 @@ class _CartScreenState extends State<CartScreen> {
                               SizedBox(height: 2.h,),
                               CustomButton(width: 90.w, height: 15.w, color: primary,
                               onTap: (){
-
-                                // //Add current cart to Current Orders array
-                                // currentOrders.add({
-                                //   'order': cart,
-                                //   'date': DateTime.now(),
-                                //   'amount': cartValue - 200 - 300
-                                // });
-                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                //   'currentOrders': currentOrders,
-                                // });
-                                
-                                // //Set cartvalue to 0
-                                // cartValue = 0;
-                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                //   'cartValue': 0,
-                                // });
-
-                                // //Empty the cart
-                                // cart = [];
-                                // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                //   'cart': cart,
-                                // });
-
                                 Navigator.pushNamed(context, paymentMode);
-
                               }, 
-                              text: "Checkout", fontColor: white, borderColor: primary),
+                              text: isEnglish? "Checkout" : "चेक आउट", fontColor: white, borderColor: primary),
                               SizedBox(height: 2.h,),
                             ],
                           ),
@@ -305,12 +281,7 @@ class _CartScreenState extends State<CartScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 3,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -318,7 +289,36 @@ class _CartScreenState extends State<CartScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     _progressAnimationController.forward();
 
     Timer(const Duration(milliseconds: 3000),
-        () => currUserId != null ? Navigator.pushNamed(context, home) : Navigator.pushNamed(context, signIn));
+        () => currUserId != null ? Navigator.pushNamedAndRemoveUntil(context, home, (route) => false) : Navigator.pushNamedAndRemoveUntil(context, signIn, (route) => false));
   }
 
   @override

@@ -51,91 +51,96 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: GestureDetector(
-          onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
-          behavior: HitTestBehavior.opaque,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Column(
+        child: SizedBox(
+          child: SingleChildScrollView(
+            child: GestureDetector(
+              onTap: (){ FocusManager.instance.primaryFocus?.unfocus();},
+              behavior: HitTestBehavior.opaque,
+              child: SizedBox(
+                height: 94.h,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CarouselSlider(
-                        items: carouselImageList.map<Widget>((i){
-                          return Builder(
-                            builder: (context){
-                              return Container(
-                                width: 100.w,
-                                height: 83.w,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage(i), fit: BoxFit.fill),
+                      Column(
+                        children: [
+                          Column(
+                            children: [
+                              CarouselSlider(
+                                items: carouselImageList.map<Widget>((i){
+                                  return Builder(
+                                    builder: (context){
+                                      return Container(
+                                        width: 100.w,
+                                        height: 83.w,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(image: AssetImage(i), fit: BoxFit.fill),
+                                        ),
+                                      );
+                                    }
+                                  );
+                                }).toList(), 
+                                options: CarouselOptions(
+                                  height: 83.w,
+                                  aspectRatio: 1/0.83,
+                                  autoPlay: true,
+                                  autoPlayInterval: const Duration(seconds: 3),
+                                  initialPage: 0,
+                                  viewportFraction: 1,
+                                  onPageChanged: (index, timed) {
+                                    setState(() {
+                                      _currentCarouselIndex = index;
+                                    });
+                                  }
                                 ),
-                              );
-                            }
-                          );
-                        }).toList(), 
-                        options: CarouselOptions(
-                          height: 83.w,
-                          aspectRatio: 1/0.83,
-                          autoPlay: true,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          initialPage: 0,
-                          viewportFraction: 1,
-                          onPageChanged: (index, timed) {
-                            setState(() {
-                              _currentCarouselIndex = index;
-                            });
-                          }
-                        ),
+                              ),
+                              SizedBox(height: 1.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: indicators(
+                                    carouselImageList.length, _currentCarouselIndex),
+                              ),
+                              SizedBox(height: 2.h,),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(isEnglish ? "Enter your phone number" : "अपना फ़ोन नंबर दर्ज करें", style: globalTextStyle.copyWith(fontSize: 5.w, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                                SizedBox(height: 1.h),
+                                PhoneNumberField(phoneController: phoneController),
+                                SizedBox(height: 1.h),
+                                Text(isEnglish ? "OTP will be sent on this number." : "इस नंबर पर ओटीपी भेजा जाएगा।", style: globalTextStyle.copyWith(fontSize: 3.w,),),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 1.h,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: indicators(
-                            carouselImageList.length, _currentCarouselIndex),
-                      ),
-                      SizedBox(height: 2.h,),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Column(
                           children: [
-                            Text("Enter your phone number", style: globalTextStyle.copyWith(fontSize: 5.w, fontWeight: FontWeight.bold),),
+                            CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
+                              // Navigator.pushNamed(context, otp);
+                              (phoneController.text.length == 10) ?
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => OTPScreen(phoneNumber: "+91${phoneController.text}"))) 
+                                : ShowSnackbar.showSnackBar(context, isEnglish ? "Enter a valid 10 digit phone number." : "एक मान्य 10 अंकों का फ़ोन नंबर दर्ज करें।");
+                            }, text: isEnglish ? "Get OTP" : "ओटीपी प्राप्त करें", fontColor: white, borderColor: primary,),
+                            SizedBox(height: 1.h,),
+                            Text(isEnglish ? "By signing up, you agree to our Terms and Services" : "साइन अप करके, आप हमारी शर्तों से सहमत होते हैं और सेवाएं", style: globalTextStyle.copyWith(fontSize: 2.5.w,),),
+                            SizedBox(height: 2.h,)
                           ],
                         ),
-                        SizedBox(height: 1.h),
-                        PhoneNumberField(phoneController: phoneController),
-                        SizedBox(height: 1.h),
-                        Text("OTP will be sent on this number.", style: globalTextStyle.copyWith(fontSize: 3.w,),),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
               ),
-              Column(
-                children: [
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
-                    // Navigator.pushNamed(context, otp);
-                    (phoneController.text.length == 10) ?
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OTPScreen(phoneNumber: "+91${phoneController.text}"))) 
-                      : ShowSnackbar.showSnackBar(context, "Enter a valid 10 digit phone number.");
-                    // if(phoneController.text.length == 10){
-                    //   phoneLogin(context, "+91${phoneController.text}");
-                    // } else {
-                    //   ShowSnackbar.showSnackBar(context, "Enter a valid 10 digit phone number.");
-                    // }
-                  }, text: "Get OTP", fontColor: white, borderColor: primary,),
-                  SizedBox(height: 1.h,),
-                  Text("By signing up, you agree to our Terms and Services", style: globalTextStyle.copyWith(fontSize: 2.5.w,),),
-                  SizedBox(height: 2.h,)
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),

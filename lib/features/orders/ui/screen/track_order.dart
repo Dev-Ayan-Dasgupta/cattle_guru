@@ -5,6 +5,7 @@ import 'package:cattle_guru/features/orders/ui/widgets/tracking_status_checkpoin
 import 'package:cattle_guru/models/order_model.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,26 +35,26 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("Track Order", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "Track Order" : "आदेश पर निगरानी", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -67,7 +68,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   SizedBox(height: 2.5.h,),
                   SizedBox(
                     width: 100.w,
-                    height: 22.5.w,
+                    height: 23.5.w,
                     child: Row(
                       children: [
                         Expanded(
@@ -94,7 +95,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   SizedBox(height: 1.h,),
                   Row(
                     children: [
-                      Text("Amount: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                      Text(isEnglish ? "Amount: " : "रकम: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
                       Text(amt.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                     ],
                   ),
@@ -121,7 +122,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                     });
                     Navigator.pushNamed(context, myOrders);
                   }, 
-                  text: "Cancel Order", fontColor: red, borderColor: red),
+                  text:isEnglish ? "Cancel Order" : "आदेश रद्द", fontColor: red, borderColor: red),
                   SizedBox(height: 2.h,),
                 ],
               ),
@@ -133,12 +134,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 1,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -146,7 +142,36 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

@@ -109,7 +109,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   }
                 );
               },
-              imgUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", 
+              imgUrl: profileImgUrl, 
               name: userName, 
               phoneNumber: phoneNumber, 
               fontColor: white)
@@ -117,7 +117,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.person_rounded, color: white, size: 5.w,),
-            title: Text("My Profile", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "My Profile" : "मेरी प्रोफाइल", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: (){
               Navigator.pushNamed(context, myProfile);
             },
@@ -125,13 +125,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.whatsapp_rounded, size: 5.w, color: white,),
-            title: Text("Chat", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Chat" : "चाट", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: LaunchWhatsapp.whatsappLaunch,
           ),
           ListTile(
             dense: true,
             leading: Icon(Icons.phone_rounded, size: 5.w, color: white,),
-            title: Text("Call", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Call" : "फ़ोन कॉल", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: PhoneCall.makingPhoneCall,
           ),
           ListTile(
@@ -145,7 +145,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.wallet_rounded, size: 5.w, color: white,),
-            title: Text("My Wallet", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish? "My Wallet" : "मेरा बटुआ", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: (){
               Navigator.pushNamed(context, myWallet);
             },
@@ -153,7 +153,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.location_on_rounded, size: 5.w, color: white,),
-            title: Text("My Addresses", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "My Addresses" : "मेरा पता", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: (){
               Navigator.pushNamed(context, myAddresses);
             },
@@ -161,7 +161,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.shopping_bag_rounded, size: 5.w, color: white,),
-            title: Text("My Orders", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "My Orders" : "मेरे आदेश", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: (){
               Navigator.pushNamed(context, myOrders);
             }
@@ -169,18 +169,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.g_translate_rounded, size: 5.w, color: white,),
-            title: Text("Change Language", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Change Language" : "भाषा बदलें", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            onTap: (){
+              Navigator.pushNamed(context, changeLanguage);
+            },
           ),
           ListTile(
             dense: true,
             leading: Icon(Icons.policy_rounded, size: 5.w, color: white,),
-            title: Text("Privacy Policy", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Privacy Policy" : "गोपनीयता नीति", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             
           ),
           ListTile(
             dense: true,
             leading: Icon(Icons.share_rounded, size: 5.w, color: white,),
-            title: Text("Share GURU App", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Share GURU App" : "शेयर गुरु ऐप", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: () async {
               const urlPreview =
                   "https://play.google.com/store/apps/details?id=com.cattleguru.cattle__guru";
@@ -191,12 +194,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             dense: true,
             leading: Icon(Icons.grade_rounded, size: 5.w, color: white,),
-            title: Text("Rate and Feedback", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text(isEnglish ? "Rate and Feedback" : "दर और प्रतिक्रिया", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
           ),
           ListTile(
             dense: true,
             leading: (currUserId != null) ? Icon(Icons.logout_rounded, size: 5.w, color: white,) : Icon(Icons.login_rounded, size: 5.w, color: white,),
-            title: Text( (currUserId != null) ? "Logout" : "Login", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
+            title: Text( (currUserId != null) ? isEnglish ? "Logout" : "लॉग आउट" : isEnglish ? "Login" : "लॉग इन करें", style: globalTextStyle.copyWith(color: white, fontSize: 4.w)),
             onTap: (){
               SignOut.signOut(context);
               Navigator.pushNamed(context, signIn);

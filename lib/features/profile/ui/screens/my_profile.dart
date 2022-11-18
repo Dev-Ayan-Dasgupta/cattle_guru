@@ -7,11 +7,13 @@ import 'package:cattle_guru/features/profile/ui/widgets/profile_snippet.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/image_upload.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/helper_functions/sign_out.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -44,6 +46,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   Future<File?> selectImageFromCamera() async {
     image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
+    var imageSnapshot = await FirebaseStorage.instance.ref().child('profilePics/picName').putFile(File(image!.path));
+    var downloadUrl = await imageSnapshot.ref.getDownloadURL();
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'profileImgUrl': downloadUrl,
+    });
+    profileImgUrl = downloadUrl;
     setState(() {
       });
     return image;
@@ -51,6 +59,13 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   Future<File?> selectImageFromGallery() async {
     image = await ImageUpload.pickImage(context, ImageSource.gallery, cropSquareImage);
+    image = await ImageUpload.pickImage(context, ImageSource.camera, cropSquareImage);
+    var imageSnapshot = await FirebaseStorage.instance.ref().child('profilePics/picName').putFile(File(image!.path));
+    var downloadUrl = await imageSnapshot.ref.getDownloadURL();
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'profileImgUrl': downloadUrl,
+    });
+    profileImgUrl = downloadUrl;
     setState(() {
       });
     return image;
@@ -69,26 +84,26 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("My Profile", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Profile" : "मेरी प्रोफाइल", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -103,9 +118,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 itemBuilder: (context, index){
                   if(snapshot.hasData){
                     if(snapshot.data!.docs[index].get('uid') == currUserId){
-                      userName = snapshot.data!.docs[index].get('name');
-                      phoneNumber = snapshot.data!.docs[index].get('phoneNumber');
-                      profileImgUrl = snapshot.data!.docs[index].get('profileImgUrl');
+                      // userName = snapshot.data!.docs[index].get('name');
+                      // phoneNumber = snapshot.data!.docs[index].get('phoneNumber');
+                      // profileImgUrl = snapshot.data!.docs[index].get('profileImgUrl');
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5.w),
                         child: Column(
@@ -166,17 +181,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   }, 
                                   imgUrl: profileImgUrl, name: userName, phoneNumber: phoneNumber, fontColor: black),
                                   SizedBox(height: 2.h,),
-                                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123321", label: "Pin Code", keyboardType: TextInputType.number),
+                                  CustomTextField(width: 90.w, controller: pinCodeController, hintText: "123321", label: isEnglish ? "Pin Code" : "पिन कोड", keyboardType: TextInputType.number),
                                   SizedBox(height: 2.h,),
-                                  CustomTextField(width: 90.w, controller: villageController, hintText: "Karol Bagh", label: "Village", keyboardType: TextInputType.text),
+                                  CustomTextField(width: 90.w, controller: villageController, hintText: isEnglish ? "Karol Bagh" : "करोल बाग", label: isEnglish ? "Village" : "गाँव", keyboardType: TextInputType.text),
                                   SizedBox(height: 2.h,),
-                                  CustomTextField(width: 90.w, controller: villageController, hintText: "45-A", label: "House Number", keyboardType: TextInputType.text),
+                                  CustomTextField(width: 90.w, controller: houseNoController, hintText: "45-A", label: isEnglish ? "House Number" : "घर का नंबर", keyboardType: TextInputType.text),
                                   SizedBox(height: 20.h,),
                                   CustomButton(width: 90.w, height: 15.w, color: primary, 
                                   onTap: (){
                                     
                                   }, 
-                                  text: "Save Changes", fontColor: white, borderColor: primary,),
+                                  text: isEnglish ? "Save Changes" : "परिवर्तनों को सुरक्षित करें", fontColor: white, borderColor: primary,),
                               ],
                             ),
                             Column(
@@ -187,7 +202,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   SignOut.signOut(context);
                                   Navigator.pushNamed(context, signIn);
                                 }, 
-                                text: "LOGOUT", fontColor: red, borderColor: red,),
+                                text: isEnglish ? "LOGOUT" : "लॉग आउट", fontColor: red, borderColor: red,),
                                 SizedBox(height: 2.h),
                               ],
                             ),
@@ -211,12 +226,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -224,7 +234,36 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

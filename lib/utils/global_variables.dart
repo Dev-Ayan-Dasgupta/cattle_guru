@@ -1,8 +1,10 @@
+import 'package:cattle_guru/features/community/ui/widgets/podcast_tile.dart';
 import 'package:cattle_guru/models/address.dart';
 import 'package:cattle_guru/models/cart_model.dart';
 import 'package:cattle_guru/models/order_model.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
+import 'package:cattle_guru/models/room_tile_model.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,18 +41,13 @@ const transparent = Colors.transparent;
 TextStyle globalTextStyle = GoogleFonts.varela();
 
 //PRODUCT CATEGORIES
-List productCategories = [
-  ProductCategories(imageUrl: "./assets/images/product_categories/khal.png", name: "Khal"),
-  ProductCategories(imageUrl: "./assets/images/product_categories/binola.png", name: "Binola"),
-  ProductCategories(imageUrl: "./assets/images/product_categories/feed.png", name: "Feed"),
-  ProductCategories(imageUrl: "./assets/images/product_categories/silage.png", name: "Silage"),
-];
+
 
 //VIDEO THUMBNAILS
 List videoThumbnails = [
-  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_1.png", name: "Video 1"),
-  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_2.png", name: "Video 2"),
-  Video(videoUrl: "", thumbUrl: "./assets/images/video_thumbnails/video_thumb_3.png", name: "Video 3"),
+  Video(videoUrl: "https://www.youtube.com/watch?v=DL3wYGDqigc", thumbUrl: "https://i.ytimg.com/vi/DL3wYGDqigc/hqdefault.jpg", name: "गायों को कैसे खिलाएं | Cattle Care Course #1"),
+  Video(videoUrl: "https://www.youtube.com/watch?v=Z8gxjZr0VvQ", thumbUrl: "https://i.ytimg.com/vi/Z8gxjZr0VvQ/hqdefault.jpg", name: "गायों को कैसे खिलाएं | Cattle Care Course #2"),
+  Video(videoUrl: "https://www.youtube.com/watch?v=Z8gxjZr0VvQ", thumbUrl: "https://i.ytimg.com/vi/Hz6FACYKa0w/hqdefault.jpg", name: "गायों को कैसे खिलाएं | Cattle Care Course #3"),
 ];
 
 //PRODUCT TILES
@@ -133,34 +130,34 @@ Address currentAddress = Address(name: "Ayan Dasgupta", houseNum: "Mint 1202, Si
 
 //BOTTOM NAVIGATION BAR
 List<BottomNavigationBarItem> items = 
-  const [
+  [
     BottomNavigationBarItem(
         backgroundColor: primary,
         icon: Icon(
           Icons.home_filled,
         ),
-        label: "Home",
+        label: isEnglish ? "Home" : "घर",
       ),
       BottomNavigationBarItem(
         backgroundColor: primary,
         icon: Icon(
           Icons.local_shipping_rounded,
         ),
-        label: "Feed",
+        label: isEnglish ? "Feed" : "चारा",
       ),
       BottomNavigationBarItem(
         backgroundColor: primary,
         icon: Icon(
           Icons.people_rounded,
         ),
-        label: "Community",
+        label: isEnglish ? "Community" : "समुदाय",
       ),
       BottomNavigationBarItem(
         backgroundColor: primary,
         icon: Icon(
           Icons.shopping_cart_rounded,
         ),
-        label: "Cart",
+        label: isEnglish ? "Cart" : "कार्ट",
       ),     
 ];
 
@@ -170,11 +167,121 @@ String userName = "";
 String phoneNumber = "";
 String profileImgUrl = "";
 String currentUserName = "";
+bool isEnglish = true;
 List transactions = [];
 double walletBalance = 0;
+List products2 = [];
 List cart = [];
-List products = [];
+List<Map<String, dynamic>> products = [];
 int qty = 0;
 List addresses = [];
 Map<String, dynamic> firestoreCurrentAddress = {};
 List currentOrders = [];
+double buyNowValue = 0;
+
+String categoryAux = "";
+
+List selectedCategories = [];
+
+List roomBgImageUrls = [
+  "room_tile_bg_green.png",
+  "room_tile_bg_blue.png",
+];
+
+List roomTiles = [
+  RoomTileModel(title: "Room 1", description: "Tells us about cattles and buffaloes", 
+  membersPhotos: [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRKouGaC5wkHjgKIuSSZTrTBBQWc5gEIOPFw&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLyv_x54sCOEJeHfGzdOLmz-MuPgyEcBmpew&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7jpCppYa2fnz2tELyJx5bwVsVvuYddBaHrg&usqp=CAU",
+  ], 
+  membersNames: [
+    "Emma Stone",
+    "Gal Gadot",
+    "Robert De Niro",
+  ],
+  startedOn: DateTime.now(),),
+  RoomTileModel(title: "Room 2", description: "Tells us about cattles and buffaloes", 
+  membersPhotos: [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlIUxQKQmx5ouc6Tzxb3SMgA209BiV9fDIduXvUo_zwg&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDWw8Vdm9JSAzsSu6MANcNR3pE0wZOISapEA&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDdNnMh6qmlMex0So-_YFdmGRqzoWEFTweew&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQhr1anKVzAaHQtvVh3eiGojjQurDszvkYQ&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwHxzyZ-W2EGSfaxeGfC1OrfG8xYYb_C0UEQ&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSYFB_2i64cYo12_9Z0lfEWcm49eHllO0BPQ&usqp=CAU",
+  ],
+  membersNames: [
+    "Adam Sandler",
+    "Marlon Brando",
+    "Olivia Wilde",
+    "Hale Berry",
+    "Jason Statham",
+    "Vin Diesel",
+  ], 
+  startedOn: DateTime.now(),),
+  RoomTileModel(title: "Room 3", description: "Tells us about cattles and buffaloes", 
+  membersPhotos: [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTwNQE4rpxRJAg2UsOR1NG0WVs_cyj2n1hjA&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwQy2bsuH1e8PgeKgvwK5gjfyyQbwMwBsBGA&usqp=CAU",
+  ], 
+  membersNames: [
+    "Selena Gomez",
+    "Justin Bieber",
+  ],
+  startedOn: DateTime.now(),),
+  RoomTileModel(title: "Room 4", description: "Tells us about cattles and buffaloes", 
+  membersPhotos: [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsUmE6FMTWUnXwdX_vkq9XMe_6AIFuuBY_lQ&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrdB8rRgA1qgkw0ckcTrhIa0kpV2ILvbMWg&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrn_wp1oOgzbSMezQBZKQNBzthtW8-NrRtA&usqp=CAU",
+  ], 
+  membersNames: [
+    "James Franco",
+    "Tobie Maguire",
+    "Kirsten Dunst",
+  ],
+  startedOn: DateTime.now(),),
+  RoomTileModel(title: "Room 5", description: "Tells us about cattles and buffaloes", 
+  membersPhotos: [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoyedv8JUlJy8dVx44OSYBkYc-1P-K57vh9A&usqp=CAU",
+  ], 
+  membersNames: [
+    "Meryl Streep"
+  ],
+  startedOn: DateTime.now(),),
+];
+
+List experts = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoyedv8JUlJy8dVx44OSYBkYc-1P-K57vh9A&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrn_wp1oOgzbSMezQBZKQNBzthtW8-NrRtA&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsUmE6FMTWUnXwdX_vkq9XMe_6AIFuuBY_lQ&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrdB8rRgA1qgkw0ckcTrhIa0kpV2ILvbMWg&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTwNQE4rpxRJAg2UsOR1NG0WVs_cyj2n1hjA&usqp=CAU",
+];
+
+List podcastTiles = [
+  PodcastTile(
+    onTap: (){}, 
+    podcastImgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxaXIHbbcN9DsafuKGRh7DIELlEsM3yccHmg&usqp=CAU", 
+    podcastTitle: "Podcast 1", 
+    podcastDate: DateTime.now(), 
+    podcastDuration: 400, 
+    onPlay: (){},
+  ),
+  PodcastTile(
+    onTap: (){}, 
+    podcastImgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCwabrqq9KuWO7scRKYSZrFkM9KnAn7CP6VQ&usqp=CAU", 
+    podcastTitle: "Podcast 2", 
+    podcastDate: DateTime.now().subtract(Duration(days: 2)), 
+    podcastDuration: 265, 
+    onPlay: (){},
+  ),
+  PodcastTile(
+    onTap: (){}, 
+    podcastImgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmj1wcDCmUlN9oRlQsrlv3ocgZzvQM0j1Z6Q&usqp=CAU", 
+    podcastTitle: "Podcast 3", 
+    podcastDate: DateTime.now().subtract(Duration(days: 4)), 
+    podcastDuration: 938, 
+    onPlay: (){},
+  ),
+];

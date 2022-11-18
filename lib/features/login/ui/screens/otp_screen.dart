@@ -102,9 +102,9 @@ class _OTPScreenState extends State<OTPScreen> {
                     SizedBox(height: 10.h,),
                     const Center(child: Image(image: AssetImage("./assets/images/otp_lock.png"))),
                     SizedBox(height: 5.h,),
-                    Text("Verification Code", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
+                    Text(isEnglish ? "Verification Code" : "पुष्टि संख्या", style: globalTextStyle.copyWith(color: black, fontSize: 5.w, fontWeight: FontWeight.bold),),
                     SizedBox(height: 1.h,),
-                    Text("Sent via SMS to ${widget.phoneNumber}", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                    Text(isEnglish ? "Sent via SMS to ${widget.phoneNumber}" : "एसएमएस के माध्यम से भेजा गया ${widget.phoneNumber} पर", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                     SizedBox(height: 2.h,),
                     CustomPinput(
                       onSubmitted: (pin) async {
@@ -159,10 +159,11 @@ class _OTPScreenState extends State<OTPScreen> {
                         InkWell(
                           onTap: () {
                             if(start == 0){
-                              phoneLogin(context, widget.phoneNumber);
                               setState(() {
+                                start = 60;
                                 startTimer();
                               });
+                              phoneLogin(context, widget.phoneNumber);
                             }
                           },
                           child: Text(resendMessage, style: globalTextStyle.copyWith(color: primary, fontSize: 3.w,),)),
@@ -209,16 +210,16 @@ class _OTPScreenState extends State<OTPScreen> {
                             doc(cred.user!.uid).
                             set(customer.toMap());
 
-                        Navigator.pushNamed(context, languages);
+                        Navigator.pushNamedAndRemoveUntil(context, languages, (route) => false);
                       } else {
-                        Navigator.pushNamed(context, home);
+                        Navigator.pushNamedAndRemoveUntil(context, home, (route) => false);
                       }
   
                     } catch (e) {
                       ShowSnackbar.showSnackBar(context, e.toString());
                       print(e.toString());
                     }
-                  }, text: "Submit OTP", fontColor: white, borderColor: primary,),
+                  }, text: isEnglish ? "Submit OTP" : "ओटीपी सबमिट करें", fontColor: white, borderColor: primary,),
                   SizedBox(height: 2.h,),
                 ],
               ),

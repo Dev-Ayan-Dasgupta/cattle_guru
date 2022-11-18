@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/mac/Flutter_Projects/cattle_guru/build/flutter_inappwebview/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-3/8f906cb9d225e8d1a3a0d07406fd4300/transformed/appcompat-1.5.1/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/mac/Flutter_Projects/cattle_guru/build/flutter_inappwebview/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-3/8f906cb9d225e8d1a3a0d07406fd4300/transformed/appcompat-1.5.1/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    }
+]

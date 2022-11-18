@@ -48,7 +48,7 @@ class ProfileSnippet extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(1.w)),
                     color: primaryLight,
                   ),
-                  child: Center(child: Text("Edit Photo", style: globalTextStyle.copyWith(color: fontColor, fontSize: 3.w)))
+                  child: Center(child: Text(isEnglish ? "Edit Photo" : "तस्वीर बदलिये", style: globalTextStyle.copyWith(color: fontColor, fontSize: 3.w)))
                 ),
               ),
               

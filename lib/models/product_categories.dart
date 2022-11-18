@@ -1,9 +1,10 @@
 class ProductCategories{
   final String imageUrl;
   final String name;
+  bool isSelected;
 
   ProductCategories({
-      required this.imageUrl, required this.name,
+      required this.imageUrl, required this.name, required this.isSelected,
     }
   );
 
@@ -11,6 +12,7 @@ class ProductCategories{
     return {
       "imageUrl": imageUrl,
       "name": name,
+      "isSelected": isSelected,
     };
   }
 }

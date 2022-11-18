@@ -36,7 +36,7 @@ class PastOrderTile extends StatelessWidget {
                 children: [
                   Text(productName, style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.w,),
-                  Text("Qty: $qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                  Text(isEnglish ? "Qty: $qty" : "संख्या: $qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                   SizedBox(height: 1.w,),
                   Text("₹ $productPrice", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.w,),

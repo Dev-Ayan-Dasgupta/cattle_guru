@@ -42,7 +42,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                 keyboardType: TextInputType.number,
                 style: globalTextStyle.copyWith(fontSize: 4.w, color: black,),
                 decoration: InputDecoration(
-                  hintText: "Enter your number here",
+                  hintText: isEnglish ? "Enter your number here" : "यहां अपना नंबर दर्ज करें",
                   hintStyle: globalTextStyle.copyWith(fontSize: 4.w, color: grey,),
                   border: InputBorder.none,
                 ),

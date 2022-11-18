@@ -12,6 +12,7 @@ class ImageUpload {
       final pickedImage = await ImagePicker().pickImage(source: source);
     if(pickedImage != null){
       image = File(pickedImage.path);
+      
     }
     } on PlatformException catch (e) {
       ShowSnackbar.showSnackBar(context, e.message!);

@@ -22,7 +22,7 @@ class OrderTile extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 1.h),
         child: SizedBox(
           width: 100.w,
-          height: 21.w,
+          height: isEnglish ? 21.w : 21.4.w,
           child: Row(
             children: [
               SizedBox(
@@ -36,11 +36,11 @@ class OrderTile extends StatelessWidget {
                 children: [
                   Text(productName, style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.w,),
-                  Text("Qty: $qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                  Text(isEnglish ? "Qty: $qty" : "संख्या: $qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                   SizedBox(height: 1.w,),
                   Text("₹ $productPrice", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 1.w,),
-                  Text("Delivery by ${DateFormat.yMMMMEEEEd().format(date.add(Duration(days: productDeliveryDays)))}", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                  Text(isEnglish ? "Delivery by ${DateFormat.yMMMMEEEEd().format(date.add(Duration(days: productDeliveryDays)))}" : "${DateFormat.yMMMMEEEEd('hi').format(date.add(Duration(days: productDeliveryDays)))} तक डिलीवरी", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                 ],
               ),
             ],

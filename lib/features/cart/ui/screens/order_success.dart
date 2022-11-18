@@ -53,7 +53,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> with TickerProv
                 },
               ),
               SizedBox(height: 2.h,),
-              Text("Congratulations, your order has been placed.", style: globalTextStyle.copyWith(color: primary, fontSize: 7.w, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
+              Text(isEnglish ? "Congratulations, your order has been placed." : "बधाई हो, आपका ऑर्डर दे दिया गया है।", style: globalTextStyle.copyWith(color: primary, fontSize: 7.w, fontWeight: FontWeight.bold,), textAlign: TextAlign.center,),
             ],
           ),
         ),

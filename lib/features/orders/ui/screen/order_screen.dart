@@ -3,6 +3,7 @@ import 'package:cattle_guru/features/orders/ui/widgets/current_order.dart';
 import 'package:cattle_guru/features/orders/ui/widgets/past_orders.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -44,32 +45,32 @@ class _OrdersScreenState extends State<OrdersScreen> with TickerProviderStateMix
           labelStyle: globalTextStyle.copyWith(color: white),
           indicatorColor: white,
           indicatorWeight: 5,
-          tabs: const[
-            Tab(text: "CURRENT",),
-            Tab(text: "PREVIOUS",),
+          tabs: [
+            Tab(text: isEnglish ? "CURRENT" : "वर्तमान",),
+            Tab(text: isEnglish ? "PREVIOUS" : "पिछला",),
             ]
           ),
         backgroundColor: primary,
-        title: Text("My Orders", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Orders": "मेरे आदेश", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: TabBarView(
@@ -83,12 +84,7 @@ class _OrdersScreenState extends State<OrdersScreen> with TickerProviderStateMix
         type: BottomNavigationBarType.fixed,
         currentIndex: 1,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -96,7 +92,37 @@ class _OrdersScreenState extends State<OrdersScreen> with TickerProviderStateMix
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: 
+        [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

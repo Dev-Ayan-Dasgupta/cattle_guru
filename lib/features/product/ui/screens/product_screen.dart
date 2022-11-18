@@ -3,6 +3,7 @@ import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +16,7 @@ class ProductScreen extends StatefulWidget {
   ProductScreen({super.key, required this.product, required this.isCarted, required this.id, required this.prodQty});
 
   // final ProductDetail product; 
-  final Map<String, dynamic> product;
+  Map<String, dynamic> product;
   bool isCarted;
   final String id;
   int prodQty;
@@ -54,26 +55,26 @@ class _ProductScreenState extends State<ProductScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("Product Details", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish? "Product Details" : "उत्पाद विवरण", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -103,11 +104,11 @@ class _ProductScreenState extends State<ProductScreen> {
                             children: [
                               Text("₹ $price", style: globalTextStyle.copyWith(color: primary, fontSize: 5.w, fontWeight: FontWeight.bold),),
                               SizedBox(width: 2.w,),
-                              Text("${((1-(price/mrp))*100).toInt()}% off", style: globalTextStyle.copyWith(color: grey, fontSize: 2.5.w,),),
+                              Text(isEnglish ? "${((1-(price/mrp))*100).toInt()}% off" : "${((1-(price/mrp))*100).toInt()}% की छूट", style: globalTextStyle.copyWith(color: grey, fontSize: 2.5.w,),),
                             ],
                           ),
                           SizedBox(height: 0.5.h,),
-                          Text("You saved ₹ ${mrp - price}", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
+                          Text(isEnglish ? "You saved ₹ ${mrp - price}" : "आपने बचा लिया ₹ ${mrp - price}", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
                         ],
                       ),
                       Column(
@@ -115,24 +116,24 @@ class _ProductScreenState extends State<ProductScreen> {
                         children: [
                           Row(
                             children: [
-                              Text("Weight: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
+                              Text(isEnglish ? "Weight: " : "वज़न: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                               SizedBox(width: 1.w,),
                               Text("$weight kg", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                             ]
                           ),
                           SizedBox(height: 1.h,),
-                          Text("₹ ${(price~/weight)} per kg", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
+                          Text(isEnglish ? "₹ ${(price~/weight)} per kg" : "₹ ${(price~/weight)} प्रति kg", style: globalTextStyle.copyWith(color: grey, fontSize: 3.w,),),
                         ],
                       ),
                     ],
                   ),
                   SizedBox(height: 2.h,),
-                  Text("Description", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                  Text(isEnglish ? "Description" : "विवरण", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   // CustomTextLabel(width: 20.w, height: 7.w, text: "Description", color: primary, fontColor: white),
                   SizedBox(height: 1.h,),
                   Text(widget.product['description'], style: globalTextStyle.copyWith(color: black, fontSize: 3.w,),),
                   SizedBox(height: 2.h,),
-                  Text("Nutrient Information", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                  Text(isEnglish ? "Nutrient Information" : "पोषक तत्व की जानकारी", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 2.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +145,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
-                            Text("Protein", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text(isEnglish ? "Protein" : "प्रोटीन", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
                             Text("${protein.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
@@ -160,7 +161,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
-                            Text("Fibre", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text(isEnglish ? "Fibre" : "रेशा", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
                             Text("${fibre.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
@@ -176,7 +177,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         center: Column(
                           children: [
                             SizedBox(height: 4.5.w,),
-                            Text("Fat", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
+                            Text(isEnglish ? "Fat" : "वसा", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                             SizedBox(height: 0.5.w,),
                             Text("${fat.toInt()}%", style: globalTextStyle.copyWith(color: primary, fontSize: 2.5.w, fontWeight: FontWeight.bold),),
                           ],
@@ -191,8 +192,8 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       units.toInt() > 0 ?
-                        Text("${units.toInt()} units in stock", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),) :
-                        Text("Out of stock", style: globalTextStyle.copyWith(color: red, fontSize: 3.w, fontWeight: FontWeight.bold),)
+                        Text(isEnglish ? "${units.toInt()} units in stock" : "स्टॉक में ${units.toInt()} इकाइयां", style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),) :
+                        Text(isEnglish ? "Out of stock" : "स्टॉक ख़त्म", style: globalTextStyle.copyWith(color: red, fontSize: 3.w, fontWeight: FontWeight.bold),)
                     ],
                   ),
                 ],
@@ -243,7 +244,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       });
                     }
                   }, 
-                  text: (widget.isCarted == true) ? "Remove from Cart" : "Add to Cart", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary),
+                  text: (widget.isCarted == true) ? isEnglish ? "Remove from Cart" : "कार्ट से हटायें" : isEnglish ? "Add to Cart" : "कार्ट में डालें", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary),
                   SizedBox(height: 2.h,),
                 ],
               ),
@@ -255,12 +256,7 @@ class _ProductScreenState extends State<ProductScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 1,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -268,7 +264,36 @@ class _ProductScreenState extends State<ProductScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

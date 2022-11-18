@@ -3,6 +3,7 @@ import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textlabel.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,26 +30,26 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("My Wallet", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Wallet" : "मेरा बटुआ", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
             child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -80,7 +81,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                                   top: 12.5.w,
                                   child: Column(
                                     children: [
-                                      Text("Your available balance is", style: globalTextStyle.copyWith(color: white, fontSize: 4.w,),),
+                                      Text(isEnglish ? "Your available balance is" : "आपकी उपलब्ध शेष राशि है", style: globalTextStyle.copyWith(color: white, fontSize: 4.w,),),
                                       SizedBox(height: 2.w),
                                       Text(walletBalance.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: white, fontSize: 8.w, fontWeight: FontWeight.bold),),
                                     ],
@@ -91,10 +92,10 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                             SizedBox(height: 2.h,),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.w),
-                              child: Text("Money will get deducted from wallet upon purchases.", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
+                              child: Text(isEnglish ? "Money will get deducted from wallet upon purchases." : "किसी पर भी वॉलेट से कट जाएगा पैसा खरीद।", style: globalTextStyle.copyWith(color: black, fontSize: 4.w,),),
                             ),
                             SizedBox(height: 2.h,),
-                            CustomTextLabel(width: 35.w, height: 7.w, text: "Transaction History", color: primary, fontColor: white),
+                            CustomTextLabel(width: 35.w, height: 7.w, text: isEnglish? "Transaction History" : "लेनदेन का इतिहास", color: primary, fontColor: white),
                             // SizedBox(height: 1.h,),
                             Container(
                               width: 100.w,
@@ -123,7 +124,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                         ),
                         Column(
                           children: [
-                            CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary,),
+                            CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: isEnglish ? "Browse Products" : "उत्पादों को ब्राउज़ करें", fontColor: white, borderColor: primary,),
                             SizedBox(height: 2.h),
                           ],
                         ),
@@ -146,12 +147,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -159,7 +155,36 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ],
         backgroundColor: primary,
       ),
     );

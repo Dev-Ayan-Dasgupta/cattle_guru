@@ -57,6 +57,7 @@ dependencies:
   firebase_storage: ^11.0.4
   lottie: ^1.4.3
   firebase_app_check: ^0.1.1+4
+  youtube_player_flutter: ^8.1.1
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +69,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/app_logo.png"
+  image_path: "assets/images/new_app_logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true

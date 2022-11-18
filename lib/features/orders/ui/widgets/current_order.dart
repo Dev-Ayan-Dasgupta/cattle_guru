@@ -106,7 +106,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                                                             borderRadius: BorderRadius.all(Radius.circular(2.w)),
                                                             color: primary,
                                                           ),
-                                                          child: Center(child: Text("Track Order", style: globalTextStyle.copyWith(color: white, fontSize: 2.w, fontWeight: FontWeight.bold),)),
+                                                          child: Center(child: Text(isEnglish ? "Track Order" : "निगरानी करें", style: globalTextStyle.copyWith(color: white, fontSize: 2.w, fontWeight: FontWeight.bold),)),
                                                         ),
                                                       ),
                                                     ],
@@ -140,7 +140,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                                                   SizedBox(height: 2.h,),
                                                   Row(
                                                     children: [
-                                                      Text("Amount: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                                                      Text(isEnglish ?"Amount: " : "रकम ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
                                                       Text(amt.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true), style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                                                     ],
                                                   ),
@@ -158,7 +158,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                                       SizedBox(height: 1.h,),
                                       CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                                         Navigator.pushNamed(context, home);
-                                      }, text: "Browse Products", fontColor: white, borderColor: primary),
+                                      }, text: isEnglish ? "Browse Products" : "उत्पादों को ब्राउज़ करें", fontColor: white, borderColor: primary),
                                       SizedBox(height: 2.h,),
                                     ],
                                   ),

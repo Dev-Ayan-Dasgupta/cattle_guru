@@ -47,9 +47,9 @@ class _AddressCardState extends State<AddressCard> {
               SizedBox(height: 2.w,),
               Row(
                 children: [
-                  AddressTileButton(onTap: widget.onEditTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.edit_rounded, buttonText: "Edit"),
-                  AddressTileButton(onTap: widget.onDefaultTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.check_rounded, buttonText: "Default"),
-                  AddressTileButton(onTap: widget.onRemoveTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.delete_rounded, buttonText: "Remove"),
+                  AddressTileButton(onTap: widget.onEditTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.edit_rounded, buttonText: isEnglish ? "Edit" : "संपादित करें"),
+                  AddressTileButton(onTap: widget.onDefaultTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.check_rounded, buttonText: isEnglish ? "Default" : "वर्तमान"),
+                  AddressTileButton(onTap: widget.onRemoveTap, buttonColor: widget.isDefault ? primaryDark : primaryLight, itemColor: widget.isDefault ? white : black, iconData: Icons.delete_rounded, buttonText: isEnglish ? "Remove" : "हटा दे"),
                 ],
               ),
             ],

@@ -33,7 +33,7 @@ class PastOrders extends StatelessWidget {
                       Center(
                           child: SizedBox(
                             width: 75.w,
-                            child: Text("You have not ordered from us yet. Please browse our products and order them.", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
+                            child: Text(isEnglish ? "You have not ordered from us yet. Please browse our products and order them." : "आपने अभी तक हमसे आदेश नहीं लिया है। कृपया हमारे उत्पादों को ब्राउज़ करें और उन्हें ऑर्डर करें।", style: globalTextStyle.copyWith(color: black, fontSize: 3.w,), textAlign: TextAlign.center,),),
                       ),
                     ],
                   ),
@@ -65,7 +65,7 @@ class PastOrders extends StatelessWidget {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(DateFormat.yMMMMEEEEd().format(previousOrders[index].date), style: globalTextStyle.copyWith(color: grey, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                                  Text(isEnglish ? DateFormat.yMMMMEEEEd().format(previousOrders[index].date) : DateFormat.yMMMMEEEEd('hi').format(previousOrders[index].date), style: globalTextStyle.copyWith(color: grey, fontSize: 3.w, fontWeight: FontWeight.bold),),
                                   SizedBox(height: 1.h,),
                                   SizedBox(
                                     width: 100.w,
@@ -95,7 +95,7 @@ class PastOrders extends StatelessWidget {
                                   SizedBox(height: 1.h),
                                   Row(
                                     children: [
-                                      Text("Amount: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
+                                      Text(isEnglish ? "Amount: " : "रकम: ", style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
                                       Text(previousOrders[index].amount.toString(), style: globalTextStyle.copyWith(color: primary, fontSize: 3.w, fontWeight: FontWeight.bold),),
                                     ],
                                   ),
@@ -112,7 +112,7 @@ class PastOrders extends StatelessWidget {
               ),
               Column(
                 children: [
-                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: "Browse Products", fontColor: white, borderColor: primary),
+                  CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){}, text: isEnglish ? "Browse Products" : "उत्पादों को ब्राउज़ करें", fontColor: white, borderColor: primary),
                   SizedBox(height: 2.h),
                 ],
               ),

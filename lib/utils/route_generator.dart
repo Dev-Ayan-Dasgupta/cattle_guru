@@ -1,5 +1,6 @@
 import 'package:cattle_guru/features/address/ui/screens/address_list.dart';
 import 'package:cattle_guru/features/address/ui/screens/create_address.dart';
+import 'package:cattle_guru/features/community/ui/screens/community_home.dart';
 import 'package:cattle_guru/features/cart/ui/screens/cart_screen.dart';
 import 'package:cattle_guru/features/cart/ui/screens/order_success.dart';
 import 'package:cattle_guru/features/cart/ui/screens/payment_options_screen.dart';
@@ -7,6 +8,8 @@ import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
 import 'package:cattle_guru/features/orders/ui/screen/order_screen.dart';
+import 'package:cattle_guru/features/product/ui/screens/product_list.dart';
+import 'package:cattle_guru/features/profile/ui/screens/change_language.dart';
 import 'package:cattle_guru/features/profile/ui/screens/enter_referral.dart';
 import 'package:cattle_guru/features/profile/ui/screens/intro_details.dart';
 import 'package:cattle_guru/features/profile/ui/screens/language_screen.dart';
@@ -33,9 +36,12 @@ class RouteGenerator{
       case myAddresses: return CustomPageTransition(child: const AddressListScreen(), settings: settings,);
       case createAddress: return CustomPageTransition(child: const CreateAddressScreen(), settings: settings,);
       case paymentMode: return CustomPageTransition(child: const PaymentOptionsScreen(), settings: settings,);
+      // case productList: return CustomPageTransition(child: const ProductListScreen(category: ,), settings: settings,);
       case myCart: return CustomPageTransition(child: const CartScreen(), settings: settings,);
       case myOrders: return CustomPageTransition(child: const OrdersScreen(), settings: settings,);
       case orderSuccess: return CustomPageTransition(child: const OrderSuccessScreen(), settings: settings,);
+      case changeLanguage: return CustomPageTransition(child: const ChangeLanguageScreen(), settings: settings,);
+      case communityHome: return CustomPageTransition(child: const CommunityHomeScreen(), settings: settings,);
       default: return _errorRoute();
     }
   }

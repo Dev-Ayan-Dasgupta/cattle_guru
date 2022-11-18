@@ -1,12 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cattle_guru/features/checkout/ui/screens/checkout_screen.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/features/common/widgets/custom_textlabel.dart';
 import 'package:cattle_guru/features/home/ui/widgets/product_category_tile.dart';
 import 'package:cattle_guru/features/home/ui/widgets/product_tile.dart';
 import 'package:cattle_guru/features/home/ui/widgets/video_thumbnail.dart';
+import 'package:cattle_guru/features/product/ui/screens/product_list.dart';
 import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
+import 'package:cattle_guru/features/youtube_videos/ui/screens/youtube_player.dart';
+import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,8 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentCarouselIndex = 0;
 
   final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
-
-  List<Map<String, dynamic>> products = [];
 
   List<Widget> indicators(imagesLength, currentIndex) {
     return List<Widget>.generate(imagesLength, (index) {
@@ -54,26 +57,26 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("Home", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "Home" : "होम स्क्रीन", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -89,9 +92,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     cartValue = snapshot.data!.docs[index].get('cartValue').toDouble();
                     userName = snapshot.data!.docs[index].get('name');
                     phoneNumber = snapshot.data!.docs[index].get('phoneNumber');
+                    profileImgUrl = snapshot.data!.docs[index].get('profileImgUrl');
+                    isEnglish = snapshot.data!.docs[index].get('isEnglish');
+                    firestoreCurrentAddress = snapshot.data!.docs[index].get('currentAddress');
                     // if(cart.isNotEmpty){
                     //   qty = snapshot.data!.docs[index].get('cart')[index]['qty'];
                     // }
+                    List productCategories = [
+                      ProductCategories(imageUrl: "./assets/images/product_categories/khal.png", name: isEnglish ? "Khal" : "खल", isSelected: false),
+                      ProductCategories(imageUrl: "./assets/images/product_categories/binola.png", name: isEnglish ? "Binola" : "बिनोला", isSelected: false),
+                      ProductCategories(imageUrl: "./assets/images/product_categories/feed.png", name: isEnglish ? "Feed" : "चारा", isSelected: false),
+                      ProductCategories(imageUrl: "./assets/images/product_categories/silage.png", name: isEnglish ? "Silage" : "सिलेज", isSelected: false),
+                    ];
                     return SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,13 +142,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: indicators(
                               carouselImageListHome.length, _currentCarouselIndex),
                           ),
-                          SizedBox(height: 1.h,),
-                          // InkWell(
-                          //   onTap: (){Navigator.pushNamed(context, referral);},
-                          //   child: const Text("Referral text",)),
-                          SizedBox(height: 1.h,),
-                          CustomTextLabel(width: 20.w, height: 6.w, text: "Categories", color: primary, fontColor: white),
                           SizedBox(height: 2.h,),
+                          // InkWell(
+                          //   onTap: (){
+                          //     print(products.length);
+                          //     print(products);
+                          //   },
+                          //   child: Text("Products")),
+                          // SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Categories" : "श्रेणियाँ", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          // CustomTextLabel(width: 20.w, height: 6.w, text: isEnglish ? "Categories" : "श्रेणियाँ", color: primary, fontColor: white),
+                          SizedBox(height: 1.h,),
                           Container(
                             width: 100.w,
                             height: 30.w,
@@ -149,7 +168,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                     itemCount: productCategories.length,
                                     itemBuilder: (context, index){
                                       return ProductCategoryTile(
-                                        onTap: (){}, 
+                                        onTap: (){
+                                          if(isEnglish ? productCategories[index].name == "Khal" : productCategories[index].name == "खल"){
+                                            categoryAux = "Khal";
+                                            selectedCategories.add(categoryAux);
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen(category: "Khal", categoryAux: categoryAux, labelsSelected: 1,)));
+                                          }
+                                          if(isEnglish ? productCategories[index].name == "Binola" : productCategories[index].name == "बिनोला"){
+                                            categoryAux = "Binola";
+                                            selectedCategories.add(categoryAux);
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen(category: "Binola", categoryAux: categoryAux, labelsSelected: 1)));
+                                          }
+                                          if(isEnglish ? productCategories[index].name == "Feed" : productCategories[index].name == "चारा"){
+                                            categoryAux = "Feed";
+                                            selectedCategories.add(categoryAux);
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen(category: "Feed", categoryAux: categoryAux, labelsSelected: 1)));
+                                          }
+                                          if(isEnglish ? productCategories[index].name == "Silage" : productCategories[index].name == "सिलेज"){
+                                            categoryAux = "Silage";
+                                            selectedCategories.add(categoryAux);
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen(category: "Silage", categoryAux: categoryAux, labelsSelected: 1)));
+                                          }
+                                        }, 
                                         width: 10.w, 
                                         imageUrl: productCategories[index].imageUrl, 
                                         productCategoryName: productCategories[index].name,
@@ -161,48 +201,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(height: 2.h,),
-                          CustomTextLabel(width: 40.w, height: 6.w, text: "Experts on Dairy Farming", color: primary, fontColor: white),
-                          SizedBox(height: 2.h,),
-                          SizedBox(
-                            width: 100.w,
-                            height: 30.w,
-                            // color: primaryLight,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: videoThumbnails.length,
-                                    itemBuilder: (context, index){
-                                      return VideoThumbnailTile(
-                                        onTap: (){}, 
-                                        width: 40.w, 
-                                        height: 24.w,
-                                        imgUrl: videoThumbnails[index].thumbUrl, 
-                                        videoName: videoThumbnails[index].name,
-                                      );
-                                    }
-                                  ),
-                                ),
-                              ],
-                            ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Products" : "प्रोडक्ट", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                           ),
-                          SizedBox(height: 2.h,),
-                          // InkWell(
-                          //   onTap: (){
-                          //     print(products.length);
-                          //     print(products);
-                          //     print(cart.length);
-                          //     print(cart);
-                          //   },
-                          //   child: Text("Test Products and Cart"),
-                          // ),
+                          // CustomTextLabel(width: 20.w, height: 6.w, text: isEnglish ? "Products" : "प्रोडक्ट", color: primary, fontColor: white),
                           SizedBox(height: 1.h,),
-                          CustomTextLabel(width: 20.w, height: 6.w, text: "Products", color: primary, fontColor: white),
-                          SizedBox(height: 2.h,),
                           SizedBox(
                             width: 100.w,
-                            height: 71.5.w,
+                            height: 83.w,
                             // color: primaryLight,
                             child: Row(
                               children: [
@@ -211,14 +218,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
                                     builder: (context, snapshot) {
                                       if(snapshot.hasData){
+                                        products.clear();
+                                        products2 = snapshot.data!.docs;
+                                        for(int i = 0; i < products2.length; i++){
+                                          products.add(Map.from(products2[i].data()));
+                                        }
                                         return ListView.builder(
                                           scrollDirection: Axis.horizontal,
                                           itemCount: snapshot.data!.docs.length,
                                           itemBuilder: (context, index2){
                                             
-                                            products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            // products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            
                                             bool productIsCarted = false;
-
                                             int prodQty = 0;
                                             
                                             for(int i = 0; i < cart.length; i++){
@@ -228,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 break;
                                               }
                                             }
-                                            
+
                                             return ProductTile(
                                               onTap: (){
                                                 Navigator.push(context, MaterialPageRoute(builder: (context) => 
@@ -246,6 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               price: products[index2]['price'].toDouble(), 
                                               description: products[index2]['description'], 
                                               onAddToCart: () async {
+                                                // print(snapshot.data!.docs.length);
                                                 if(currUserId != null) {
                                                   prodQty++;
                                                   cart.add(
@@ -343,6 +356,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                               },
                                               qty: prodQty,
+                                              onBuyNow: (){
+                                                buyNowValue = products[index2]['price'].toDouble();
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: products[index2])));
+                                              },
                                             );
                                           }
                                         );
@@ -352,6 +369,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                       } else {
                                         return const CircularProgressIndicator();
                                       }
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Experts on Dairy Farming" : "डेयरी फार्मिंग के विशेषज्ञ", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          // CustomTextLabel(width: 40.w, height: 6.w, text: isEnglish ? "Experts on Dairy Farming" : "डेयरी फार्मिंग के विशेषज्ञ", color: primary, fontColor: white),
+                          SizedBox(height: 1.h,),
+                          SizedBox(
+                            width: 100.w,
+                            height: 35.w,
+                            // color: primaryLight,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: videoThumbnails.length,
+                                    itemBuilder: (context, index){
+                                      return SizedBox(
+                                        width: 40.w,
+                                        child: VideoThumbnailTile(
+                                          onTap: (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => YouTubePlayerScreen(url: videoThumbnails[index].videoUrl, title: videoThumbnails[index].name,)));
+                                          }, 
+                                          width: 40.w, 
+                                          height: 24.w,
+                                          imgUrl: videoThumbnails[index].thumbUrl, 
+                                          videoName: videoThumbnails[index].name,
+                                        ),
+                                      );
                                     }
                                   ),
                                 ),
@@ -380,12 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -393,7 +441,38 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: 
+          [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ]
+        ,
         backgroundColor: primary,
       ),
     );

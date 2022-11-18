@@ -23,10 +23,10 @@ class VideoThumbnailTile extends StatelessWidget {
               children: [
                 Container(
                   width: 40.w,
-                  height: 24.w,
+                  height: 23.5.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(2.w)),
-                    image: DecorationImage(image: AssetImage(imgUrl), fit: BoxFit.fill)
+                    image: DecorationImage(image: NetworkImage(imgUrl), fit: BoxFit.fill)
                   ),
                 ),
                 Container(
@@ -41,7 +41,7 @@ class VideoThumbnailTile extends StatelessWidget {
               ],
             ),
             SizedBox(height: 1.h,),
-            Text(videoName, style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold),),
+            Text(videoName, style: globalTextStyle.copyWith(color: black, fontSize: 3.w, fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis,),
           ],
         ),
       )

@@ -28,7 +28,7 @@ class _CartTileState extends State<CartTile> {
         padding: EdgeInsets.only(bottom: 1.h),
         child: SizedBox(
           width: 100.w,
-          height: 17.w,
+          height: 17.25.w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -4,6 +4,7 @@ import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
+import 'package:cattle_guru/utils/helper_functions/navbar_tabs.dart';
 import 'package:cattle_guru/utils/helper_functions/phone_call.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,26 +29,26 @@ class _AddressListScreenState extends State<AddressListScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: primary,
-        title: Text("My Addresses", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
+        title: Text(isEnglish ? "My Addresses" : "मेरा पता", style: globalTextStyle.copyWith(color: white, fontSize: 5.w, fontWeight: FontWeight.bold),),
         centerTitle: true,
         leading: Builder(
           builder: (context) => InkWell(
             onTap: () => Scaffold.of(context).openDrawer(),
-            child: Icon(Icons.menu_rounded, size: 5.w, color: white,)),
+            child: Icon(Icons.menu_rounded, size: 7.5.w, color: white,)),
         ),
         actions: [
           InkWell(
             onTap: PhoneCall.makingPhoneCall,
-            child: Icon(Icons.phone_rounded, size: 5.w, color: white)),
-          SizedBox(width: 5.w,),
+            child: Icon(Icons.phone_rounded, size: 7.5.w, color: white)),
+          SizedBox(width: 7.5.w,),
           InkWell(
             onTap: LaunchWhatsapp.whatsappLaunch,
             child: SizedBox(
-              width: 5.w,
-              height: 5.w,
+              width: 7.5.w,
+              height: 7.5.w,
               child: const Image(image: AssetImage("./assets/images/whatsapp_logo.png"))),
           ),
-          SizedBox(width: 5.w,),
+          SizedBox(width: 7.5.w,),
         ],
       ),
       body: SafeArea(
@@ -89,7 +90,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
                             SizedBox(height: 2.h,),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.w,),
-                              child: Text("Current Address", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                              child: Text(isEnglish ? "Current Address" : "वर्तमान पता", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                             ),
                             SizedBox(height: 1.h,),
                             AddressCard(
@@ -117,7 +118,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
                             SizedBox(height: 1.5.h,),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.w,),
-                              child: Text("My Addresses", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                              child: Text(isEnglish ? "My Addresses" : "मेरे पते", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                             ),
                             SizedBox(height: 1.h,),
                             SizedBox(
@@ -131,8 +132,8 @@ class _AddressListScreenState extends State<AddressListScreen> {
                                       itemBuilder: (context, index2){
                                         return AddressCard(
                                           onTap: (){
-                                            print("Length: ${addresses.length}");
-                                            print(addresses);
+                                            // print("Length: ${addresses.length}");
+                                            // print(addresses);
                                           }, 
                                           isDefault: addresses[index2]['isDefault'], 
                                           name: addresses[index2]['name'], 
@@ -193,7 +194,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
                           children: [
                             CustomButton(width: 90.w, height: 15.w, color: primary, onTap: (){
                               Navigator.pushNamed(context, createAddress);
-                            }, text: "Add Address", fontColor: white, borderColor: primary,),
+                            }, text: isEnglish ? "Add Address" : "पता जोड़ें", fontColor: white, borderColor: primary,),
                             // SizedBox(height: 1.h,),
                           ],
                         ),
@@ -217,12 +218,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         onTap: (index){
-          if(index == 0){
-            Navigator.pushNamed(context, home);
-          }
-          if(index == 3){
-            Navigator.pushNamed(context, myCart);
-          }
+          NavbarTabs.navigateToTab(context, index);
         },
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -230,7 +226,38 @@ class _AddressListScreenState extends State<AddressListScreen> {
         unselectedItemColor: white,
         selectedLabelStyle: globalTextStyle,
         unselectedLabelStyle: globalTextStyle,
-        items: items,
+        items: 
+          [
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.home_filled,
+              ),
+              label: isEnglish ? "Home" : "घर",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.local_shipping_rounded,
+              ),
+              label: isEnglish ? "Feed" : "चारा",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.people_rounded,
+              ),
+              label: isEnglish ? "Community" : "समुदाय",
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: primary,
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
+              label: isEnglish ? "Cart" : "कार्ट",
+            ),     
+        ]
+        ,
         backgroundColor: primary,
       ),
     );
