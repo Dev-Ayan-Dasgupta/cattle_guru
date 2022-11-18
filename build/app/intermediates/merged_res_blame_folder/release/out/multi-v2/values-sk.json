@@ -57,6 +57,23 @@
                     }
                 },
                 {
+                    "source": "/Users/mac/.gradle/caches/transforms-3/f13860a44e52a7a4c6939aec950f63a4/transformed/jetified-play-services-wallet-18.1.3/res/values-sk/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "202",
+                        "endColumns": "71",
+                        "endOffsets": "273"
+                    },
+                    "to": {
+                        "startLines": "116",
+                        "startColumns": "4",
+                        "startOffsets": "10455",
+                        "endColumns": "75",
+                        "endOffsets": "10526"
+                    }
+                },
+                {
                     "source": "/Users/mac/.gradle/caches/transforms-3/4631769601074924c9de38cd50aa3747/transformed/jetified-ucrop-2.2.8/res/values-sk/values-sk.xml",
                     "from": {
                         "startLines": "2,3,4",

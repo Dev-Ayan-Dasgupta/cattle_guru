@@ -146,6 +146,8 @@
 -keep class com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity { <init>(); }
 -keep class com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance { <init>(); }
 -keep class com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity { <init>(); }
+-keep class com.razorpay.CheckoutActivity { <init>(); }
+-keep class com.razorpay.RzpTokenReceiver { <init>(); }
 -keep class com.yalantis.ucrop.UCropActivity { <init>(); }
 -keep class dev.fluttercommunity.plus.share.ShareFileProvider { <init>(); }
 -keep class io.flutter.plugins.imagepicker.ImagePickerFileProvider { <init>(); }
@@ -247,6 +249,8 @@
 -keep class com.pichillilorenzo.flutter_inappwebview.in_app_webview.InAppWebView { <init>(android.content.Context, android.util.AttributeSet); }
 
 -keep class com.pichillilorenzo.flutter_inappwebview.pull_to_refresh.PullToRefreshLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.razorpay.CircularProgressView { <init>(android.content.Context, android.util.AttributeSet); }
 
 -keep class com.yalantis.ucrop.view.GestureCropImageView { <init>(android.content.Context, android.util.AttributeSet); }
 
@@ -812,6 +816,14 @@
 -keep public class androidx.versionedparcelable.ParcelImpl
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/16d334c486cbdec77958d3d22ef782e4/transformed/versionedparcelable-1.1.1/proguard.txt
+# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/5f07fda472df6b1a7e63cea7940de097/transformed/jetified-firebase-components-17.0.1/proguard.txt
+-dontwarn com.google.firebase.components.Component$Instantiation
+-dontwarn com.google.firebase.components.Component$ComponentType
+
+-keep class * implements com.google.firebase.components.ComponentRegistrar
+-keep,allowshrinking interface com.google.firebase.components.ComponentRegistrar
+
+# End of content from /Users/mac/.gradle/caches/transforms-3/5f07fda472df6b1a7e63cea7940de097/transformed/jetified-firebase-components-17.0.1/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/ebf7841237e70a1980af156fef097570/transformed/jetified-lifecycle-process-2.4.1/proguard.txt
 # this rule is need to work properly when app is compiled with api 28, see b/142778206
 -keepclassmembers class * extends androidx.lifecycle.EmptyActivityLifecycleCallbacks { *; }
@@ -831,14 +843,6 @@
 -assumenosideeffects class androidx.startup.StartupLogger { public static <methods>; }
 
 # End of content from /Users/mac/.gradle/caches/transforms-3/4be14f6b600969d6644431b68f8fe8f8/transformed/jetified-startup-runtime-1.1.1/proguard.txt
-# The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/5f07fda472df6b1a7e63cea7940de097/transformed/jetified-firebase-components-17.0.1/proguard.txt
--dontwarn com.google.firebase.components.Component$Instantiation
--dontwarn com.google.firebase.components.Component$ComponentType
-
--keep class * implements com.google.firebase.components.ComponentRegistrar
--keep,allowshrinking interface com.google.firebase.components.ComponentRegistrar
-
-# End of content from /Users/mac/.gradle/caches/transforms-3/5f07fda472df6b1a7e63cea7940de097/transformed/jetified-firebase-components-17.0.1/proguard.txt
 # The proguard configuration file for the following section is /Users/mac/.gradle/caches/transforms-3/9308aba1f04577b723ac05f53a8158c4/transformed/lifecycle-runtime-2.5.1/proguard.txt
 -keepattributes AnnotationDefault,
                 RuntimeVisibleAnnotations,

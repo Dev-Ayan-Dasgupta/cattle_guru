@@ -1,0 +1,3 @@
+/Users/mac/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/main/kotlin/com/gunschu/jitsi_meet/JitsiMeetEventStreamHandler.kt
+/Users/mac/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/main/kotlin/com/gunschu/jitsi_meet/JitsiMeetPluginActivity.kt
+/Users/mac/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/main/kotlin/com/gunschu/jitsi_meet/JitsiMeetPlugin.kt

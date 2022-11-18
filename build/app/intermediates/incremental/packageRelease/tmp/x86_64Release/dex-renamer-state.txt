@@ -1,4 +1,4 @@
-#Fri Nov 18 10:56:00 IST 2022
+#Fri Nov 18 12:55:23 IST 2022
 base.0=/Users/mac/Flutter_Projects/cattle_guru/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
