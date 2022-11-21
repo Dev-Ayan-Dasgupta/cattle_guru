@@ -57,7 +57,7 @@ class _ProductTileState extends State<ProductTile> {
                 children: [
                   InkWell(
                     onTap: widget.onSubtract,
-                    child: Icon(Icons.remove_circle, color: grey, size: 5.w,),
+                    child: Icon(Icons.remove_circle, color: grey, size: 7.15.w,),
                   ),
                   SizedBox(width: 3.w,),
                   AnimatedFlipCounter(
@@ -67,7 +67,7 @@ class _ProductTileState extends State<ProductTile> {
                   SizedBox(width: 3.w,),
                   InkWell(
                     onTap: widget.onAdd,
-                    child: Icon(Icons.add_circle, color: primary, size: 5.w,),
+                    child: Icon(Icons.add_circle, color: primary, size: 7.15.w,),
                   ),
                 ],
               )

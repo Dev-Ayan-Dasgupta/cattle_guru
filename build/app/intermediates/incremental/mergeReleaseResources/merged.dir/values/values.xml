@@ -515,6 +515,7 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
+    <color name="catalyst_redbox_background">#eecc0000</color>
     <color name="common_google_signin_btn_text_dark_default">@android:color/white</color>
     <color name="common_google_signin_btn_text_dark_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_dark_focused">@android:color/black</color>
@@ -1399,6 +1400,7 @@
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="accessibility_action_clickable_span" type="id"/>
+    <item name="accessibility_actions" type="id"/>
     <item name="accessibility_custom_action_0" type="id"/>
     <item name="accessibility_custom_action_1" type="id"/>
     <item name="accessibility_custom_action_10" type="id"/>
@@ -1431,6 +1433,11 @@
     <item name="accessibility_custom_action_7" type="id"/>
     <item name="accessibility_custom_action_8" type="id"/>
     <item name="accessibility_custom_action_9" type="id"/>
+    <item name="accessibility_hint" type="id"/>
+    <item name="accessibility_label" type="id"/>
+    <item name="accessibility_role" type="id"/>
+    <item name="accessibility_state" type="id"/>
+    <item name="accessibility_states" type="id"/>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
@@ -1461,6 +1468,7 @@
     <item name="parent_matrix" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
+    <item name="react_test_id" type="id"/>
     <item name="row_index_key" type="id"/>
     <item name="save_non_transition_alpha" type="id"/>
     <item name="save_overlay_view" type="id"/>
@@ -1499,6 +1507,8 @@
     <item name="transition_transform" type="id"/>
     <item name="up" type="id"/>
     <item name="view_offset_helper" type="id"/>
+    <item name="view_tag_instance_handle" type="id"/>
+    <item name="view_tag_native_id" type="id"/>
     <id name="view_tree_lifecycle_owner"/>
     <id name="view_tree_on_back_pressed_dispatcher_owner"/>
     <id name="view_tree_saved_state_registry_owner"/>
@@ -1556,9 +1566,14 @@
     <integer name="mtrl_view_gone">2</integer>
     <integer name="mtrl_view_invisible">1</integer>
     <integer name="mtrl_view_visible">0</integer>
+    <integer name="react_native_dev_server_port">8081</integer>
+    <integer name="react_native_inspector_proxy_port">8081</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <integer name="ucrop_progress_loading_anim_time">1500</integer>
+    <item name="launch_screen" type="layout">
+        @layout/launch_screen
+    </item>
     <plurals description="Plural form content description for number of new notifications [CHAR_LIMIT=NONE]" name="mtrl_badge_content_description">
     <item quantity="one"><ns2:g id="count">%d</ns2:g> new notification</item>
     <item quantity="other"><ns2:g id="count">%d</ns2:g> new notifications</item>
@@ -1595,15 +1610,46 @@
     <string name="action_go_forward">Go Forward</string>
     <string name="action_reload">Reload</string>
     <string name="action_share">Share</string>
+    <string name="alert_description" translatable="false">Alert</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
+    <string name="app_name">Jitsi Meet SDK</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string description="A description of an action that a user of an accessibility service can perform to expand a bottomsheet halfway to its full height. [CHAR LIMIT=25]" name="bottomsheet_action_expand_halfway">Expand halfway</string>
+    <string name="catalyst_change_bundle_location" project="catalyst" translatable="false">Change Bundle Location</string>
+    <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy\n</string>
+    <string name="catalyst_debug" project="catalyst" translatable="false">Debug</string>
+    <string name="catalyst_debug_chrome" project="catalyst" translatable="false">Debug with Chrome</string>
+    <string name="catalyst_debug_chrome_stop" project="catalyst" translatable="false">Stop Chrome Debugging</string>
+    <string name="catalyst_debug_connecting" project="catalyst" translatable="false">Connecting to debugger...</string>
+    <string name="catalyst_debug_error" project="catalyst" translatable="false">Failed to connect to debugger!</string>
+    <string name="catalyst_debug_nuclide" project="catalyst" translatable="false">Debug with Nuclide</string>
+    <string name="catalyst_debug_nuclide_error" project="catalyst" translatable="false">Failed to communicate with the bundler to enabling debugging with Nuclide.</string>
+    <string name="catalyst_debug_stop" project="catalyst" translatable="false">Stop Debugging</string>
+    <string name="catalyst_dismiss_button" project="catalyst" translatable="false">Dismiss\n(ESC)</string>
+    <string name="catalyst_heap_capture" project="catalyst" translatable="false">Capture Heap</string>
+    <string name="catalyst_hot_reloading" project="catalyst" translatable="false">Enable Fast Refresh</string>
+    <string name="catalyst_hot_reloading_auto_disable" project="catalyst" translatable="false">Disabling Fast Refresh because it requires a development bundle.</string>
+    <string name="catalyst_hot_reloading_auto_enable" project="catalyst" translatable="false">Switching to development bundle in order to enable Fast Refresh.</string>
+    <string name="catalyst_hot_reloading_stop" project="catalyst" translatable="false">Disable Fast Refresh</string>
+    <string name="catalyst_inspector" project="catalyst" translatable="false">Toggle Inspector</string>
+    <string name="catalyst_loading_from_url" project="catalyst" translatable="false">Loading from %1$s…</string>
+    <string name="catalyst_perf_monitor" project="catalyst" translatable="false">Show Perf Monitor</string>
+    <string name="catalyst_perf_monitor_stop" project="catalyst" translatable="false">Hide Perf Monitor</string>
+    <string name="catalyst_reload" project="catalyst" translatable="false">Reload</string>
+    <string name="catalyst_reload_button" project="catalyst" translatable="false">Reload\n(R,\u00A0R)</string>
+    <string name="catalyst_reload_error" project="catalyst" translatable="false">Failed to load bundle. Try restarting the bundler or reconnecting your device.</string>
+    <string name="catalyst_report_button" project="catalyst" translatable="false">Report</string>
+    <string name="catalyst_sample_profiler_disable" project="catalyst" translatable="false">Disable Sampling Profiler</string>
+    <string name="catalyst_sample_profiler_enable" project="catalyst" translatable="false">Enable Sampling Profiler</string>
+    <string name="catalyst_settings" project="catalyst" translatable="false">Settings</string>
+    <string name="catalyst_settings_title" project="catalyst" translatable="false">Debug Settings</string>
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="chip_text">Chip text</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
+    <string name="combobox_description" translatable="false">Combo Box</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns2:g id="app_name">%1$s</ns2:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
@@ -1624,7 +1670,17 @@
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="copy_toast_msg">Link copied to clipboard</string>
     <string name="default_web_client_id" translatable="false">460542692785-lud8otmq9c6tujdt49hilkqriamfcu9a.apps.googleusercontent.com</string>
+    <string name="dropbox_app_key"/>
     <string name="error_icon_content_description">Error</string>
+    <string name="exo_download_completed">Download completed</string>
+    <string name="exo_download_description">Download</string>
+    <string name="exo_download_downloading">Downloading</string>
+    <string name="exo_download_failed">Download failed</string>
+    <string name="exo_download_notification_channel_name">Downloads</string>
+    <string name="exo_download_paused">Downloads paused</string>
+    <string name="exo_download_paused_for_network">Downloads waiting for network</string>
+    <string name="exo_download_paused_for_wifi">Downloads waiting for WiFi</string>
+    <string name="exo_download_removing">Removing downloads</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
@@ -1636,10 +1692,14 @@
     <string name="google_app_id" translatable="false">1:460542692785:android:325699a1d06e86067c8190</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAoMcgj5pTlOKxeStexIZH5mwpyoOjenr4</string>
     <string name="google_storage_bucket" translatable="false">cattle-guru-60a54.appspot.com</string>
+    <string name="header_description" translatable="false">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
+    <string name="image_description" translatable="false">Image</string>
+    <string name="imagebutton_description" translatable="false">Button, Image</string>
     <string name="item_view_role_description">Tab</string>
     <string name="label">Label</string>
+    <string name="link_description" translatable="false">Link</string>
     <string name="m3_ref_typeface_brand_medium" translatable="false">sans-serif-medium</string>
     <string name="m3_ref_typeface_brand_regular" translatable="false">sans-serif</string>
     <string name="m3_ref_typeface_plain_medium" translatable="false">sans-serif-medium</string>
@@ -1675,7 +1735,10 @@
     <string description="Suffix for time in 12-hour standard, after noon. [CHAR_LIMIT=2]" name="material_timepicker_pm">PM</string>
     <string description="Title for the dialog with a time picker. [CHAR_LIMIT=32]" name="material_timepicker_select_time">Select time</string>
     <string name="material_timepicker_text_input_mode_description">Switch to text input mode for the time input.</string>
+    <string name="menu_description" translatable="false">Menu</string>
     <string name="menu_search">Search</string>
+    <string name="menubar_description" translatable="false">Menu Bar</string>
+    <string name="menuitem_description" translatable="false">Menu Item</string>
     <string description="Content description for new notification (no number count) [CHAR_LIMIT=NONE]" name="mtrl_badge_numberless_content_description">New notification</string>
     <string description="Content description for a close icon that lets the user remove content from the screen" name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
     <string description="Plural form content description for when the number of new notifications exceeds a maximum count[CHAR_LIMIT=NONE]" name="mtrl_exceed_max_badge_number_content_description" ns1:ignore="PluralsCandidate">More than <ns2:g example="999" id="maximum number">%1$d</ns2:g> new notifications</string>
@@ -1712,14 +1775,35 @@
     <string description="a11y string to indicate this button changes the input mode to a text field [CHAR_LIMIT=NONE]" name="mtrl_picker_toggle_to_text_input_mode">Switch to text input mode</string>
     <string description="a11y string to indicate this button switches the user to choosing a year [CHAR_LIMIT=NONE]" name="mtrl_picker_toggle_to_year_selection">Tap to switch to selecting a year</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
+    <string name="ongoing_notification_action_hang_up">Hang up</string>
+    <string name="ongoing_notification_action_mute">Mute</string>
+    <string name="ongoing_notification_action_unmute">Unmute</string>
+    <string name="ongoing_notification_text">You are currently in a meeting. Tap to return to it.</string>
+    <string name="ongoing_notification_title">Ongoing meeting</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="progressbar_description" translatable="false">Progress Bar</string>
     <string name="project_id" translatable="false">cattle-guru-60a54</string>
+    <string name="radiogroup_description" translatable="false">Radio Group</string>
+    <string name="rn_tab_description" translatable="false">Tab</string>
+    <string name="scrollbar_description" translatable="false">Scroll Bar</string>
+    <string name="search_description" translatable="false">Search Field</string>
     <string name="search_menu_title">Search</string>
+    <string name="spinbutton_description" translatable="false">Spin Button</string>
+    <string name="state_busy_description" translatable="false">busy</string>
+    <string name="state_collapsed_description" translatable="false">collapsed</string>
+    <string name="state_expanded_description" translatable="false">expanded</string>
+    <string name="state_mixed_description" translatable="false">mixed</string>
+    <string name="state_off_description" translatable="false">off</string>
+    <string name="state_on_description" translatable="false">on</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="summary_description" translatable="false">Summary</string>
+    <string name="tablist_description" translatable="false">Tab List</string>
+    <string name="timer_description" translatable="false">Timer</string>
+    <string name="toolbar_description" translatable="false">Tool Bar</string>
     <string name="ucrop_crop">Crop</string>
     <string name="ucrop_error_input_data_is_absent" translatable="false">Both input and output Uri must be specified</string>
     <string name="ucrop_label_edit_photo">Edit Photo</string>
@@ -1737,6 +1821,10 @@
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
     <style name="Animation.AppCompat.Tooltip" parent="Base.Animation.AppCompat.Tooltip"/>
+    <style name="Animation.Catalyst.RedBox" parent="@android:style/Animation">
+    <item name="android:windowEnterAnimation">@anim/catalyst_push_up_in</item>
+    <item name="android:windowExitAnimation">@anim/catalyst_push_up_out</item>
+  </style>
     <style name="Animation.Design.BottomSheetDialog" parent="Animation.AppCompat.Dialog">
     <item name="android:windowEnterAnimation">@anim/design_bottom_sheet_slide_in</item>
     <item name="android:windowExitAnimation">@anim/design_bottom_sheet_slide_out</item>
@@ -4772,6 +4860,12 @@
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
     <style name="Base.Widget.MaterialComponents.TextView" parent="Widget.AppCompat.TextView"/>
+    <style name="CalendarDatePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerStyle">@style/CalendarDatePickerStyle</item>
+    </style>
+    <style name="CalendarDatePickerStyle" ns1:targetApi="lollipop" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:datePickerMode">calendar</item>
+    </style>
     <style name="CardView" parent="Base.CardView">
     </style>
     <style name="CardView.Dark">
@@ -4780,6 +4874,20 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <style name="ClockTimePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+      <item name="android:timePickerStyle">@style/ClockTimePickerStyle</item>
+    </style>
+    <style name="ClockTimePickerStyle" ns1:targetApi="lollipop" parent="android:Widget.Material.Light.TimePicker">
+      <item name="android:timePickerMode">clock</item>
+    </style>
+    <style name="DialogAnimationFade">
+    <item name="android:windowEnterAnimation">@anim/catalyst_fade_in</item>
+    <item name="android:windowExitAnimation">@anim/catalyst_fade_out</item>
+  </style>
+    <style name="DialogAnimationSlide">
+    <item name="android:windowEnterAnimation">@anim/catalyst_slide_up</item>
+    <item name="android:windowExitAnimation">@anim/catalyst_slide_down</item>
+  </style>
     <style name="EmptyTheme"/>
     <style name="InAppWebViewTheme" parent="Theme.AppCompat">
 
@@ -5260,6 +5368,27 @@
     <style name="ShapeAppearanceOverlay.TopRightDifferentCornerSize">
     <item name="cornerSizeTopRight">20px</item>
   </style>
+    <style name="SpinnerDatePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerStyle">@style/SpinnerDatePickerStyle</item>
+    </style>
+    <style name="SpinnerDatePickerStyle" ns1:targetApi="lollipop" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+    <style name="SpinnerTimePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+      <item name="android:timePickerStyle">@style/SpinnerTimePickerStyle</item>
+    </style>
+    <style name="SpinnerTimePickerStyle" ns1:targetApi="lollipop" parent="android:Widget.Material.Light.TimePicker">
+      <item name="android:timePickerMode">spinner</item>
+    </style>
+    <style name="SplashScreen_Fullscreen" parent="SplashScreen_SplashTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="SplashScreen_SplashAnimation">
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+    <style name="SplashScreen_SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/SplashScreen_SplashAnimation</item>
+    </style>
     <style name="Test.ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day" parent="">
     <item name="cornerFamily">rounded</item>
     <item name="cornerSize">@dimen/test_mtrl_calendar_day_cornerSize</item>
@@ -5660,6 +5789,7 @@
     </style>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
     </style>
+    <style name="Theme"/>
     <style name="Theme.AppCompat" parent="Base.Theme.AppCompat"/>
     <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu"/>
     <style name="Theme.AppCompat.DayNight" parent="Theme.AppCompat.Light"/>
@@ -5690,6 +5820,14 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="Theme.Catalyst"/>
+    <style name="Theme.Catalyst.RedBox">
+    <item name="android:windowBackground">@color/catalyst_redbox_background</item>
+    <item name="android:windowAnimationStyle">@style/Animation.Catalyst.RedBox</item>
+    <item name="android:inAnimation">@android:anim/fade_in</item>
+    <item name="android:outAnimation">@android:anim/fade_out</item>
+    <item name="android:textColor">@android:color/white</item>
+  </style>
     <style name="Theme.Design" parent="Theme.AppCompat">
   </style>
     <style name="Theme.Design.BottomSheetDialog" parent="Theme.AppCompat.Dialog">
@@ -5711,6 +5849,19 @@
     <style name="Theme.Design.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
+  </style>
+    <style name="Theme.FullScreenDialog">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+    <style name="Theme.FullScreenDialogAnimatedFade" parent="Theme.FullScreenDialog">
+    <item name="android:windowAnimationStyle">@style/DialogAnimationFade</item>
+  </style>
+    <style name="Theme.FullScreenDialogAnimatedSlide" parent="Theme.FullScreenDialog">
+    <item name="android:windowAnimationStyle">@style/DialogAnimationSlide</item>
   </style>
     <style name="Theme.Material3.Dark" parent="Base.Theme.Material3.Dark"/>
     <style name="Theme.Material3.Dark.BottomSheetDialog" parent="Base.Theme.Material3.Dark.BottomSheetDialog"/>
@@ -5851,6 +6002,15 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+    <style name="Theme.ReactNative.AppCompat.Light" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="Theme.ReactNative.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.ReactNative.AppCompat.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
@@ -8095,6 +8255,16 @@
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
     </style>
+    <style name="redboxButton">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_margin">4dp</item>
+    <item name="android:background">@null</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">#dddddd</item>
+    <item name="android:textSize">14sp</item>
+  </style>
     <style name="ucrop_ImageViewWidgetIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -9803,6 +9973,145 @@
         <attr name="android:name"/>
         <attr name="android:tag"/>
     </declare-styleable>
+    <declare-styleable name="GenericDraweeHierarchy">
+
+    <!-- NOTE: If adding a new attr here, also add to SimpleDraweeView below -->
+    <eat-comment/>
+
+    <!-- Fade duration in milliseconds. -->
+    <attr format="integer" name="fadeDuration"/>
+
+    <!-- Aspect ratio (width / height) of the view, not necessarily of the images. -->
+    <attr format="float" name="viewAspectRatio"/>
+
+    <!-- Image branches -
+    Scale-type values must match those in GenericDraweeHierarchyInflater.getScaleTypeFromXml.
+    (GenericDraweeHierarchyInflater.java).
+    For drawables that should not be scaled, such as those with the android:tileMode
+    attribute set, use the value 'none'. -->
+
+    <!-- A drawable or color to be be used as a placeholder. -->
+    <attr format="reference" name="placeholderImage"/>
+    <!-- Scale type of the placeholder image. Ignored if placeholderImage is not specified. -->
+    <attr name="placeholderImageScaleType">
+      <enum name="none" value="-1"/>
+      <enum name="fitXY" value="0"/>
+      <enum name="fitStart" value="1"/>
+      <enum name="fitCenter" value="2"/>
+      <enum name="fitEnd" value="3"/>
+      <enum name="center" value="4"/>
+      <enum name="centerInside" value="5"/>
+      <enum name="centerCrop" value="6"/>
+      <enum name="focusCrop" value="7"/>
+      <enum name="fitBottomStart" value="8"/>
+    </attr>
+
+    <!-- A drawable to be be used as a retry image. -->
+    <attr format="reference" name="retryImage"/>
+    <!-- Scale type of the retry image. Ignored if retryImage is not specified. -->
+    <attr name="retryImageScaleType">
+      <enum name="none" value="-1"/>
+      <enum name="fitXY" value="0"/>
+      <enum name="fitStart" value="1"/>
+      <enum name="fitCenter" value="2"/>
+      <enum name="fitEnd" value="3"/>
+      <enum name="center" value="4"/>
+      <enum name="centerInside" value="5"/>
+      <enum name="centerCrop" value="6"/>
+      <enum name="focusCrop" value="7"/>
+      <enum name="fitBottomStart" value="8"/>
+    </attr>
+
+    <!-- A drawable to be be used as a failure image. -->
+    <attr format="reference" name="failureImage"/>
+    <!-- Scale type of the failure image. Ignored if failureImage is not specified. -->
+    <attr name="failureImageScaleType">
+      <enum name="none" value="-1"/>
+      <enum name="fitXY" value="0"/>
+      <enum name="fitStart" value="1"/>
+      <enum name="fitCenter" value="2"/>
+      <enum name="fitEnd" value="3"/>
+      <enum name="center" value="4"/>
+      <enum name="centerInside" value="5"/>
+      <enum name="centerCrop" value="6"/>
+      <enum name="focusCrop" value="7"/>
+      <enum name="fitBottomStart" value="8"/>
+    </attr>
+
+    <!-- A drawable to be be used as a progress bar. -->
+    <attr format="reference" name="progressBarImage"/>
+    <!-- Scale type of the progress bar. Ignored if progressBarImage is not specified. -->
+    <attr name="progressBarImageScaleType">
+      <enum name="none" value="-1"/>
+      <enum name="fitXY" value="0"/>
+      <enum name="fitStart" value="1"/>
+      <enum name="fitCenter" value="2"/>
+      <enum name="fitEnd" value="3"/>
+      <enum name="center" value="4"/>
+      <enum name="centerInside" value="5"/>
+      <enum name="centerCrop" value="6"/>
+      <enum name="focusCrop" value="7"/>
+      <enum name="fitBottomStart" value="8"/>
+    </attr>
+    <!-- Progress bar Auto Rotate interval in milliseconds -->
+    <attr format="integer" name="progressBarAutoRotateInterval"/>
+
+    <!-- Scale type of the actual image. -->
+    <attr name="actualImageScaleType">
+      <enum name="none" value="-1"/>
+      <enum name="fitXY" value="0"/>
+      <enum name="fitStart" value="1"/>
+      <enum name="fitCenter" value="2"/>
+      <enum name="fitEnd" value="3"/>
+      <enum name="center" value="4"/>
+      <enum name="centerInside" value="5"/>
+      <enum name="centerCrop" value="6"/>
+      <enum name="focusCrop" value="7"/>
+      <enum name="fitBottomStart" value="8"/>
+    </attr>
+
+    <!-- A drawable or color to be used as a background. -->
+    <attr format="reference" name="backgroundImage"/>
+
+    <!-- A drawable or color to be used as an overlay. -->
+    <attr format="reference" name="overlayImage"/>
+
+    <!-- A drawable or color to be used as a pressed-state-overlay -->
+    <attr format="reference" name="pressedStateOverlayImage"/>
+
+    <!-- Rounding params -
+    Declares attributes for rounding shape, mode and border. -->
+
+    <!-- Round as circle. -->
+    <attr format="boolean" name="roundAsCircle"/>
+    <!-- Rounded corner radius. Ignored if roundAsCircle is used. -->
+    <attr format="dimension" name="roundedCornerRadius"/>
+    <!-- Round the top-left corner. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundTopLeft"/>
+    <!-- Round the top-right corner. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundTopRight"/>
+    <!-- Round the bottom-right corner. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundBottomRight"/>
+    <!-- Round the bottom-left corner. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundBottomLeft"/>
+    <!-- Round the top-start edge. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundTopStart"/>
+    <!-- Round the top-end edge. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundTopEnd"/>
+    <!-- Round the bottom-start edge. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundBottomStart"/>
+    <!-- Round the bottom-end edge. Ignored if roundAsCircle is used. -->
+    <attr format="boolean" name="roundBottomEnd"/>
+    <!-- Round by overlying color. -->
+    <attr format="color" name="roundWithOverlayColor"/>
+    <!-- Rounding border width-->
+    <attr format="dimension" name="roundingBorderWidth"/>
+    <!-- Rounding border color -->
+    <attr format="color" name="roundingBorderColor"/>
+    <!-- Rounding border padding -->
+    <attr format="dimension" name="roundingBorderPadding"/>
+
+  </declare-styleable>
     <declare-styleable name="GradientColor">
         
         <attr name="android:startColor"/>
@@ -10827,6 +11136,97 @@
 
 <attr format="reference|string" name="scopeUris"/>
 </declare-styleable>
+    <declare-styleable name="SimpleDraweeView" parent="GenericDraweeHierarchy">
+
+    <!-- An image uri . -->
+    <attr format="string" name="actualImageUri"/>
+    <!-- An image reference -->
+    <attr format="reference" name="actualImageResource"/>
+
+    <!-- Attributes inherited from GenericDraweeHierarchy -->
+    <eat-comment/>
+
+    <!-- Fade duration in milliseconds. -->
+    <attr name="fadeDuration"/>
+
+    <!-- Aspect ratio (width / height) of the view, not necessarily of the images. -->
+    <attr name="viewAspectRatio"/>
+
+    <!-- Image branches -
+    Scale-type values must match those in GenericDraweeHierarchyInflater.getScaleTypeFromXml.
+    (GenericDraweeHierarchyInflater.java).
+    For drawables that should not be scaled, such as those with the android:tileMode
+    attribute set, use the value 'none'. -->
+
+    <!-- A drawable or color to be be used as a placeholder. -->
+    <attr name="placeholderImage"/>
+    <!-- Scale type of the placeholder image. Ignored if placeholderImage is not specified. -->
+    <attr name="placeholderImageScaleType"/>
+
+    <!-- A drawable to be be used as a retry image. -->
+    <attr name="retryImage"/>
+    <!-- Scale type of the retry image. Ignored if retryImage is not specified. -->
+    <attr name="retryImageScaleType"/>
+
+    <!-- A drawable to be be used as a failure image. -->
+    <attr name="failureImage"/>
+    <!-- Scale type of the failure image. Ignored if failureImage is not specified. -->
+    <attr name="failureImageScaleType"/>
+
+
+    <!-- A drawable to be be used as a progress bar. -->
+    <attr name="progressBarImage"/>
+    <!-- Scale type of the progress bar. Ignored if progressBarImage is not specified. -->
+    <attr name="progressBarImageScaleType"/>
+
+    <!-- Progress bar Auto Rotate interval in milliseconds -->
+    <attr name="progressBarAutoRotateInterval"/>
+
+    <!-- Scale type of the actual image. -->
+    <attr name="actualImageScaleType"/>
+
+    <!-- A drawable or color to be used as a background. -->
+    <attr name="backgroundImage"/>
+
+    <!-- A drawable or color to be used as an overlay. -->
+    <attr name="overlayImage"/>
+
+    <!-- A drawable or color to be used as a pressed-state-overlay -->
+    <attr name="pressedStateOverlayImage"/>
+
+    <!-- Rounding params -
+    Declares attributes for rounding shape, mode and border. -->
+
+    <!-- Round as circle. -->
+    <attr name="roundAsCircle"/>
+    <!-- Rounded corner radius. Ignored if roundAsCircle is used. -->
+    <attr name="roundedCornerRadius"/>
+    <!-- Round the top-left corner. Ignored if roundAsCircle is used. -->
+    <attr name="roundTopLeft"/>
+    <!-- Round the top-right corner. Ignored if roundAsCircle is used. -->
+    <attr name="roundTopRight"/>
+    <!-- Round the bottom-right corner. Ignored if roundAsCircle is used. -->
+    <attr name="roundBottomRight"/>
+    <!-- Round the bottom-left corner. Ignored if roundAsCircle is used. -->
+    <attr name="roundBottomLeft"/>
+    <!-- Round the top-start edge. Ignored if roundAsCircle is used. -->
+    <attr name="roundTopStart"/>
+    <!-- Round the top-end edge. Ignored if roundAsCircle is used. -->
+    <attr name="roundTopEnd"/>
+    <!-- Round the bottom-start edge. Ignored if roundAsCircle is used. -->
+    <attr name="roundBottomStart"/>
+    <!-- Round the bottom-end edge. Ignored if roundAsCircle is used. -->
+    <attr name="roundBottomEnd"/>
+    <!-- Round by overlying color. -->
+    <attr name="roundWithOverlayColor"/>
+    <!-- Rounding border width-->
+    <attr name="roundingBorderWidth"/>
+    <!-- Rounding border color -->
+    <attr name="roundingBorderColor"/>
+    <!-- Rounding border padding -->
+    <attr name="roundingBorderPadding"/>
+
+  </declare-styleable>
     <declare-styleable name="Slider">
     <attr name="android:value"/>
     <attr name="android:valueFrom"/>

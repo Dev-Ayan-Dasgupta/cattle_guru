@@ -18,6 +18,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -142,11 +143,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: indicators(
                               carouselImageListHome.length, _currentCarouselIndex),
                           ),
-                          SizedBox(height: 2.h,),
+                          SizedBox(height: 1.h,),
                           // InkWell(
                           //   onTap: (){
-                          //     print(products.length);
-                          //     print(products);
+                          //     print(productsKhal.length);
+                          //     print(productsKhal);
+                          //     print(khalProducts.length);
+                          //     print(khalProducts);
                           //   },
                           //   child: Text("Products")),
                           // SizedBox(height: 2.h,),
@@ -158,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(height: 1.h,),
                           Container(
                             width: 100.w,
-                            height: 30.w,
+                            height: 14.75.h,
                             color: primaryLight,
                             child: Row(
                               children: [
@@ -200,16 +203,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 2.h,),
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.w),
-                            child: Text(isEnglish ? "Products" : "प्रोडक्ट", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
-                          ),
-                          // CustomTextLabel(width: 20.w, height: 6.w, text: isEnglish ? "Products" : "प्रोडक्ट", color: primary, fontColor: white),
-                          SizedBox(height: 1.h,),
+                          // SizedBox(height: 2.h,),
+                          // Padding(
+                          //   padding: EdgeInsets.only(left: 5.w),
+                          //   child: Text(isEnglish ? "Products" : "प्रोडक्ट", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          // ),
+                          // // CustomTextLabel(width: 20.w, height: 6.w, text: isEnglish ? "Products" : "प्रोडक्ट", color: primary, fontColor: white),
+                          // SizedBox(height: 1.h,),
                           SizedBox(
-                            width: 100.w,
-                            height: 83.w,
+                            width: 0.w,
+                            height: 0.w,
                             // color: primaryLight,
                             child: Row(
                               children: [
@@ -240,30 +243,208 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 break;
                                               }
                                             }
+                                            return SizedBox();
+                                            // return ProductTile(
+                                            //   onTap: (){
+                                            //     Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                                            //     ProductScreen(
+                                            //       product: products[index2], 
+                                            //       isCarted: productIsCarted, 
+                                            //       id: products[index2]['prodId'],
+                                            //       prodQty: prodQty,
+                                            //     )));
+                                            //   },
+                                            //   width: 40.w, 
+                                            //   height: 40.w, 
+                                            //   imgUrl: products[index2]['imgUrls'][0],
+                                            //   title: products[index2]['name'], 
+                                            //   price: products[index2]['price'].toDouble(), 
+                                            //   description: products[index2]['description'], 
+                                            //   onAddToCart: () async {
+                                            //     // print(snapshot.data!.docs.length);
+                                            //     if(currUserId != null) {
+                                            //       prodQty++;
+                                            //       cart.add(
+                                            //         {
+                                            //           'product': products[index2],
+                                            //           'qty': 1
+                                            //         }
+                                            //       );
+                                            //       productIsCarted = true;
+                                            //       await FirebaseFirestore.instance.collection('customers').doc(currUserId).update(
+                                            //         {
+                                            //           'cart': cart,
+                                            //         });
+                                            //       await FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                            //       update({
+                                            //         'cartValue': FieldValue.increment(products[index2]['price']),
+                                            //       });
+                                            //     }
+                                            //     setState(() {
+                                                  
+                                            //     });
+                                            //   },
+                                            //   isCarted: productIsCarted,
+                                            //   onAdd: (){
+                                            //     if(currUserId != null && prodQty < products[index2]['units']){
+                                            //       prodQty++;
+
+                                            //       FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //         'cartValue': FieldValue.increment(products[index2]['price']),
+                                            //       });
+                                                  
+                                            //       for(int i = 0; i < cart.length; i++){
+                                            //         if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                            //           cart[i]['qty']++;
+                                            //           break;
+                                            //         }
+                                            //       }
+
+                                            //       FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //         'cart': cart,
+                                            //       });
+                                            //     }
+                                            //   },
+                                            //   onSubtract: (){
+                                                
+                                            //     if(currUserId != null){
+
+                                            //       if(prodQty > 1){
+                                                    
+                                            //         prodQty--;
+                                                  
+                                            //         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //           'cartValue': FieldValue.increment(-(products[index2]['price'])),
+                                            //         });
+
+                                            //         for(int i = 0; i < cart.length; i++){
+                                            //           if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                            //             cart[i]['qty']--;
+                                            //             break;
+                                            //           }
+                                            //         }
+
+                                            //         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //           'cart': cart,
+                                            //         });
+
+                                            //       } else {
+                                                    
+                                            //         prodQty--;
+                                                  
+                                            //         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //           'cartValue': FieldValue.increment(-(products[index2]['price'])),
+                                            //         }); 
+
+                                            //         for(int i = 0; i < cart.length; i++){
+                                            //           if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                            //             cart.remove(cart[i]);
+                                            //             break;
+                                            //           }
+                                            //         }
+
+                                            //         FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                            //           'cart': cart,
+                                            //         });
+
+                                            //         productIsCarted = false;
+
+                                            //         setState(() {
+                                                      
+                                            //         });
+
+                                            //       }
+                                                  
+                                            //     }
+
+                                            //   },
+                                            //   qty: prodQty,
+                                            //   onBuyNow: (){
+                                            //     buyNowValue = products[index2]['price'].toDouble();
+                                            //     Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: products[index2])));
+                                            //   },
+                                            // );
+                                          }
+                                        );
+                                      }
+                                      if (snapshot.hasError) {
+                                        return const Text('Error');
+                                      } else {
+                                        return const CircularProgressIndicator();
+                                      }
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          
+                          SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Khal" : "खल", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          SizedBox(height: 1.h),
+                          SizedBox(
+                            width: 100.w,
+                            height: 83.w,
+                            // color: primaryLight,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: StreamBuilder(
+                                    stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
+                                    builder: (context, snapshot) {
+                                      if(snapshot.hasData){
+                                        // productsKhal.clear();
+                                        khalProducts.clear();
+                                        productsKhal = snapshot.data!.docs;
+                                        for(int i = 0; i < productsKhal.length; i++){
+                                          if(productsKhal[i]['category'] == "Khal"){
+                                            khalProducts.add(Map.from(productsKhal[i].data()));
+                                          }
+                                        }
+                                        return ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: khalProducts.length,
+                                          itemBuilder: (context, index2){
+                                            
+                                            // products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            
+                                            bool productIsCarted = false;
+                                            int prodQty = 0;
+                                            
+                                            for(int i = 0; i < cart.length; i++){
+                                              if(khalProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                productIsCarted = true;
+                                                prodQty = cart[i]['qty'];
+                                                break;
+                                              }
+                                            }
 
                                             return ProductTile(
                                               onTap: (){
                                                 Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                                 ProductScreen(
-                                                  product: products[index2], 
+                                                  product: khalProducts[index2], 
                                                   isCarted: productIsCarted, 
-                                                  id: products[index2]['prodId'],
+                                                  id: khalProducts[index2]['prodId'],
                                                   prodQty: prodQty,
                                                 )));
                                               },
                                               width: 40.w, 
                                               height: 40.w, 
-                                              imgUrl: products[index2]['imgUrls'][0],
-                                              title: products[index2]['name'], 
-                                              price: products[index2]['price'].toDouble(), 
-                                              description: products[index2]['description'], 
+                                              imgUrl: khalProducts[index2]['imgUrls'][0],
+                                              title: khalProducts[index2]['name'], 
+                                              price: khalProducts[index2]['price'].toDouble(), 
+                                              description: khalProducts[index2]['description'], 
                                               onAddToCart: () async {
                                                 // print(snapshot.data!.docs.length);
                                                 if(currUserId != null) {
                                                   prodQty++;
                                                   cart.add(
                                                     {
-                                                      'product': products[index2],
+                                                      'product': khalProducts[index2],
                                                       'qty': 1
                                                     }
                                                   );
@@ -274,7 +455,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     });
                                                   await FirebaseFirestore.instance.collection('customers').doc(currUserId).
                                                   update({
-                                                    'cartValue': FieldValue.increment(products[index2]['price']),
+                                                    'cartValue': FieldValue.increment(khalProducts[index2]['price']),
                                                   });
                                                 }
                                                 setState(() {
@@ -283,15 +464,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                               },
                                               isCarted: productIsCarted,
                                               onAdd: (){
-                                                if(currUserId != null && prodQty < products[index2]['units']){
+                                                if(currUserId != null && prodQty < khalProducts[index2]['units']){
                                                   prodQty++;
 
                                                   FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                                    'cartValue': FieldValue.increment(products[index2]['price']),
+                                                    'cartValue': FieldValue.increment(khalProducts[index2]['price']),
                                                   });
                                                   
                                                   for(int i = 0; i < cart.length; i++){
-                                                    if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                    if(khalProducts[index2]['prodId'] == cart[i]['product']['prodId']){
                                                       cart[i]['qty']++;
                                                       break;
                                                     }
@@ -311,11 +492,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     prodQty--;
                                                   
                                                     FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                                      'cartValue': FieldValue.increment(-(products[index2]['price'])),
+                                                      'cartValue': FieldValue.increment(-(khalProducts[index2]['price'])),
                                                     });
 
                                                     for(int i = 0; i < cart.length; i++){
-                                                      if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                      if(khalProducts[index2]['prodId'] == cart[i]['product']['prodId']){
                                                         cart[i]['qty']--;
                                                         break;
                                                       }
@@ -330,11 +511,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     prodQty--;
                                                   
                                                     FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                                                      'cartValue': FieldValue.increment(-(products[index2]['price'])),
+                                                      'cartValue': FieldValue.increment(-(khalProducts[index2]['price'])),
                                                     }); 
 
                                                     for(int i = 0; i < cart.length; i++){
-                                                      if(products[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                      if(khalProducts[index2]['prodId'] == cart[i]['product']['prodId']){
                                                         cart.remove(cart[i]);
                                                         break;
                                                       }
@@ -357,8 +538,547 @@ class _HomeScreenState extends State<HomeScreen> {
                                               },
                                               qty: prodQty,
                                               onBuyNow: (){
-                                                buyNowValue = products[index2]['price'].toDouble();
-                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: products[index2])));
+                                                buyNowValue = khalProducts[index2]['price'].toDouble();
+                                                auxBuyNowValue = khalProducts[index2]['price'].toDouble();
+                                                buyNowProduct = khalProducts[index2];
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: khalProducts[index2])));
+                                              },
+                                            );
+                                          }
+                                        );
+                                      }
+                                      if (snapshot.hasError) {
+                                        return const Text('Error');
+                                      } else {
+                                        return const CircularProgressIndicator();
+                                      }
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Binola" : "बिनोला", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          SizedBox(height: 1.h),
+                          SizedBox(
+                            width: 100.w,
+                            height: 83.w,
+                            // color: primaryLight,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: StreamBuilder(
+                                    stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
+                                    builder: (context, snapshot) {
+                                      if(snapshot.hasData){
+                                        // productsKhal.clear();
+                                        binolaProducts.clear();
+                                        productsBinola = snapshot.data!.docs;
+                                        for(int i = 0; i < productsBinola.length; i++){
+                                          if(productsBinola[i]['category'] == "Binola"){
+                                            binolaProducts.add(Map.from(productsBinola[i].data()));
+                                          }
+                                        }
+                                        return ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: binolaProducts.length,
+                                          itemBuilder: (context, index2){
+                                            
+                                            // products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            
+                                            bool productIsCarted = false;
+                                            int prodQty = 0;
+                                            
+                                            for(int i = 0; i < cart.length; i++){
+                                              if(binolaProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                productIsCarted = true;
+                                                prodQty = cart[i]['qty'];
+                                                break;
+                                              }
+                                            }
+
+                                            return ProductTile(
+                                              onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                                                ProductScreen(
+                                                  product: binolaProducts[index2], 
+                                                  isCarted: productIsCarted, 
+                                                  id: binolaProducts[index2]['prodId'],
+                                                  prodQty: prodQty,
+                                                )));
+                                              },
+                                              width: 40.w, 
+                                              height: 40.w, 
+                                              imgUrl: binolaProducts[index2]['imgUrls'][0],
+                                              title: binolaProducts[index2]['name'], 
+                                              price: binolaProducts[index2]['price'].toDouble(), 
+                                              description: binolaProducts[index2]['description'], 
+                                              onAddToCart: () async {
+                                                // print(snapshot.data!.docs.length);
+                                                if(currUserId != null) {
+                                                  prodQty++;
+                                                  cart.add(
+                                                    {
+                                                      'product': binolaProducts[index2],
+                                                      'qty': 1
+                                                    }
+                                                  );
+                                                  productIsCarted = true;
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).update(
+                                                    {
+                                                      'cart': cart,
+                                                    });
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                                  update({
+                                                    'cartValue': FieldValue.increment(binolaProducts[index2]['price']),
+                                                  });
+                                                }
+                                                setState(() {
+                                                  
+                                                });
+                                              },
+                                              isCarted: productIsCarted,
+                                              onAdd: (){
+                                                if(currUserId != null && prodQty < binolaProducts[index2]['units']){
+                                                  prodQty++;
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cartValue': FieldValue.increment(binolaProducts[index2]['price']),
+                                                  });
+                                                  
+                                                  for(int i = 0; i < cart.length; i++){
+                                                    if(binolaProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                      cart[i]['qty']++;
+                                                      break;
+                                                    }
+                                                  }
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cart': cart,
+                                                  });
+                                                }
+                                              },
+                                              onSubtract: (){
+                                                
+                                                if(currUserId != null){
+
+                                                  if(prodQty > 1){
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(binolaProducts[index2]['price'])),
+                                                    });
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(binolaProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart[i]['qty']--;
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                  } else {
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(binolaProducts[index2]['price'])),
+                                                    }); 
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(binolaProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart.remove(cart[i]);
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                    productIsCarted = false;
+
+                                                    setState(() {
+                                                      
+                                                    });
+
+                                                  }
+                                                  
+                                                }
+
+                                              },
+                                              qty: prodQty,
+                                              onBuyNow: (){
+                                                buyNowValue = binolaProducts[index2]['price'].toDouble();
+                                                auxBuyNowValue = binolaProducts[index2]['price'].toDouble();
+                                                buyNowProduct = binolaProducts[index2];
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: binolaProducts[index2])));
+                                              },
+                                            );
+                                          }
+                                        );
+                                      }
+                                      if (snapshot.hasError) {
+                                        return const Text('Error');
+                                      } else {
+                                        return const CircularProgressIndicator();
+                                      }
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Feed" : "चारा", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          SizedBox(height: 1.h),
+                          SizedBox(
+                            width: 100.w,
+                            height: 83.w,
+                            // color: primaryLight,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: StreamBuilder(
+                                    stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
+                                    builder: (context, snapshot) {
+                                      if(snapshot.hasData){
+                                        // productsKhal.clear();
+                                        feedProducts.clear();
+                                        productsFeed = snapshot.data!.docs;
+                                        for(int i = 0; i < productsFeed.length; i++){
+                                          if(productsFeed[i]['category'] == "Feed"){
+                                            feedProducts.add(Map.from(productsFeed[i].data()));
+                                          }
+                                        }
+                                        return ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: feedProducts.length,
+                                          itemBuilder: (context, index2){
+                                            
+                                            // products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            
+                                            bool productIsCarted = false;
+                                            int prodQty = 0;
+                                            
+                                            for(int i = 0; i < cart.length; i++){
+                                              if(feedProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                productIsCarted = true;
+                                                prodQty = cart[i]['qty'];
+                                                break;
+                                              }
+                                            }
+
+                                            return ProductTile(
+                                              onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                                                ProductScreen(
+                                                  product: feedProducts[index2], 
+                                                  isCarted: productIsCarted, 
+                                                  id: feedProducts[index2]['prodId'],
+                                                  prodQty: prodQty,
+                                                )));
+                                              },
+                                              width: 40.w, 
+                                              height: 40.w, 
+                                              imgUrl: feedProducts[index2]['imgUrls'][0],
+                                              title: feedProducts[index2]['name'], 
+                                              price: feedProducts[index2]['price'].toDouble(), 
+                                              description: feedProducts[index2]['description'], 
+                                              onAddToCart: () async {
+                                                // print(snapshot.data!.docs.length);
+                                                if(currUserId != null) {
+                                                  prodQty++;
+                                                  cart.add(
+                                                    {
+                                                      'product': feedProducts[index2],
+                                                      'qty': 1
+                                                    }
+                                                  );
+                                                  productIsCarted = true;
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).update(
+                                                    {
+                                                      'cart': cart,
+                                                    });
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                                  update({
+                                                    'cartValue': FieldValue.increment(feedProducts[index2]['price']),
+                                                  });
+                                                }
+                                                setState(() {
+                                                  
+                                                });
+                                              },
+                                              isCarted: productIsCarted,
+                                              onAdd: (){
+                                                if(currUserId != null && prodQty < feedProducts[index2]['units']){
+                                                  prodQty++;
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cartValue': FieldValue.increment(feedProducts[index2]['price']),
+                                                  });
+                                                  
+                                                  for(int i = 0; i < cart.length; i++){
+                                                    if(feedProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                      cart[i]['qty']++;
+                                                      break;
+                                                    }
+                                                  }
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cart': cart,
+                                                  });
+                                                }
+                                              },
+                                              onSubtract: (){
+                                                
+                                                if(currUserId != null){
+
+                                                  if(prodQty > 1){
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(feedProducts[index2]['price'])),
+                                                    });
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(feedProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart[i]['qty']--;
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                  } else {
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(feedProducts[index2]['price'])),
+                                                    }); 
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(feedProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart.remove(cart[i]);
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                    productIsCarted = false;
+
+                                                    setState(() {
+                                                      
+                                                    });
+
+                                                  }
+                                                  
+                                                }
+
+                                              },
+                                              qty: prodQty,
+                                              onBuyNow: (){
+                                                buyNowValue = feedProducts[index2]['price'].toDouble();
+                                                auxBuyNowValue = feedProducts[index2]['price'].toDouble();
+                                                buyNowProduct = feedProducts[index2];
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: feedProducts[index2])));
+                                              },
+                                            );
+                                          }
+                                        );
+                                      }
+                                      if (snapshot.hasError) {
+                                        return const Text('Error');
+                                      } else {
+                                        return const CircularProgressIndicator();
+                                      }
+                                    }
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.h,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: Text(isEnglish ? "Silage" : "सिलेज", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
+                          ),
+                          SizedBox(height: 1.h),
+                          SizedBox(
+                            width: 100.w,
+                            height: 83.w,
+                            // color: primaryLight,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: StreamBuilder(
+                                    stream: FirebaseFirestore.instance.collection('cattle-feed').snapshots(),
+                                    builder: (context, snapshot) {
+                                      if(snapshot.hasData){
+                                        // productsKhal.clear();
+                                        silageProducts.clear();
+                                        productsSilage = snapshot.data!.docs;
+                                        for(int i = 0; i < productsSilage.length; i++){
+                                          if(productsSilage[i]['category'] == "Silage"){
+                                            silageProducts.add(Map.from(productsSilage[i].data()));
+                                          }
+                                        }
+                                        return ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: silageProducts.length,
+                                          itemBuilder: (context, index2){
+                                            
+                                            // products.add(Map.from(snapshot.data!.docs[index2].data()));
+                                            
+                                            bool productIsCarted = false;
+                                            int prodQty = 0;
+                                            
+                                            for(int i = 0; i < cart.length; i++){
+                                              if(silageProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                productIsCarted = true;
+                                                prodQty = cart[i]['qty'];
+                                                break;
+                                              }
+                                            }
+
+                                            return ProductTile(
+                                              onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                                                ProductScreen(
+                                                  product: silageProducts[index2], 
+                                                  isCarted: productIsCarted, 
+                                                  id: silageProducts[index2]['prodId'],
+                                                  prodQty: prodQty,
+                                                )));
+                                              },
+                                              width: 40.w, 
+                                              height: 40.w, 
+                                              imgUrl: silageProducts[index2]['imgUrls'][0],
+                                              title: silageProducts[index2]['name'], 
+                                              price: silageProducts[index2]['price'].toDouble(), 
+                                              description: silageProducts[index2]['description'], 
+                                              onAddToCart: () async {
+                                                // print(snapshot.data!.docs.length);
+                                                if(currUserId != null) {
+                                                  prodQty++;
+                                                  cart.add(
+                                                    {
+                                                      'product': silageProducts[index2],
+                                                      'qty': 1
+                                                    }
+                                                  );
+                                                  productIsCarted = true;
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).update(
+                                                    {
+                                                      'cart': cart,
+                                                    });
+                                                  await FirebaseFirestore.instance.collection('customers').doc(currUserId).
+                                                  update({
+                                                    'cartValue': FieldValue.increment(silageProducts[index2]['price']),
+                                                  });
+                                                }
+                                                setState(() {
+                                                  
+                                                });
+                                              },
+                                              isCarted: productIsCarted,
+                                              onAdd: (){
+                                                if(currUserId != null && prodQty < silageProducts[index2]['units']){
+                                                  prodQty++;
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cartValue': FieldValue.increment(silageProducts[index2]['price']),
+                                                  });
+                                                  
+                                                  for(int i = 0; i < cart.length; i++){
+                                                    if(silageProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                      cart[i]['qty']++;
+                                                      break;
+                                                    }
+                                                  }
+
+                                                  FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                    'cart': cart,
+                                                  });
+                                                }
+                                              },
+                                              onSubtract: (){
+                                                
+                                                if(currUserId != null){
+
+                                                  if(prodQty > 1){
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(silageProducts[index2]['price'])),
+                                                    });
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(silageProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart[i]['qty']--;
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                  } else {
+                                                    
+                                                    prodQty--;
+                                                  
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cartValue': FieldValue.increment(-(silageProducts[index2]['price'])),
+                                                    }); 
+
+                                                    for(int i = 0; i < cart.length; i++){
+                                                      if(silageProducts[index2]['prodId'] == cart[i]['product']['prodId']){
+                                                        cart.remove(cart[i]);
+                                                        break;
+                                                      }
+                                                    }
+
+                                                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                                                      'cart': cart,
+                                                    });
+
+                                                    productIsCarted = false;
+
+                                                    setState(() {
+                                                      
+                                                    });
+
+                                                  }
+                                                  
+                                                }
+
+                                              },
+                                              qty: prodQty,
+                                              onBuyNow: (){
+                                                buyNowValue = silageProducts[index2]['price'].toDouble();
+                                                auxBuyNowValue = silageProducts[index2]['price'].toDouble();
+                                                buyNowProduct = silageProducts[index2];
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: silageProducts[index2])));
                                               },
                                             );
                                           }
@@ -429,52 +1149,96 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: SnakeNavigationBar.color(
+        backgroundColor: primaryLight,
+        behaviour: SnakeBarBehaviour.pinned,
+        snakeShape: SnakeShape.circle,
+        // shape: ShapeBorder.lerp(a, b, t),
+        padding: EdgeInsets.all(0),
+        snakeViewColor: Colors.green,
+        selectedItemColor: white,
+        unselectedItemColor: primary,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
         currentIndex: 0,
         onTap: (index){
           NavbarTabs.navigateToTab(context, index);
         },
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: orangeLight,
-        unselectedItemColor: white,
-        selectedLabelStyle: globalTextStyle,
-        unselectedLabelStyle: globalTextStyle,
-        items: 
-          [
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.home_filled,
-              ),
-              label: isEnglish ? "Home" : "घर",
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_filled,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.local_shipping_rounded,
-              ),
-              label: isEnglish ? "Feed" : "चारा",
+            label: isEnglish ? "Home" : "घर",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.local_shipping_rounded,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.people_rounded,
-              ),
-              label: isEnglish ? "Community" : "समुदाय",
+            label: isEnglish ? "Feed" : "चारा",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.people_rounded,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.shopping_cart_rounded,
-              ),
-              label: isEnglish ? "Cart" : "कार्ट",
-            ),     
-        ]
-        ,
-        backgroundColor: primary,
+            label: isEnglish ? "Community" : "समुदाय",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart_rounded,
+            ),
+            label: isEnglish ? "Cart" : "कार्ट",
+          ),    
+        ],
       ),
+      
+      // BottomNavigationBar(
+      //   type: BottomNavigationBarType.fixed,
+      //   currentIndex: 0,
+      //   onTap: (index){
+      //     NavbarTabs.navigateToTab(context, index);
+      //   },
+      //   showSelectedLabels: true,
+      //   showUnselectedLabels: true,
+      //   selectedItemColor: orangeLight,
+      //   unselectedItemColor: white,
+      //   selectedLabelStyle: globalTextStyle,
+      //   unselectedLabelStyle: globalTextStyle,
+        
+      //   items: 
+      //     [
+      //       BottomNavigationBarItem(
+      //         backgroundColor: primary,
+      //         icon: Icon(
+      //           Icons.home_filled,
+      //         ),
+      //         label: isEnglish ? "Home" : "घर",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         backgroundColor: primary,
+      //         icon: Icon(
+      //           Icons.local_shipping_rounded,
+      //         ),
+      //         label: isEnglish ? "Feed" : "चारा",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         backgroundColor: primary,
+      //         icon: Icon(
+      //           Icons.people_rounded,
+      //         ),
+      //         label: isEnglish ? "Community" : "समुदाय",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         backgroundColor: primary,
+      //         icon: Icon(
+      //           Icons.shopping_cart_rounded,
+      //         ),
+      //         label: isEnglish ? "Cart" : "कार्ट",
+      //       ),     
+      //   ]
+      //   ,
+      //   backgroundColor: primary,
+      // ),
     );
   }
 }

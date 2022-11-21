@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/helper_functions/launch_whatsapp.dart';
@@ -9,6 +12,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:http/http.dart'as http;
 
 class PaymentOptionsScreen extends StatefulWidget {
   const PaymentOptionsScreen({super.key});
@@ -22,6 +27,101 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
   bool isCod = true;
 
   final String? currUserId = FirebaseAuth.instance.currentUser?.uid;
+
+  var _razorpay = Razorpay();
+
+  int? amount;
+  final _random = Random();
+
+  @override
+  void initState() { 
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+    print("Payment Done");
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    print("Payment Failed");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+  }
+
+  Future<String?> generateRzpOrderId() async {
+
+    try {
+      String basicAuth = 'Basic ${base64Encode(utf8.encode('${razorpayId}:${razorpaySecret}'))}';
+
+    Map<String, dynamic> orderData = {
+      "amount": ((cartValue-300-200)*100).toInt(),
+      "currency": "INR",
+      'receipt': 'CG_${1000 + _random.nextInt(9999 - 1000)}'
+    };
+
+    var res = await http.post(
+      Uri.https("api.razorpay.com", "v1/orders"),
+      headers: <String, String>{
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json'
+      },
+      body: json.encode(orderData),
+    );
+
+    print(res.body);
+
+    if ((json.decode(res.body)).containsKey('error')) {
+      return null;
+    } else {
+      return (json.decode(res.body))['id'];
+    } 
+    } catch (e) {
+      print(e);
+      throw e; 
+    }
+    
+  }
+
+  Future openGateWay() async {
+    generateRzpOrderId().then((value){
+      var options = {
+      'key': 'rzp_live_hUk8LTeESrQ6lL',
+      'amount': (buyNowValue*100).toInt(), //in the smallest currency sub-unit.
+      'currency': "INR",
+      'name': 'Cattle GURU',
+      'description': 'Online purchase of cattle food',
+      'order_id': value, // Generate order_id using Orders API
+      'timeout': 300, // in seconds
+      'prefill': {
+        'contact': phoneNumber
+      }
+    };
+
+    try {
+      _razorpay.open(options); 
+    } catch (e) {
+      print(e); 
+    }
+    });
+    
+  }
+
+  Future<void> rzpOpen(var opt) async {
+    return _razorpay.open(opt);
+  }
+
+  @override
+  void dispose() { 
+    _razorpay.clear();
+    super.dispose(); // Removes all listeners
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,9 +216,31 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
               Column(
                 children: [
                   CustomButton(width: 90.w, height: 15.w, color: primary, 
-                  onTap: (){
+                  onTap: () async {
+
+                    if(isCod == false){
+                    // var options = {
+                    //   'key': '<YOUR_KEY_ID>',
+                    //   'amount': ((cartValue-300-200)*100).toInt(), //in the smallest currency sub-unit.
+                    //   'currency': "INR",
+                    //   'name': 'Cattle GURU',
+                    //   'description': 'Online purchase of cattle food',
+                    //   'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
+                    //   'timeout': 300,
+                    //   'prefill': {
+                    //     'contact': phoneNumber,
+                    //   } // in seconds
+                    // };
+
+                    // // _razorpay.open(options);
+                    // await rzpOpen(options);
+
+                    await openGateWay();
+                  }
+                
                     //Add current cart to Current Orders array
                     currentOrders.add({
+                      'orderId': Random().nextInt(1000),
                       'order': cart,
                       'date': DateTime.now(),
                       'amount': cartValue - 200 - 300

@@ -5,6 +5,7 @@ import 'package:cattle_guru/models/order_model.dart';
 import 'package:cattle_guru/models/product_categories.dart';
 import 'package:cattle_guru/models/product_details.dart';
 import 'package:cattle_guru/models/room_tile_model.dart';
+import 'package:cattle_guru/models/short_video.dart';
 import 'package:cattle_guru/models/video_thumbnails.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,6 +54,7 @@ List videoThumbnails = [
 //PRODUCT TILES
 List productTiles = [
   ProductDetail(
+    category: "Feed",
     imgUrls: ["./assets/images/products/product_1.png"], 
     name: "GURU's Pashu Ahar", 
     price: 399, 
@@ -68,6 +70,7 @@ List productTiles = [
     deliveryDays: 2,
   ),
   ProductDetail(
+    category: "Khal",
     imgUrls: ["./assets/images/products/product_1.png"], 
     name: "GURU's Pashu Ahar", 
     price: 750, 
@@ -83,6 +86,7 @@ List productTiles = [
     deliveryDays: 3,
   ),
   ProductDetail(
+    category: "Binola",
     imgUrls: ["./assets/images/products/product_1.png"], 
     name: "GURU's Pashu Ahar", 
     price: 650, 
@@ -178,6 +182,7 @@ List addresses = [];
 Map<String, dynamic> firestoreCurrentAddress = {};
 List currentOrders = [];
 double buyNowValue = 0;
+double auxBuyNowValue = 0;
 
 String categoryAux = "";
 
@@ -284,4 +289,28 @@ List podcastTiles = [
     podcastDuration: 938, 
     onPlay: (){},
   ),
+];
+
+List<Map<String, dynamic>> khalProducts = [];
+List<Map<String, dynamic>> binolaProducts = [];
+List<Map<String, dynamic>> feedProducts = [];
+List<Map<String, dynamic>> silageProducts = [];
+
+List productsKhal = [];
+List productsBinola = [];
+List productsFeed = [];
+List productsSilage = [];
+
+Map<String, dynamic> buyNowProduct = {};
+
+String razorpayId = "rzp_live_hUk8LTeESrQ6lL";
+String razorpaySecret = "y66gUaAmox673dMiGkBaaNik";
+
+List shortVideoUrls = [
+  ShortVideo(videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", name: "Video 1", description: "This is the first video", likes: 10, dislikes: 3, comments: 2),
+  ShortVideo(videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", name: "Video 2", description: "This is the second video", likes: 7, dislikes: 1, comments: 4),
+  ShortVideo(videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", name: "Video 3", description: "This is the third video", likes: 15, dislikes: 2, comments: 7),
+  // "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  // "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  // "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
 ];

@@ -1,4 +1,5 @@
 class ProductDetail{
+  final String category;
   final List<String> imgUrls;
   final String name;
   final double price;
@@ -14,12 +15,14 @@ class ProductDetail{
   final int deliveryDays;
 
   ProductDetail({
+    required this.category,
     required this.imgUrls, required this.name, required this.price, required this.mrp, required this.weight, required this.description, required this.protein, required this.fibre, required this.fat, required this.units, required this.isCarted, required this.dispatchDays, required this.deliveryDays,
     }
   );
 
   Map<String, dynamic> toMap() {
     return {
+      "category": category,
       "imgUrls": imgUrls,
       "name": name,
       "price": price,

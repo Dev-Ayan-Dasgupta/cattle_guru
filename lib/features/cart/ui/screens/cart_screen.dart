@@ -13,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -258,7 +259,7 @@ class _CartScreenState extends State<CartScreen> {
                               onTap: (){
                                 Navigator.pushNamed(context, paymentMode);
                               }, 
-                              text: isEnglish? "Checkout" : "चेक आउट", fontColor: white, borderColor: primary),
+                              text: isEnglish? "Checkout" : "चेक आउट", fontColor: white, borderColor: primary, fontSize: 4.w,),
                               SizedBox(height: 2.h,),
                             ],
                           ),
@@ -277,49 +278,46 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: SnakeNavigationBar.color(
+        backgroundColor: primaryLight,
+        behaviour: SnakeBarBehaviour.pinned,
+        snakeShape: SnakeShape.rectangle,
+        padding: EdgeInsets.all(0),
+        snakeViewColor: Colors.green,
+        selectedItemColor: white,
+        unselectedItemColor: primary,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
         currentIndex: 3,
         onTap: (index){
           NavbarTabs.navigateToTab(context, index);
         },
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: orangeLight,
-        unselectedItemColor: white,
-        selectedLabelStyle: globalTextStyle,
-        unselectedLabelStyle: globalTextStyle,
         items: [
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.home_filled,
-              ),
-              label: isEnglish ? "Home" : "घर",
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_filled,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.local_shipping_rounded,
-              ),
-              label: isEnglish ? "Feed" : "चारा",
+            label: isEnglish ? "Home" : "घर",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.local_shipping_rounded,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.people_rounded,
-              ),
-              label: isEnglish ? "Community" : "समुदाय",
+            label: isEnglish ? "Feed" : "चारा",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.people_rounded,
             ),
-            BottomNavigationBarItem(
-              backgroundColor: primary,
-              icon: Icon(
-                Icons.shopping_cart_rounded,
-              ),
-              label: isEnglish ? "Cart" : "कार्ट",
-            ),     
+            label: isEnglish ? "Community" : "समुदाय",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart_rounded,
+            ),
+            label: isEnglish ? "Cart" : "कार्ट",
+          ),    
         ],
-        backgroundColor: primary,
       ),
     );
   }

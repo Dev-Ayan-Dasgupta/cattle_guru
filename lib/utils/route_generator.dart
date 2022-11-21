@@ -4,6 +4,8 @@ import 'package:cattle_guru/features/community/ui/screens/community_home.dart';
 import 'package:cattle_guru/features/cart/ui/screens/cart_screen.dart';
 import 'package:cattle_guru/features/cart/ui/screens/order_success.dart';
 import 'package:cattle_guru/features/cart/ui/screens/payment_options_screen.dart';
+import 'package:cattle_guru/features/community/ui/screens/create_room_screen.dart';
+import 'package:cattle_guru/features/community/ui/screens/join_room_screen.dart';
 import 'package:cattle_guru/features/home/ui/screens/home_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/otp_screen.dart';
 import 'package:cattle_guru/features/login/ui/screens/sign_in.dart';
@@ -42,6 +44,8 @@ class RouteGenerator{
       case orderSuccess: return CustomPageTransition(child: const OrderSuccessScreen(), settings: settings,);
       case changeLanguage: return CustomPageTransition(child: const ChangeLanguageScreen(), settings: settings,);
       case communityHome: return CustomPageTransition(child: const CommunityHomeScreen(), settings: settings,);
+      case createRoom: return CustomPageTransition(child: const CreateRoomScreen(), settings: settings,);
+      case joinRoom: return CustomPageTransition(child: const JoinRoomScreen(), settings: settings,);
       default: return _errorRoute();
     }
   }

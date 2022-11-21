@@ -1,3 +1,5 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:cattle_guru/features/checkout/ui/screens/checkout_screen.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
 import 'package:cattle_guru/models/product_details.dart';
@@ -200,6 +202,101 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               Column(
                 children: [
+                  widget.isCarted ? 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          
+                          if(widget.prodQty > 1){
+
+                            widget.prodQty --;
+
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cartValue': FieldValue.increment(-(widget.product['price'])),
+                            });
+
+                            for(int i = 0; i < cart.length; i++){
+                              if(widget.product['prodId'] == cart[i]['product']['prodId']){
+                                cart[i]['qty']--;
+                                break;
+                              }
+                            }
+
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cart': cart,
+                            });
+
+                            setState(() {
+                              
+                            });
+
+                          } else {
+
+                            widget.prodQty--;
+                                                  
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cartValue': FieldValue.increment(-(widget.product['price'])),
+                            }); 
+
+                            for(int i = 0; i < cart.length; i++){
+                              if(widget.product['prodId'] == cart[i]['product']['prodId']){
+                                cart.remove(cart[i]);
+                                break;
+                              }
+                            }
+
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cart': cart,
+                            });
+
+                            widget.isCarted = false;
+
+                            setState(() {
+                              
+                            });
+                          }
+                        },
+                        child: Icon(Icons.remove_circle, color: grey, size: 10.w,),
+                      ),
+                      SizedBox(width: 3.w,),
+                      AnimatedFlipCounter(
+                        value: widget.prodQty,
+                        textStyle: globalTextStyle.copyWith(color: black, fontSize: 6.w, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 3.w,),
+                      InkWell(
+                        onTap: (){
+                          if(widget.prodQty < widget.product['units']){
+
+                            widget.prodQty++;
+
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cartValue': FieldValue.increment(widget.product['price']),
+                            });
+
+                            for(int i = 0; i < cart.length; i++){
+                              if(widget.product['prodId'] == cart[i]['product']['prodId']){
+                                cart[i]['qty']++;
+                                break;
+                              }
+                            }
+
+                            FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                              'cart': cart,
+                            });
+
+                            setState(() {
+                              
+                            });
+                          }
+                        },
+                        child: Icon(Icons.add_circle, color: primary, size: 10.w,),
+                      ),
+                    ],
+                  )
+                  :
                   CustomButton(width: 90.w, height: 15.w, color: (widget.isCarted == true) ? lightRed : primary, 
                   onTap: () {
                     if((widget.isCarted == true)){
@@ -240,11 +337,21 @@ class _ProductScreenState extends State<ProductScreen> {
                               'cartValue': FieldValue.increment(widget.product['price'].toDouble())
                             });
                           widget.isCarted = true;
+                          widget.prodQty++;
                         }
                       });
                     }
                   }, 
                   text: (widget.isCarted == true) ? isEnglish ? "Remove from Cart" : "कार्ट से हटायें" : isEnglish ? "Add to Cart" : "कार्ट में डालें", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary),
+                  SizedBox(height: 1.h,),
+                  CustomButton(width: 90.w, height: 15.w, color: primary, 
+                  onTap: (){
+                    buyNowValue = widget.product['price'].toDouble();
+                    auxBuyNowValue = widget.product['price'].toDouble();
+                    buyNowProduct = widget.product;
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutScreen(product: widget.product)));
+                  }, 
+                  text: isEnglish ? "Buy Now" : "अभी खरीदें", fontColor: white, borderColor: primary, fontSize: 4.w,),
                   SizedBox(height: 2.h,),
                 ],
               ),

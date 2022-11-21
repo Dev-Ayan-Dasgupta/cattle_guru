@@ -56,13 +56,13 @@ class _CartTileState extends State<CartTile> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Qty", style: globalTextStyle.copyWith(color: black, fontSize: 3.5.w, fontWeight: FontWeight.bold),),
+                  Text("Qty", style: globalTextStyle.copyWith(color: black, fontSize: 4.w, fontWeight: FontWeight.bold),),
                   SizedBox(height: 2.w,),
                   Row(
                     children: [
                       InkWell(
                         onTap: widget.onSubtract,
-                        child: Icon(Icons.remove_circle, color: grey, size: 5.w,),
+                        child: Icon(Icons.remove_circle, color: grey, size: 7.5.w,),
                       ),
                       SizedBox(width: 3.w,),
                       AnimatedFlipCounter(
@@ -72,7 +72,7 @@ class _CartTileState extends State<CartTile> {
                       SizedBox(width: 3.w,),
                       InkWell(
                         onTap: widget.onAdd,
-                        child: Icon(Icons.add_circle, color: primary, size: 5.w,),
+                        child: Icon(Icons.add_circle, color: primary, size: 7.5.w,),
                       ),
                     ],
                   ),

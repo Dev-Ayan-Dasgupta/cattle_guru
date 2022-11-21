@@ -17,3 +17,5 @@ const String trackOrder = "/track-order";
 const String orderSuccess = "/order-success";
 const String changeLanguage = "change-language";
 const String communityHome = "/community-home";
+const String createRoom = "/create-room";
+const String joinRoom = "/join-room";

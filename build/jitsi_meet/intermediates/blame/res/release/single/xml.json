@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/mac/Flutter_Projects/cattle_guru/build/jitsi_meet/intermediates/res/merged/release/xml/file_provider_paths.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/acd4b473d24c22a6af1cd3cc58cb15b2/jetified-react-native-webview-11.0.2-jitsi-7097494/res/xml/file_provider_paths.xml"
+    },
+    {
+        "merged": "/Users/mac/Flutter_Projects/cattle_guru/build/jitsi_meet/intermediates/res/merged/release/xml/rn_dev_preferences.xml",
+        "source": "/Users/mac/.gradle/caches/transforms-2/files-2.1/b7ed6450d3a2386903b848cf08598e5b/jetified-react-native-0.61.5-jitsi.2/res/xml/rn_dev_preferences.xml"
+    }
+]

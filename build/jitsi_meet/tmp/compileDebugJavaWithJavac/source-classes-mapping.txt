@@ -1,0 +1,2 @@
+com/gunschu/jitsi_meet/BuildConfig.java
+ com.gunschu.jitsi_meet.BuildConfig

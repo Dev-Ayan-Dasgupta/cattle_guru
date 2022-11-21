@@ -603,48 +603,57 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
   - cloud_firestore (4.0.4):
-    - Firebase/Firestore (= 10.0.0)
+    - Firebase/Firestore (= 10.1.0)
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - Firebase/Auth (10.0.0):
+  - Firebase/Auth (10.1.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.0.0)
-  - Firebase/CoreOnly (10.0.0):
-    - FirebaseCore (= 10.0.0)
-  - Firebase/Firestore (10.0.0):
+    - FirebaseAuth (~> 10.1.0)
+  - Firebase/CoreOnly (10.1.0):
+    - FirebaseCore (= 10.1.0)
+  - Firebase/Firestore (10.1.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 10.0.0)
-  - Firebase/Storage (10.0.0):
+    - FirebaseFirestore (~> 10.1.0)
+  - Firebase/Storage (10.1.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 10.0.0)
+    - FirebaseStorage (~> 10.1.0)
+  - firebase_app_check (0.1.1-4):
+    - Firebase/CoreOnly (~> 10.1.0)
+    - firebase_core
+    - FirebaseAppCheck (~> 10.1.0-beta)
+    - Flutter
   - firebase_auth (4.1.1):
-    - Firebase/Auth (= 10.0.0)
+    - Firebase/Auth (= 10.1.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.1.1):
-    - Firebase/CoreOnly (= 10.0.0)
+  - firebase_core (2.2.0):
+    - Firebase/CoreOnly (= 10.1.0)
     - Flutter
   - firebase_storage (11.0.4):
-    - Firebase/Storage (= 10.0.0)
+    - Firebase/Storage (= 10.1.0)
     - firebase_core
     - Flutter
-  - FirebaseAppCheckInterop (10.1.0)
-  - FirebaseAuth (10.0.0):
+  - FirebaseAppCheck (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - PromisesObjC (~> 2.1)
+  - FirebaseAppCheckInterop (10.2.0)
+  - FirebaseAuth (10.1.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (~> 2.1)
-  - FirebaseAuthInterop (10.1.0)
-  - FirebaseCore (10.0.0):
+  - FirebaseAuthInterop (10.2.0)
+  - FirebaseCore (10.1.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.1.0):
+  - FirebaseCoreExtension (10.2.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.1.0):
+  - FirebaseCoreInternal (10.2.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseFirestore (10.0.0):
+  - FirebaseFirestore (10.1.0):
     - abseil/algorithm (~> 1.20211102.0)
     - abseil/base (~> 1.20211102.0)
     - abseil/container/flat_hash_map (~> 1.20211102.0)
@@ -657,31 +666,34 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseStorage (10.0.0):
+  - FirebaseStorage (10.1.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseAuthInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
     - FirebaseCoreExtension (~> 10.0)
     - GTMSessionFetcher/Core (~> 2.1)
   - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
   - geocoding (1.0.5):
     - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
-  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
+  - GoogleUtilities/AppDelegateSwizzler (7.10.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.8.0):
+  - GoogleUtilities/Environment (7.10.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.8.0):
+  - GoogleUtilities/Logger (7.10.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.8.0):
+  - GoogleUtilities/Network (7.10.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.8.0)"
-  - GoogleUtilities/Reachability (7.8.0):
+  - "GoogleUtilities/NSData+zlib (7.10.0)"
+  - GoogleUtilities/Reachability (7.10.0):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.44.0)":
     - "gRPC-C++/Implementation (= 1.44.0)"
@@ -734,12 +746,16 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
-  - GTMSessionFetcher/Core (2.2.0)
+  - GTMSessionFetcher/Core (2.3.0)
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.6.1)
   - image_picker_ios (0.0.1):
     - Flutter
+  - jitsi_meet (0.0.1):
+    - Flutter
+    - JitsiMeetSDK (= 3.3.0)
+  - JitsiMeetSDK (3.3.0)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -752,28 +768,40 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - package_info_plus (0.4.5):
+    - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
   - PromisesObjC (2.1.1)
+  - razorpay-pod (1.3.0)
+  - razorpay_flutter (1.1.10):
+    - Flutter
+    - razorpay-pod
   - share_plus (0.0.1):
     - Flutter
   - smart_auth (0.0.1):
     - Flutter
+  - Toast (4.0.0)
   - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - firebase_app_check (from `.symlinks/plugins/firebase_app_check/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding (from `.symlinks/plugins/geocoding/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - jitsi_meet (from `.symlinks/plugins/jitsi_meet/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -783,6 +811,7 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - Firebase
+    - FirebaseAppCheck
     - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -795,15 +824,20 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - JitsiMeetSDK
     - leveldb-library
     - Libuv-gRPC
     - nanopb
     - PromisesObjC
+    - razorpay-pod
+    - Toast
     - TOCropViewController
 
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  firebase_app_check:
+    :path: ".symlinks/plugins/firebase_app_check/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -812,6 +846,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
   geocoding:
     :path: ".symlinks/plugins/geocoding/ios"
   geolocator_apple:
@@ -820,8 +856,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  jitsi_meet:
+    :path: ".symlinks/plugins/jitsi_meet/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  razorpay_flutter:
+    :path: ".symlinks/plugins/razorpay_flutter/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   smart_auth:
@@ -832,38 +874,47 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
-  cloud_firestore: 62c5fa0e5ce5373be25d6233e8edbbe991fa973d
-  Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
-  firebase_auth: dd33e93fce72a1c72040f7380dacf06e89db5705
-  firebase_core: 5c0bb0ca7d0e70480a68a6e9ad9bf55d1edd5305
-  firebase_storage: 5cf5e677fd9793e26ec5d006100c25e28cd21c05
-  FirebaseAppCheckInterop: 53eec3c354a95f8fe6ff947dd9518ea17f624914
-  FirebaseAuth: 493382cf533cc45e2862b00e9aa4cfe4c98daf71
-  FirebaseAuthInterop: 15b2c717321d5e46a60562e388c4d1b039ea7e28
-  FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
-  FirebaseCoreExtension: 69b966c399abc4ca6dc75006ab87160f81512725
-  FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
-  FirebaseFirestore: 5007583f3db2129de8e87f18ee63f4c86f07e7a3
-  FirebaseStorage: 8b0b0630e11b9f3e4a479a26cfccb70ec790ec50
+  cloud_firestore: 0476c4e05a924f8c12613861d3cf6aed0b4ef4db
+  Firebase: 444b35a9c568a516666213c2f6cccd10cb12559f
+  firebase_app_check: 8e55f21a1f3c593088086dbebfb517844e5535b8
+  firebase_auth: 18fcaa59a2ff531842a667b34568f6e723eeaa96
+  firebase_core: d2242c6f318db1d0dcecfbfa491e943337b0d755
+  firebase_storage: c134436fb34cb8eb99afd2e501ffbf5d3cf2dc76
+  FirebaseAppCheck: 60a3d1a4cb5a5bcdbfc9a83c92debd35fc7b3794
+  FirebaseAppCheckInterop: af164d9c623f82174e3ffa54394dee189587c601
+  FirebaseAuth: 19a85b8a42e7c1104a2ffa6987c748daa79a5e64
+  FirebaseAuthInterop: 027d42ca8fec84dc6151566479af05095a0bd5c0
+  FirebaseCore: 55e7ae35991ccca4db03ff8d8df6ed5f17a3e4c7
+  FirebaseCoreExtension: d08b424832917cf13612021574399afbbedffeef
+  FirebaseCoreInternal: 091bde13e47bb1c5e9fe397634f3593dc390430f
+  FirebaseFirestore: d482e5e0f95dba8ef5d499a7efa87ba2f56ef0c0
+  FirebaseStorage: 132c10c4d2f8ed8afbfa918eb35d19a87f383d59
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  fluttertoast: 74526702fea2c060ea55dde75895b7e1bde1c86b
   geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
-  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-  GTMSessionFetcher: d62ffccea5108bb9e7762ee121ae63bbdd2c6303
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  jitsi_meet: a797e5ffdbc1da9d424c52b1bfe3b2a803b05e31
+  JitsiMeetSDK: 3b1d3757f2166b28cd03f907b47091db064302b3
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  razorpay-pod: ebc78907f756ace307e3fa4270ff684ebb9e291b
+  razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
-PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+PODFILE CHECKSUM: eacb1001cfc91c68dc5cbcd017881d53718cc175
 
 COCOAPODS: 1.11.3
