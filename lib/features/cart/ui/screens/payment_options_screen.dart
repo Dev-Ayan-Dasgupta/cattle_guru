@@ -44,6 +44,31 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     // Do something when payment succeeds
     print("Payment Done");
+
+    //Add current cart to Current Orders array
+    currentOrders.add({
+      'orderId': Random().nextInt(1000),
+      'order': cart,
+      'date': DateTime.now(),
+      'amount': cartValue - 200 - 300
+    });
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'currentOrders': currentOrders,
+    });
+    
+    //Set cartvalue to 0
+    cartValue = 0;
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'cartValue': 0,
+    });
+
+    //Empty the cart
+    cart = [];
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'cart': cart,
+    });
+
+    Navigator.pushNamed(context, orderSuccess);
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -219,49 +244,34 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                   onTap: () async {
 
                     if(isCod == false){
-                    // var options = {
-                    //   'key': '<YOUR_KEY_ID>',
-                    //   'amount': ((cartValue-300-200)*100).toInt(), //in the smallest currency sub-unit.
-                    //   'currency': "INR",
-                    //   'name': 'Cattle GURU',
-                    //   'description': 'Online purchase of cattle food',
-                    //   'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
-                    //   'timeout': 300,
-                    //   'prefill': {
-                    //     'contact': phoneNumber,
-                    //   } // in seconds
-                    // };
-
-                    // // _razorpay.open(options);
-                    // await rzpOpen(options);
-
                     await openGateWay();
-                  }
-                
-                    //Add current cart to Current Orders array
-                    currentOrders.add({
-                      'orderId': Random().nextInt(1000),
-                      'order': cart,
-                      'date': DateTime.now(),
-                      'amount': cartValue - 200 - 300
-                    });
-                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                      'currentOrders': currentOrders,
-                    });
-                    
-                    //Set cartvalue to 0
-                    cartValue = 0;
-                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                      'cartValue': 0,
-                    });
 
-                    //Empty the cart
-                    cart = [];
-                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                      'cart': cart,
-                    });
+                  } else {
+                      //Add current cart to Current Orders array
+                      currentOrders.add({
+                        'orderId': Random().nextInt(1000),
+                        'order': cart,
+                        'date': DateTime.now(),
+                        'amount': cartValue - 200 - 300
+                      });
+                      FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                        'currentOrders': currentOrders,
+                      });
+                      
+                      //Set cartvalue to 0
+                      cartValue = 0;
+                      FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                        'cartValue': 0,
+                      });
 
-                    Navigator.pushNamed(context, orderSuccess);
+                      //Empty the cart
+                      cart = [];
+                      FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                        'cart': cart,
+                      });
+
+                      Navigator.pushNamed(context, orderSuccess);
+                    }   
                   }, 
                   text: isEnglish? "Pay ${(cartValue-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}" : "${(cartValue-300-200).toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)} भुगतान करें", fontColor: white, borderColor: primary,)
                 ],

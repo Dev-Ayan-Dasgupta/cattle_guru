@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:cattle_guru/features/address/ui/widgets/address_card.dart';
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/common/widgets/custom_drawer.dart';
-import 'package:cattle_guru/features/common/widgets/custom_dropdown.dart';
 import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
 import 'package:cattle_guru/features/product/ui/widgets/product_list_tile.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
@@ -52,7 +51,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     // Do something when payment succeeds
     print(response);
-    // verifySignature();
+    //Add current product to Current Orders array
+    currentOrders.add({
+      'orderId': Random().nextInt(1000),
+      'order': [{
+        'product': widget.product,
+        'qty': dropDownValue,
+      }],
+      'date': DateTime.now(),
+      'amount': buyNowValue
+    });
+    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+      'currentOrders': currentOrders,
+    });
+    
+    buyNowValue = 0;
+    
+    Navigator.pushNamed(context, orderSuccess);
+
+    _razorpay.clear();
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -98,10 +115,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     
   }
 
-  Future<void> rzpOpen(var opt) async {
-    return _razorpay.open(opt);
-  }
-
   Future openGateWay() async {
     generateRzpOrderId().then((value){
       var options = {
@@ -123,6 +136,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       print(e); 
     }
     });
+
+    // _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    // _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    // _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     
   }
 
@@ -185,7 +202,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         product: widget.product, 
                         isCarted: false, 
                         id: widget.product['prodId'],
-                        prodQty: 1,
+                        prodQty: dropDownValue,
                       )));
                   }, 
                   imgUrl: widget.product['imgUrls'][0], 
@@ -305,52 +322,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 child: CustomButton(width: 90.w, height: 15.w, color: primary, 
                 onTap: () async {
                   if(isCod == false) {
-                    // var options = {
-                    //   'key': 'rzp_live_hUk8LTeESrQ6lL',
-                    //   'amount': (buyNowValue*100).toInt(), //in the smallest currency sub-unit.
-                    //   'currency': "INR",
-                    //   'name': 'Cattle GURU',
-                    //   'description': 'Online purchase of cattle food',
-                    //   'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
-                    //   'timeout': 300, // in seconds
-                    //   'prefill': {
-                    //     'contact': phoneNumber
-                    //   }
-                    // };
-
-                    // _razorpay.open(options);
-                    // await rzpOpen(options);
-
                     await openGateWay();
+                  } else {
+                    //Add current product to Current Orders array
+                    currentOrders.add({
+                      'orderId': Random().nextInt(1000),
+                      'order': [{
+                        'product': widget.product,
+                        'qty': dropDownValue,
+                      }],
+                      'date': DateTime.now(),
+                      'amount': buyNowValue
+                    });
+                    FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                      'currentOrders': currentOrders,
+                    });
+                    
+                    buyNowValue = 0;
+                    
+                    Navigator.pushNamed(context, orderSuccess);
                   }
-                  //Add current product to Current Orders array
-                      currentOrders.add({
-                        'orderId': Random().nextInt(1000),
-                        'order': [{
-                          'product': widget.product,
-                          'qty': 1,
-                        }],
-                        'date': DateTime.now(),
-                        'amount': buyNowValue
-                      });
-                      FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                        'currentOrders': currentOrders,
-                      });
-                      
-                      //Set buyNowValue to 0
-                      // cartValue = 0;
-                      buyNowValue = 0;
-                      // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                      //   'cartValue': 0,
-                      // });
-
-                      //Empty the cart
-                      // cart = [];
-                      // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
-                      //   'cart': cart,
-                      // });
-
-                      Navigator.pushNamed(context, orderSuccess);
+                  
+                  // currentOrders.removeLast();
+                  // FirebaseFirestore.instance.collection('customers').doc(currUserId).update({
+                  //   'currentOrders': currentOrders,
+                  // });
                 }, 
                 text: isEnglish ? "Pay ${buyNowValue.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)}" : "${buyNowValue.toCurrencyString(leadingSymbol: "₹", useSymbolPadding: true)} भुगतान करें ", fontColor: white, borderColor: primary),
               )

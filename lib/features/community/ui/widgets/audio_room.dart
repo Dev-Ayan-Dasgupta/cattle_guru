@@ -63,6 +63,7 @@ class _AudioRoomState extends State<AudioRoom> {
                                           itemBuilder: (context, index){
                                             String roomDescription = (snapshot.data! as dynamic).docs[index]['roomDescription'];
                                             List membersNames = (snapshot.data! as dynamic).docs[index]['membersNames'];
+                                            List membersUids = (snapshot.data! as dynamic).docs[index]['currentUserIds'];
                                             List membersPhotos = (snapshot.data! as dynamic).docs[index]['membersPhotos'];
                                             DateTime startedAt = (snapshot.data! as dynamic).docs[index]['startedAt'].toDate();
                                             String id = (snapshot.data! as dynamic).docs[index].id;
@@ -81,8 +82,18 @@ class _AudioRoomState extends State<AudioRoom> {
                                                 }
                                               },
                                               onJoin: (){
-                                                membersNames.add(userName);
-                                                membersPhotos.add(profileImgUrl);
+                                                
+                                                if(membersUids.contains(currUserId) != true){
+                                                  membersNames.add(userName);
+                                                  membersPhotos.add(profileImgUrl);
+                                                  membersUids.add(currUserId);
+                                                  FirebaseFirestore.instance.collection('audio-rooms').doc(id).update({
+                                                    'membersNames': membersNames,
+                                                    'membersPhotos': membersPhotos,
+                                                    'currentUserIds': membersUids,
+                                                  });
+                                                }
+                                                
                                                 JitsiMeetMethods.joinMeeting(
                                                   roomName: (snapshot.data! as dynamic).docs[index]['roomName'],
                                                   isAudioMuted: true,
@@ -90,7 +101,8 @@ class _AudioRoomState extends State<AudioRoom> {
                                                   profilePhotoUrl: profileImgUrl, 
                                                   membersNames: membersNames,
                                                   membersPhotos: membersPhotos,
-                                                  id: (snapshot.data! as dynamic).docs[index].id);
+                                                  id: (snapshot.data! as dynamic).docs[index].id,
+                                                );
                                               },
                                             );
                                           }

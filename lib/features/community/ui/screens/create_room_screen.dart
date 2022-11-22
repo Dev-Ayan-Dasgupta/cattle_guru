@@ -96,7 +96,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                             username: userName, 
                             profilePhotoUrl: profileImgUrl, 
                             membersNames: [userName],
-                            membersPhotos: [profileImgUrl]);
+                            membersPhotos: [profileImgUrl],
+                            currentUserIds: [currUserId]
+                          );
                         }, 
                         text: isEnglish ? "Create a Room" : "Room शुरू करें", fontColor: white, borderColor: primary),
                         SizedBox(height: 2.h,),

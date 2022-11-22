@@ -342,7 +342,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       });
                     }
                   }, 
-                  text: (widget.isCarted == true) ? isEnglish ? "Remove from Cart" : "कार्ट से हटायें" : isEnglish ? "Add to Cart" : "कार्ट में डालें", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary),
+                  text: (widget.isCarted == true) ? isEnglish ? "Remove from Cart" : "कार्ट से हटायें" : isEnglish ? "Add to Cart" : "कार्ट में डालें", fontColor: (widget.isCarted == true) ? red : white, borderColor: (widget.isCarted == true) ? red : primary, fontSize: 4.w,),
                   SizedBox(height: 1.h,),
                   CustomButton(width: 90.w, height: 15.w, color: primary, 
                   onTap: (){

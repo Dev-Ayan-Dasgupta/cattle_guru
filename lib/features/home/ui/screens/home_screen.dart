@@ -95,6 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     phoneNumber = snapshot.data!.docs[index].get('phoneNumber');
                     profileImgUrl = snapshot.data!.docs[index].get('profileImgUrl');
                     isEnglish = snapshot.data!.docs[index].get('isEnglish');
+                    likedShorts = snapshot.data!.docs[index].get('likedShorts');
+                    dislikedShorts = snapshot.data!.docs[index].get('dislikedShorts');
                     firestoreCurrentAddress = snapshot.data!.docs[index].get('currentAddress');
                     // if(cart.isNotEmpty){
                     //   qty = snapshot.data!.docs[index].get('cart')[index]['qty'];

@@ -22,7 +22,7 @@ class OrderTile extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 1.h),
         child: SizedBox(
           width: 100.w,
-          height: isEnglish ? 21.w : 21.4.w,
+          height: isEnglish ? 21.w : 21.85.w,
           child: Row(
             children: [
               SizedBox(

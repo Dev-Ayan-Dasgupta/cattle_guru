@@ -15,6 +15,7 @@ class JitsiMeetMethods{
     required String profilePhotoUrl,
     required List membersNames,
     required List membersPhotos,
+    required List currentUserIds,
   }
   ) async {
     try {
@@ -35,7 +36,9 @@ class JitsiMeetMethods{
         roomDescription: roomDescription, 
         membersNames: membersNames,
         membersPhotos: membersPhotos, 
-        startedAt: DateTime.now());
+        membersUids: currentUserIds,
+        startedAt: DateTime.now(),
+      );
 
       await FirebaseFirestore.instance.collection('audio-rooms').doc().set(audioRoom.toMap());
 

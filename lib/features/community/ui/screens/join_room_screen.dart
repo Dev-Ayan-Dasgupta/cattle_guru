@@ -116,9 +116,22 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                                         isValid = true;
                                         List membersNames = (snapshot.data! as dynamic).docs[index]['membersNames'];
                                         List membersPhotos = (snapshot.data! as dynamic).docs[index]['membersPhotos'];
+                                        List membersUids = (snapshot.data! as dynamic).docs[index]['currentUserIds'];
                                         String id = (snapshot.data! as dynamic).docs[index].id;
                                         return CustomButton(width: 90.w, height: 15.w, color: primary,
                                           onTap: (){
+
+                                            if(membersUids.contains(currUserId) != true){
+                                              membersNames.add(userName);
+                                              membersPhotos.add(profileImgUrl);
+                                              membersUids.add(currUserId);
+                                              FirebaseFirestore.instance.collection('audio-rooms').doc(id).update({
+                                                'membersNames': membersNames,
+                                                'membersPhotos': membersPhotos,
+                                                'currentUserIds': membersUids,
+                                              });
+                                            }
+
                                             JitsiMeetMethods.joinMeeting(
                                               roomName: roomNameController.text,
                                               isAudioMuted: true, 

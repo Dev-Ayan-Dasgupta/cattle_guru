@@ -4,6 +4,7 @@ class AudioRoomModel{
   final String roomDescription;
   final List membersNames;
   final List membersPhotos;
+  final List membersUids;
   final DateTime startedAt;
 
   AudioRoomModel({
@@ -12,6 +13,7 @@ class AudioRoomModel{
     required this.roomDescription, 
     required this.membersNames,
     required this.membersPhotos,
+    required this.membersUids,
     required this.startedAt,
   });
 
@@ -22,6 +24,7 @@ class AudioRoomModel{
       "roomDescription": roomDescription,
       "membersNames": membersNames,
       "membersPhotos": membersPhotos,
+      "currentUserIds": membersUids,
       "startedAt": startedAt,
     };
   }

@@ -1,6 +1,7 @@
 import 'package:cattle_guru/features/common/widgets/custom_button.dart';
 import 'package:cattle_guru/features/orders/ui/screen/track_order.dart';
 import 'package:cattle_guru/features/orders/ui/widgets/order_tile.dart';
+import 'package:cattle_guru/features/product/ui/screens/product_screen.dart';
 import 'package:cattle_guru/utils/global_variables.dart';
 import 'package:cattle_guru/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -123,7 +124,9 @@ class _CurrentOrderState extends State<CurrentOrder> {
                                                             itemCount: currentOrders[index2]['order'].length,
                                                             itemBuilder: (context, index3){
                                                               return OrderTile(
-                                                                onTap: (){},
+                                                                onTap: (){
+                                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: currentOrders[index2]['order'][index3]['product'], isCarted: false, id: currentOrders[index2]['order'][index3]['product']['prodId'], prodQty: 1)));
+                                                                },
                                                                 imgUrl: currentOrders[index2]['order'][index3]['product']['imgUrls'][0], 
                                                                 productName: currentOrders[index2]['order'][index3]['product']['name'], 
                                                                 qty: currentOrders[index2]['order'][index3]['qty'], 
